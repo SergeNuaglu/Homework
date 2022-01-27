@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 
 namespace TypesOfVariables
 {
@@ -6,7 +6,16 @@ namespace TypesOfVariables
     {
         public static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            byte floorCount;
+            sbyte groundTemperature;
+            short coinsCount;
+            int age;
+            float carSpeed;
+            double planetVolume;
+            long starsCount;
+            char userLicense;
+            string name;
+            bool isDoorOpen;
         }
     }
 }
