@@ -5,6 +5,8 @@ VisualStudioVersion = 16.0.810.17
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TypesOfVariables", "TypesOfVariables\TypesOfVariables.csproj", "{C04EFD49-6B95-4E3B-B992-0C6E0CA06752}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RowsOfPictures", "RowsOfPictures\RowsOfPictures.csproj", "{5B180405-1B59-4FB7-B6DB-818BD5F06FE1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|anycpu = Debug|anycpu
@@ -15,6 +17,10 @@ Global
 		{C04EFD49-6B95-4E3B-B992-0C6E0CA06752}.Debug|anycpu.Build.0 = Debug|anycpu
 		{C04EFD49-6B95-4E3B-B992-0C6E0CA06752}.Release|anycpu.ActiveCfg = Release|anycpu
 		{C04EFD49-6B95-4E3B-B992-0C6E0CA06752}.Release|anycpu.Build.0 = Release|anycpu
+		{5B180405-1B59-4FB7-B6DB-818BD5F06FE1}.Debug|anycpu.ActiveCfg = Debug|anycpu
+		{5B180405-1B59-4FB7-B6DB-818BD5F06FE1}.Debug|anycpu.Build.0 = Debug|anycpu
+		{5B180405-1B59-4FB7-B6DB-818BD5F06FE1}.Release|anycpu.ActiveCfg = Release|anycpu
+		{5B180405-1B59-4FB7-B6DB-818BD5F06FE1}.Release|anycpu.Build.0 = Release|anycpu
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
