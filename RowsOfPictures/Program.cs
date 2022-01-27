@@ -8,13 +8,13 @@ namespace RowsOfPictures
         {
             int picturesCount = 52;
             int picturesInRow = 3;
-            int filledRow;
+            int filledRows;
             int picturesOverflow;
 
-            filledRow = picturesCount / picturesInRow;
+            filledRows = picturesCount / picturesInRow;
             picturesOverflow = picturesCount % picturesInRow;
 
-            Console.WriteLine("Количество заполненных рядов: " + filledRow);
+            Console.WriteLine("Количество заполненных рядов: " + filledRows);
             Console.WriteLine("Количество картинок сверх меры: " + picturesOverflow);
         }
     }

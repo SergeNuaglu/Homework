@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TypesOfVariables", "TypesOf
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RowsOfPictures", "RowsOfPictures\RowsOfPictures.csproj", "{5B180405-1B59-4FB7-B6DB-818BD5F06FE1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoldAndCrystals", "GoldAndCrystals\GoldAndCrystals.csproj", "{2F4CC0CC-1069-4C7C-9C8A-1EAAD5ABE18D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|anycpu = Debug|anycpu
@@ -21,6 +23,10 @@ Global
 		{5B180405-1B59-4FB7-B6DB-818BD5F06FE1}.Debug|anycpu.Build.0 = Debug|anycpu
 		{5B180405-1B59-4FB7-B6DB-818BD5F06FE1}.Release|anycpu.ActiveCfg = Release|anycpu
 		{5B180405-1B59-4FB7-B6DB-818BD5F06FE1}.Release|anycpu.Build.0 = Release|anycpu
+		{2F4CC0CC-1069-4C7C-9C8A-1EAAD5ABE18D}.Debug|anycpu.ActiveCfg = Debug|anycpu
+		{2F4CC0CC-1069-4C7C-9C8A-1EAAD5ABE18D}.Debug|anycpu.Build.0 = Debug|anycpu
+		{2F4CC0CC-1069-4C7C-9C8A-1EAAD5ABE18D}.Release|anycpu.ActiveCfg = Release|anycpu
+		{2F4CC0CC-1069-4C7C-9C8A-1EAAD5ABE18D}.Release|anycpu.Build.0 = Release|anycpu
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
