@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoldAndCrystals", "GoldAndC
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InTheCinic", "InTheCinic\InTheCinic.csproj", "{109825D9-A168-4ABB-805C-F84982739B08}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Questionnaire", "Questionnaire\Questionnaire.csproj", "{ECE30DC4-C01D-4C6E-8B86-BDD32AB14F7A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|anycpu = Debug|anycpu
@@ -33,6 +35,10 @@ Global
 		{109825D9-A168-4ABB-805C-F84982739B08}.Debug|anycpu.Build.0 = Debug|anycpu
 		{109825D9-A168-4ABB-805C-F84982739B08}.Release|anycpu.ActiveCfg = Release|anycpu
 		{109825D9-A168-4ABB-805C-F84982739B08}.Release|anycpu.Build.0 = Release|anycpu
+		{ECE30DC4-C01D-4C6E-8B86-BDD32AB14F7A}.Debug|anycpu.ActiveCfg = Debug|anycpu
+		{ECE30DC4-C01D-4C6E-8B86-BDD32AB14F7A}.Debug|anycpu.Build.0 = Debug|anycpu
+		{ECE30DC4-C01D-4C6E-8B86-BDD32AB14F7A}.Release|anycpu.ActiveCfg = Release|anycpu
+		{ECE30DC4-C01D-4C6E-8B86-BDD32AB14F7A}.Release|anycpu.Build.0 = Release|anycpu
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
