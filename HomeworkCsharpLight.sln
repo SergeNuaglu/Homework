@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RowsOfPictures", "RowsOfPic
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoldAndCrystals", "GoldAndCrystals\GoldAndCrystals.csproj", "{2F4CC0CC-1069-4C7C-9C8A-1EAAD5ABE18D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InTheCinic", "InTheCinic\InTheCinic.csproj", "{109825D9-A168-4ABB-805C-F84982739B08}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|anycpu = Debug|anycpu
@@ -27,6 +29,10 @@ Global
 		{2F4CC0CC-1069-4C7C-9C8A-1EAAD5ABE18D}.Debug|anycpu.Build.0 = Debug|anycpu
 		{2F4CC0CC-1069-4C7C-9C8A-1EAAD5ABE18D}.Release|anycpu.ActiveCfg = Release|anycpu
 		{2F4CC0CC-1069-4C7C-9C8A-1EAAD5ABE18D}.Release|anycpu.Build.0 = Release|anycpu
+		{109825D9-A168-4ABB-805C-F84982739B08}.Debug|anycpu.ActiveCfg = Debug|anycpu
+		{109825D9-A168-4ABB-805C-F84982739B08}.Debug|anycpu.Build.0 = Debug|anycpu
+		{109825D9-A168-4ABB-805C-F84982739B08}.Release|anycpu.ActiveCfg = Release|anycpu
+		{109825D9-A168-4ABB-805C-F84982739B08}.Release|anycpu.Build.0 = Release|anycpu
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
