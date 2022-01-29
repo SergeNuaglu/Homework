@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Questionnaire", "Questionna
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MessageOutput", "MessageOutput\MessageOutput.csproj", "{CFF44131-E1F9-4EC8-BAE0-005B256E8A74}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StopWord", "StopWord\StopWord.csproj", "{7AD7BB34-263F-4A68-8657-09381C3D9D36}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|anycpu = Debug|anycpu
@@ -45,6 +47,10 @@ Global
 		{CFF44131-E1F9-4EC8-BAE0-005B256E8A74}.Debug|anycpu.Build.0 = Debug|anycpu
 		{CFF44131-E1F9-4EC8-BAE0-005B256E8A74}.Release|anycpu.ActiveCfg = Release|anycpu
 		{CFF44131-E1F9-4EC8-BAE0-005B256E8A74}.Release|anycpu.Build.0 = Release|anycpu
+		{7AD7BB34-263F-4A68-8657-09381C3D9D36}.Debug|anycpu.ActiveCfg = Debug|anycpu
+		{7AD7BB34-263F-4A68-8657-09381C3D9D36}.Debug|anycpu.Build.0 = Debug|anycpu
+		{7AD7BB34-263F-4A68-8657-09381C3D9D36}.Release|anycpu.ActiveCfg = Release|anycpu
+		{7AD7BB34-263F-4A68-8657-09381C3D9D36}.Release|anycpu.Build.0 = Release|anycpu
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
