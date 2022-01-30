@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StopWord", "StopWord\StopWo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "СurrencyExchange", "СurrencyExchange\СurrencyExchange.csproj", "{5A309ABB-DEAF-46B7-8AB8-395C8130F0C8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Polyclinic", "Polyclinic\Polyclinic.csproj", "{338BA041-F5EA-4D7F-835E-6D64B2A4BAE7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|anycpu = Debug|anycpu
@@ -51,6 +53,10 @@ Global
 		{5A309ABB-DEAF-46B7-8AB8-395C8130F0C8}.Debug|anycpu.Build.0 = Debug|anycpu
 		{5A309ABB-DEAF-46B7-8AB8-395C8130F0C8}.Release|anycpu.ActiveCfg = Release|anycpu
 		{5A309ABB-DEAF-46B7-8AB8-395C8130F0C8}.Release|anycpu.Build.0 = Release|anycpu
+		{338BA041-F5EA-4D7F-835E-6D64B2A4BAE7}.Debug|anycpu.ActiveCfg = Debug|anycpu
+		{338BA041-F5EA-4D7F-835E-6D64B2A4BAE7}.Debug|anycpu.Build.0 = Debug|anycpu
+		{338BA041-F5EA-4D7F-835E-6D64B2A4BAE7}.Release|anycpu.ActiveCfg = Release|anycpu
+		{338BA041-F5EA-4D7F-835E-6D64B2A4BAE7}.Release|anycpu.Build.0 = Release|anycpu
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
