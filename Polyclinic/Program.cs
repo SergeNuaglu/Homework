@@ -16,8 +16,8 @@ namespace Polyclinic
             oldWomenCount = Convert.ToInt32(Console.ReadLine());
 
             waitingTime = oldWomenCount * timeForOnePerson;
+            hour = waitingTime / 60;
             minute = waitingTime % 60;
-            hour = (waitingTime - minute) / 60;
 
             Console.WriteLine($"Вы должны отстоять в очереди {hour} часа и {minute} минут.");
         }
