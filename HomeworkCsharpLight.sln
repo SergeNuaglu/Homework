@@ -9,13 +9,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RowsOfPictures", "RowsOfPic
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoldAndCrystals", "GoldAndCrystals\GoldAndCrystals.csproj", "{2F4CC0CC-1069-4C7C-9C8A-1EAAD5ABE18D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InTheCinic", "InTheCinic\InTheCinic.csproj", "{109825D9-A168-4ABB-805C-F84982739B08}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Questionnaire", "Questionnaire\Questionnaire.csproj", "{ECE30DC4-C01D-4C6E-8B86-BDD32AB14F7A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MessageOutput", "MessageOutput\MessageOutput.csproj", "{CFF44131-E1F9-4EC8-BAE0-005B256E8A74}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StopWord", "StopWord\StopWord.csproj", "{7AD7BB34-263F-4A68-8657-09381C3D9D36}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "СurrencyExchange", "СurrencyExchange\СurrencyExchange.csproj", "{5A309ABB-DEAF-46B7-8AB8-395C8130F0C8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,10 +35,6 @@ Global
 		{2F4CC0CC-1069-4C7C-9C8A-1EAAD5ABE18D}.Debug|anycpu.Build.0 = Debug|anycpu
 		{2F4CC0CC-1069-4C7C-9C8A-1EAAD5ABE18D}.Release|anycpu.ActiveCfg = Release|anycpu
 		{2F4CC0CC-1069-4C7C-9C8A-1EAAD5ABE18D}.Release|anycpu.Build.0 = Release|anycpu
-		{109825D9-A168-4ABB-805C-F84982739B08}.Debug|anycpu.ActiveCfg = Debug|anycpu
-		{109825D9-A168-4ABB-805C-F84982739B08}.Debug|anycpu.Build.0 = Debug|anycpu
-		{109825D9-A168-4ABB-805C-F84982739B08}.Release|anycpu.ActiveCfg = Release|anycpu
-		{109825D9-A168-4ABB-805C-F84982739B08}.Release|anycpu.Build.0 = Release|anycpu
 		{ECE30DC4-C01D-4C6E-8B86-BDD32AB14F7A}.Debug|anycpu.ActiveCfg = Debug|anycpu
 		{ECE30DC4-C01D-4C6E-8B86-BDD32AB14F7A}.Debug|anycpu.Build.0 = Debug|anycpu
 		{ECE30DC4-C01D-4C6E-8B86-BDD32AB14F7A}.Release|anycpu.ActiveCfg = Release|anycpu
@@ -51,6 +47,10 @@ Global
 		{7AD7BB34-263F-4A68-8657-09381C3D9D36}.Debug|anycpu.Build.0 = Debug|anycpu
 		{7AD7BB34-263F-4A68-8657-09381C3D9D36}.Release|anycpu.ActiveCfg = Release|anycpu
 		{7AD7BB34-263F-4A68-8657-09381C3D9D36}.Release|anycpu.Build.0 = Release|anycpu
+		{5A309ABB-DEAF-46B7-8AB8-395C8130F0C8}.Debug|anycpu.ActiveCfg = Debug|anycpu
+		{5A309ABB-DEAF-46B7-8AB8-395C8130F0C8}.Debug|anycpu.Build.0 = Debug|anycpu
+		{5A309ABB-DEAF-46B7-8AB8-395C8130F0C8}.Release|anycpu.ActiveCfg = Release|anycpu
+		{5A309ABB-DEAF-46B7-8AB8-395C8130F0C8}.Release|anycpu.Build.0 = Release|anycpu
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
