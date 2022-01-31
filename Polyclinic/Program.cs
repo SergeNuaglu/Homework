@@ -6,16 +6,17 @@ namespace Polyclinic
     {
         public static void Main(string[] args)
         {
-            int timeForOnePerson = 10;
-            int oldWomenCount;
+            int onePersonTime = 10;
+            int peopleCount;
             int waitingTime;
             int hour;
             int minute;
 
             Console.Write("Введите кол-во старушек: ");
-            oldWomenCount = Convert.ToInt32(Console.ReadLine());
+            peopleCount = Convert.ToInt32(Console.ReadLine());
 
-            waitingTime = oldWomenCount * timeForOnePerson;
+            waitingTime = peopleCount * onePersonTime;
+            //60 minutes in one hour
             hour = waitingTime / 60;
             minute = waitingTime % 60;
 
