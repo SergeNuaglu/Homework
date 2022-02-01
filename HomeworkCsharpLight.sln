@@ -19,6 +19,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "СurrencyExchange", "Сurre
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Polyclinic", "Polyclinic\Polyclinic.csproj", "{338BA041-F5EA-4D7F-835E-6D64B2A4BAE7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application", "Application\Application.csproj", "{14F2EC52-3FDE-4636-BED3-599E89D1819D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|anycpu = Debug|anycpu
@@ -57,6 +59,10 @@ Global
 		{338BA041-F5EA-4D7F-835E-6D64B2A4BAE7}.Debug|anycpu.Build.0 = Debug|anycpu
 		{338BA041-F5EA-4D7F-835E-6D64B2A4BAE7}.Release|anycpu.ActiveCfg = Release|anycpu
 		{338BA041-F5EA-4D7F-835E-6D64B2A4BAE7}.Release|anycpu.Build.0 = Release|anycpu
+		{14F2EC52-3FDE-4636-BED3-599E89D1819D}.Debug|anycpu.ActiveCfg = Debug|anycpu
+		{14F2EC52-3FDE-4636-BED3-599E89D1819D}.Debug|anycpu.Build.0 = Debug|anycpu
+		{14F2EC52-3FDE-4636-BED3-599E89D1819D}.Release|anycpu.ActiveCfg = Release|anycpu
+		{14F2EC52-3FDE-4636-BED3-599E89D1819D}.Release|anycpu.Build.0 = Release|anycpu
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

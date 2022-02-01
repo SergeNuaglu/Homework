@@ -6,21 +6,20 @@ namespace Polyclinic
     {
         public static void Main(string[] args)
         {
-            int onePersonTime = 10;
             int peopleCount;
-            int waitingTime;
-            int hour;
-            int minute;
+            int minutesPerPerson = 10;
+            int totalMinutes;
+            int hoursBeforeAdmission;
+            int minutesBeforeAdmission;
 
             Console.Write("Введите кол-во старушек: ");
             peopleCount = Convert.ToInt32(Console.ReadLine());
 
-            waitingTime = peopleCount * onePersonTime;
-            //60 minutes in one hour
-            hour = waitingTime / 60;
-            minute = waitingTime % 60;
+            totalMinutes = peopleCount * minutesPerPerson;
+            hoursBeforeAdmission = totalMinutes / 60;
+            minutesBeforeAdmission = totalMinutes % 60;
 
-            Console.WriteLine($"Вы должны отстоять в очереди {hour} часа и {minute} минут.");
+            Console.WriteLine($"Вы должны отстоять в очереди {hoursBeforeAdmission} часа и {minutesBeforeAdmission} минут.");
         }
     }
 }
