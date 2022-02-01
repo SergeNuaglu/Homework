@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 
 namespace Polyclinic
 {
@@ -23,3 +23,7 @@ namespace Polyclinic
         }
     }
 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> c6c5898413aeef46415c1e29a05eb92c6421777a

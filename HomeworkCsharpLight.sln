@@ -21,6 +21,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Polyclinic", "Polyclinic\Po
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application", "Application\Application.csproj", "{14F2EC52-3FDE-4636-BED3-599E89D1819D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SequenceOutput", "SequenceOutput\SequenceOutput.csproj", "{F5D46980-8B98-4C8A-B35C-FCB5DB962E43}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|anycpu = Debug|anycpu
@@ -63,6 +65,10 @@ Global
 		{14F2EC52-3FDE-4636-BED3-599E89D1819D}.Debug|anycpu.Build.0 = Debug|anycpu
 		{14F2EC52-3FDE-4636-BED3-599E89D1819D}.Release|anycpu.ActiveCfg = Release|anycpu
 		{14F2EC52-3FDE-4636-BED3-599E89D1819D}.Release|anycpu.Build.0 = Release|anycpu
+		{F5D46980-8B98-4C8A-B35C-FCB5DB962E43}.Debug|anycpu.ActiveCfg = Debug|anycpu
+		{F5D46980-8B98-4C8A-B35C-FCB5DB962E43}.Debug|anycpu.Build.0 = Debug|anycpu
+		{F5D46980-8B98-4C8A-B35C-FCB5DB962E43}.Release|anycpu.ActiveCfg = Release|anycpu
+		{F5D46980-8B98-4C8A-B35C-FCB5DB962E43}.Release|anycpu.Build.0 = Release|anycpu
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
