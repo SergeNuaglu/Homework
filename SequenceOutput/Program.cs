@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 
 namespace SequenceOutput
 {
@@ -6,14 +6,17 @@ namespace SequenceOutput
     {
         public static void Main(string[] args)
         {
-            for(int i = 0; i < 100; i++)
+            int boundOfSequence = 100;
+
+            for (int i = 0; i < boundOfSequence; i++)
             {
                 if (i % 7 == 0)
                 {
-                    Console.Write(i + " ");                   
+                    Console.Write(i + " ");
                 }
             }
             Console.ReadKey();
         }
     }
 }
+
