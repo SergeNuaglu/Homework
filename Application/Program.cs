@@ -86,7 +86,7 @@ namespace Application
                             rateCoefficient1 = maxWinningChance / winningChance1;
                             rateCoefficient2 = maxWinningChance / winningChance2;
 
-                            Console.WriteLine("Машина:             Robot1     Robot2" +
+                            Console.WriteLine("Машина:              Robot1    Robot2" +
                                 "\nТехсостояние:        " + health1 + "        " + health2 +
                                 "\nБроня:               " + armor1 + "        " + armor2 +
                                 "\nНаносимый урон:      " + damage1 + "        " + damage2 +

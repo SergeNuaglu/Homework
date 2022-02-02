@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 
 namespace SequenceOutput
 {
@@ -20,3 +20,4 @@ namespace SequenceOutput
         }
     }
 }
+
