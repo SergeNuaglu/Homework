@@ -25,6 +25,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SequenceOutput", "SequenceO
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NameInRectangle", "NameInRectangle\NameInRectangle.csproj", "{BE5DDD9B-5931-4ECB-8499-7AEA434C8828}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SecretVariable", "SecretVariable\SecretVariable.csproj", "{96710D5D-067F-43D7-A07D-0B479AB832A6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|anycpu = Debug|anycpu
@@ -75,6 +77,10 @@ Global
 		{BE5DDD9B-5931-4ECB-8499-7AEA434C8828}.Debug|anycpu.Build.0 = Debug|anycpu
 		{BE5DDD9B-5931-4ECB-8499-7AEA434C8828}.Release|anycpu.ActiveCfg = Release|anycpu
 		{BE5DDD9B-5931-4ECB-8499-7AEA434C8828}.Release|anycpu.Build.0 = Release|anycpu
+		{96710D5D-067F-43D7-A07D-0B479AB832A6}.Debug|anycpu.ActiveCfg = Debug|anycpu
+		{96710D5D-067F-43D7-A07D-0B479AB832A6}.Debug|anycpu.Build.0 = Debug|anycpu
+		{96710D5D-067F-43D7-A07D-0B479AB832A6}.Release|anycpu.ActiveCfg = Release|anycpu
+		{96710D5D-067F-43D7-A07D-0B479AB832A6}.Release|anycpu.Build.0 = Release|anycpu
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
