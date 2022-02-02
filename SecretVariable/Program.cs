@@ -14,11 +14,12 @@ namespace SecretVariable
             Console.WriteLine("Придумайте и введите пароль: ");
             password = Console.ReadLine();
 
-            Console.WriteLine("Введите пароль!");
+            Console.WriteLine("Введите пароль!" +
+                "\nУ вас есть 3 попытки");
 
-            while (attemptsCount > 0)
+            for(int i = 1; i <= attemptsCount; i++)
             {
-                Console.WriteLine("Количество оставшихся попыток: " + attemptsCount);
+                Console.Write("Попытка №" + i + ": ");
                 userInput = Console.ReadLine();
 
                 if (userInput == password)
@@ -27,16 +28,9 @@ namespace SecretVariable
                     Console.ReadKey();
                     break;
                 }
-                else
-                {
-                    if(attemptsCount > 1)
-                    {
-                        Console.WriteLine($"Неверный пароль! Попробуйте ещё");
-                    }
-                }
-                attemptsCount--;
+                Console.WriteLine("Неверный пароль!");
             }
-
+  
             if(userInput != password)
             {
                 Console.WriteLine("Вы исчерпали допустимое количество попыток!");
