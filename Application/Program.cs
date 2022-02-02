@@ -16,13 +16,21 @@ namespace Application
             float health2 = 0;
             int armor2 = 0;
             int damage2 = 0;
+            int minHealth = 50;
+            int maxHealth = 101;
+            int minArmor = 50;
+            int maxArmor = 101;
+            int minDamage = 10;
+            int maxDamage = 40;
             float winningChance2;
             float rateCoefficient2 = 0;
+            int maxWinningChance = 100;
             string bet = "Нет ставок!";
             int betSize = 0;
             int winCount = 0;
             int lossCount = 0;
             int level;
+            int goldForNextLevel = 500;
             string userInput;
             bool isAppWork = true;
             bool isPlacingBet = true;
@@ -52,7 +60,7 @@ namespace Application
                 {
                     case "Stat":
                         Console.Clear();
-                        level = (int)goldCount / 500;
+                        level = (int)goldCount / goldForNextLevel;
                         Console.WriteLine("У вас золота: " + goldCount +
                             "\nКолличество побед: " + winCount +
                             "\nКолличество поражений: " + lossCount +
@@ -66,18 +74,17 @@ namespace Application
                         {
                             Console.Clear();
 
-                            health1 = rand.Next(50, 101);
-                            armor1 = rand.Next(50, 101);
-                            damage1 = rand.Next(10, 40);
-                            health2 = rand.Next(50, 101);
-                            armor2 = rand.Next(50, 101);
-                            damage2 = rand.Next(10, 40);
+                            health1 = rand.Next(minHealth, maxHealth);
+                            armor1 = rand.Next(minArmor, maxArmor);
+                            damage1 = rand.Next(minDamage, maxDamage);
+                            health2 = rand.Next(minHealth, maxHealth);
+                            armor2 = rand.Next(minArmor, maxArmor);
+                            damage2 = rand.Next(minDamage, maxDamage);
 
-                            //Расчет шанса на победу в процентах по формуле: r1 / ((r1 + r2) / 100)
-                            winningChance1 = (health1 + armor1 + damage1) / ((health1 + armor1 + damage1 + health2 + armor2 + damage2) / 100);
-                            winningChance2 = (health2 + armor2 + damage2) / ((health1 + armor1 + damage1 + health2 + armor2 + damage2) / 100);
-                            rateCoefficient1 = 100 / winningChance1;
-                            rateCoefficient2 = 100 / winningChance2;
+                            winningChance1 = (health1 + armor1 + damage1) / ((health1 + armor1 + damage1 + health2 + armor2 + damage2) / maxWinningChance);
+                            winningChance2 = (health2 + armor2 + damage2) / ((health1 + armor1 + damage1 + health2 + armor2 + damage2) / maxWinningChance);
+                            rateCoefficient1 = maxWinningChance / winningChance1;
+                            rateCoefficient2 = maxWinningChance / winningChance2;
 
                             Console.WriteLine("Машина:             Robot1     Robot2" +
                                 "\nТехсостояние:        " + health1 + "        " + health2 +
