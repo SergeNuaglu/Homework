@@ -23,6 +23,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application", "Application\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SequenceOutput", "SequenceOutput\SequenceOutput.csproj", "{F5D46980-8B98-4C8A-B35C-FCB5DB962E43}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NameInRectangle", "NameInRectangle\NameInRectangle.csproj", "{BE5DDD9B-5931-4ECB-8499-7AEA434C8828}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|anycpu = Debug|anycpu
@@ -69,6 +71,10 @@ Global
 		{F5D46980-8B98-4C8A-B35C-FCB5DB962E43}.Debug|anycpu.Build.0 = Debug|anycpu
 		{F5D46980-8B98-4C8A-B35C-FCB5DB962E43}.Release|anycpu.ActiveCfg = Release|anycpu
 		{F5D46980-8B98-4C8A-B35C-FCB5DB962E43}.Release|anycpu.Build.0 = Release|anycpu
+		{BE5DDD9B-5931-4ECB-8499-7AEA434C8828}.Debug|anycpu.ActiveCfg = Debug|anycpu
+		{BE5DDD9B-5931-4ECB-8499-7AEA434C8828}.Debug|anycpu.Build.0 = Debug|anycpu
+		{BE5DDD9B-5931-4ECB-8499-7AEA434C8828}.Release|anycpu.ActiveCfg = Release|anycpu
+		{BE5DDD9B-5931-4ECB-8499-7AEA434C8828}.Release|anycpu.Build.0 = Release|anycpu
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
