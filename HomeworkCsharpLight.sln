@@ -27,6 +27,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NameInRectangle", "NameInRe
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SecretVariable", "SecretVariable\SecretVariable.csproj", "{96710D5D-067F-43D7-A07D-0B479AB832A6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MageVsBoss", "MageVsBoss\MageVsBoss.csproj", "{94B9D20C-0F02-4E44-9EE4-190D9C41D91D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|anycpu = Debug|anycpu
@@ -81,6 +83,10 @@ Global
 		{96710D5D-067F-43D7-A07D-0B479AB832A6}.Debug|anycpu.Build.0 = Debug|anycpu
 		{96710D5D-067F-43D7-A07D-0B479AB832A6}.Release|anycpu.ActiveCfg = Release|anycpu
 		{96710D5D-067F-43D7-A07D-0B479AB832A6}.Release|anycpu.Build.0 = Release|anycpu
+		{94B9D20C-0F02-4E44-9EE4-190D9C41D91D}.Debug|anycpu.ActiveCfg = Debug|anycpu
+		{94B9D20C-0F02-4E44-9EE4-190D9C41D91D}.Debug|anycpu.Build.0 = Debug|anycpu
+		{94B9D20C-0F02-4E44-9EE4-190D9C41D91D}.Release|anycpu.ActiveCfg = Release|anycpu
+		{94B9D20C-0F02-4E44-9EE4-190D9C41D91D}.Release|anycpu.Build.0 = Release|anycpu
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
