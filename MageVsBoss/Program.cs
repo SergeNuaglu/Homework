@@ -6,7 +6,7 @@ namespace MageVsBoss
     {
         public static void Main(string[] args)
         {
-            Random rand = new Random();
+            Random random = new Random();
             int timeCount = 0;
             int powerHit = 2;
             string spell;
@@ -15,6 +15,7 @@ namespace MageVsBoss
             bool isMirrorWork = true;
             bool isStoneWork = true;
             bool isFireWork = true;
+            bool isPlay = true;
 
             int mageHealth = 100;
             int fireDamage = 35;
@@ -36,7 +37,6 @@ namespace MageVsBoss
             int minMagnetWorkingChance = 0;
             int maxMagnetWorkingChance = 100;
 
-
             Console.WriteLine("MageVsBoss\n");
             Console.WriteLine("После 333 лет странствий по межгалоктическим коридорам" +
                 "\nваша сущность в теле теневого мага была заслана на задворки вселенной №18273, " +
@@ -50,9 +50,8 @@ namespace MageVsBoss
             Console.WriteLine("Нажмите любую клавишу чтобы вступить в схватку с Квазихроном...");
             Console.ReadKey();
 
-            while (true)
+            while (isPlay)
             {
- 
                 Console.Clear();
                 Console.WriteLine("Заклинание / Руна   /  Квазисек. до заряда  / Урон / Описание" +
                     "\nЗЕРКАЛО      q         " + timeBeforeUseMirror +
@@ -109,7 +108,7 @@ namespace MageVsBoss
                         break;
                 }
 
-                if (!isFight)
+                if (isFight == false)
                 {
                     Console.WriteLine("Еще мало энергии или неправильно произнесли руну...");
                     Console.WriteLine("Any Key чтобы попробовать снова");
@@ -118,7 +117,7 @@ namespace MageVsBoss
 
                 if (isFight)
                 {
-                    isMagnetWork = magnetWorkingChance >= rand.Next(minMagnetWorkingChance, maxMagnetWorkingChance);
+                    isMagnetWork = magnetWorkingChance >= random.Next(minMagnetWorkingChance, maxMagnetWorkingChance);
 
                     if (isMagnetWork && timeCount != 0)
                     {
@@ -168,28 +167,28 @@ namespace MageVsBoss
                     isFight = false;
                 }
 
-                if (mageHealth <= 0 && bossHealth <= 0)
+                if (mageHealth <= 0 || bossHealth <= 0)
                 {
-                    Console.Clear();
-                    Console.WriteLine("Вы одолели Квазихрона ценой собственной жизни..");
-                    Console.ReadKey();
-                    break;
-                }
-                else if (bossHealth <= 0)
-                {
-                    Console.Clear();
-                    Console.WriteLine("Ура! Благодаря вам вселенная №18273 освобождена от ига Квазихрона!");
-                    Console.ReadKey();
-                    break;
-                }
-                else if (mageHealth <= 0)
-                {
-                    Console.Clear();
-                    Console.WriteLine("Увы! Квазихрон вам не по зубам!");
-                    Console.ReadKey();
-                    break;
+                    isPlay = false;
                 }
             }
+
+            Console.Clear();
+
+            if (mageHealth <= 0 && bossHealth <= 0)
+            {
+                Console.WriteLine("Вы одолели Квазихрона ценой собственной жизни..");
+            }
+            else if (bossHealth <= 0)
+            {
+                Console.WriteLine("Ура! Благодаря вам вселенная №18273 освобождена от ига Квазихрона!");
+            }
+            else if (mageHealth <= 0)
+            {
+                Console.WriteLine("Увы! Квазихрон вам не по зубам!");
+            }
+
+            Console.ReadKey();
         }
     }
 }
