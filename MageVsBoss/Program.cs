@@ -16,7 +16,6 @@ namespace MageVsBoss
             bool isStoneWork = true;
             bool isFireWork = true;
             bool isPlay = true;
-
             int mageHealth = 100;
             int fireDamage = 35;
             int staffDamage = 5;
@@ -29,7 +28,6 @@ namespace MageVsBoss
             int timeBeforeUseMirror = 0;
             int timeBeforeUseStone = 0;
             int timeBeforeUseFire = 0;
-
             int bossHealth = 180;
             int bossDamage = 15;
             int magnetPower = 1;
@@ -137,25 +135,30 @@ namespace MageVsBoss
                         }
                     }
 
-                    if (!isMirrorWork)
+                    if (isMirrorWork == false)
                     {
                         timeBeforeUseMirror = nextMirrorTime - timeCount;
+
                         if (timeBeforeUseMirror <= 0)
                         {
                             isMirrorWork = true;
                         }
                     }
-                    if (!isStoneWork)
+
+                    if (isStoneWork == false)
                     {
                         timeBeforeUseStone = nextStoneTime - timeCount;
+
                         if (timeBeforeUseStone <= 0)
                         {
                             isStoneWork = true;
                         }
                     }
-                    if (!isFireWork)
+
+                    if (isFireWork == false)
                     {
                         timeBeforeUseFire = nextFireTime - timeCount;
+
                         if (timeBeforeUseFire <= 0)
                         {
                             isFireWork = true;

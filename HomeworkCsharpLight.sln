@@ -29,6 +29,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SecretVariable", "SecretVar
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MageVsBoss", "MageVsBoss\MageVsBoss.csproj", "{94B9D20C-0F02-4E44-9EE4-190D9C41D91D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Arrey", "Arrey\Arrey.csproj", "{6785A3C7-F0DC-42D0-9780-D379025229EC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|anycpu = Debug|anycpu
@@ -87,6 +89,10 @@ Global
 		{94B9D20C-0F02-4E44-9EE4-190D9C41D91D}.Debug|anycpu.Build.0 = Debug|anycpu
 		{94B9D20C-0F02-4E44-9EE4-190D9C41D91D}.Release|anycpu.ActiveCfg = Release|anycpu
 		{94B9D20C-0F02-4E44-9EE4-190D9C41D91D}.Release|anycpu.Build.0 = Release|anycpu
+		{6785A3C7-F0DC-42D0-9780-D379025229EC}.Debug|anycpu.ActiveCfg = Debug|anycpu
+		{6785A3C7-F0DC-42D0-9780-D379025229EC}.Debug|anycpu.Build.0 = Debug|anycpu
+		{6785A3C7-F0DC-42D0-9780-D379025229EC}.Release|anycpu.ActiveCfg = Release|anycpu
+		{6785A3C7-F0DC-42D0-9780-D379025229EC}.Release|anycpu.Build.0 = Release|anycpu
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
