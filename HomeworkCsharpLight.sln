@@ -31,6 +31,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MageVsBoss", "MageVsBoss\Ma
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Arrey", "Arrey\Arrey.csproj", "{6785A3C7-F0DC-42D0-9780-D379025229EC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LargestElement", "LargestElement\LargestElement.csproj", "{8F698BAB-807A-4F63-8A22-796E74EA41B5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|anycpu = Debug|anycpu
@@ -93,6 +95,10 @@ Global
 		{6785A3C7-F0DC-42D0-9780-D379025229EC}.Debug|anycpu.Build.0 = Debug|anycpu
 		{6785A3C7-F0DC-42D0-9780-D379025229EC}.Release|anycpu.ActiveCfg = Release|anycpu
 		{6785A3C7-F0DC-42D0-9780-D379025229EC}.Release|anycpu.Build.0 = Release|anycpu
+		{8F698BAB-807A-4F63-8A22-796E74EA41B5}.Debug|anycpu.ActiveCfg = Debug|anycpu
+		{8F698BAB-807A-4F63-8A22-796E74EA41B5}.Debug|anycpu.Build.0 = Debug|anycpu
+		{8F698BAB-807A-4F63-8A22-796E74EA41B5}.Release|anycpu.ActiveCfg = Release|anycpu
+		{8F698BAB-807A-4F63-8A22-796E74EA41B5}.Release|anycpu.Build.0 = Release|anycpu
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
