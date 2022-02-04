@@ -26,6 +26,7 @@ namespace Arrey
                 Console.WriteLine();
             }
 
+
             for (int i = 0; i < numbers.GetLength(1); i++)
             {
                 sum += numbers[rowToAdd - 1, i];
@@ -33,11 +34,11 @@ namespace Arrey
 
             for (int i = 0; i < numbers.GetLength(0);i++)
             {
-                product *= numbers[columnToMultiply - 1, i];
+                product *= numbers[i, columnToMultiply - 1];
             }
 
-            Console.WriteLine("Сумма второй строки: " + sum +
-                "\nПроизведение первого столбца: " + product);
+            Console.WriteLine("Сумма " + rowToAdd + " строки: " + sum +
+                "\nПроизведение " + columnToMultiply + " столбца: " + product);
             Console.ReadKey();
         }
     }
