@@ -26,15 +26,14 @@ namespace Arrey
                 Console.WriteLine();
             }
 
+            for (int i = 0; i < numbers.GetLength(0); i++)
+            {
+                product *= numbers[i, columnToMultiply - 1];
+            }
 
             for (int i = 0; i < numbers.GetLength(1); i++)
             {
                 sum += numbers[rowToAdd - 1, i];
-            }
-
-            for (int i = 0; i < numbers.GetLength(0);i++)
-            {
-                product *= numbers[i, columnToMultiply - 1];
             }
 
             Console.WriteLine("Сумма " + rowToAdd + " строки: " + sum +
