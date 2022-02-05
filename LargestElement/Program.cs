@@ -18,7 +18,7 @@ namespace LargestElement
             {
                 for (int j = 0; j < numbers.GetLength(1); j++)
                 {
-                    numbers[i, j] = random.Next(10, 99);
+                    numbers[i, j] = random.Next(10, 100);
                     Console.Write(numbers[i, j] + " ");
 
                     if (largestNumber < numbers[i, j])
