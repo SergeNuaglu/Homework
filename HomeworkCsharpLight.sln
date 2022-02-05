@@ -35,6 +35,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LargestElement", "LargestEl
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FindLocalHighs", "FindLocalHighs\FindLocalHighs.csproj", "{BFC28E64-8EDC-436B-AD8B-72C8CABB76B6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SumOfNumbers", "SumOfNumbers\SumOfNumbers.csproj", "{45631A2C-A027-4665-A4B4-0921F00FE20C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|anycpu = Debug|anycpu
@@ -105,6 +107,10 @@ Global
 		{BFC28E64-8EDC-436B-AD8B-72C8CABB76B6}.Debug|anycpu.Build.0 = Debug|anycpu
 		{BFC28E64-8EDC-436B-AD8B-72C8CABB76B6}.Release|anycpu.ActiveCfg = Release|anycpu
 		{BFC28E64-8EDC-436B-AD8B-72C8CABB76B6}.Release|anycpu.Build.0 = Release|anycpu
+		{45631A2C-A027-4665-A4B4-0921F00FE20C}.Debug|anycpu.ActiveCfg = Debug|anycpu
+		{45631A2C-A027-4665-A4B4-0921F00FE20C}.Debug|anycpu.Build.0 = Debug|anycpu
+		{45631A2C-A027-4665-A4B4-0921F00FE20C}.Release|anycpu.ActiveCfg = Release|anycpu
+		{45631A2C-A027-4665-A4B4-0921F00FE20C}.Release|anycpu.Build.0 = Release|anycpu
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

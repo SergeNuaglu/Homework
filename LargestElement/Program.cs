@@ -33,7 +33,6 @@ namespace LargestElement
             }
 
             Console.WriteLine("\n\nНаибольший элемент: " + largestNumber + "\n\n");
-            numbers[largerNumberRow, largerNumberColumn] = 0;
             Console.WriteLine("Полученная матрица:\n\n");
 
             for (int i = 0; i < numbers.GetLength(0); i++)
