@@ -40,6 +40,11 @@ namespace LargestElement
             {
                 for (int j = 0; j < numbers.GetLength(1); j++)
                 {
+                    if(numbers[i,j] == largestNumber)
+                    {
+                        numbers[i, j] = 0;
+                    }
+
                     Console.Write(numbers[i, j] + " ");
                 }
 
