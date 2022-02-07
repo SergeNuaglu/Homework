@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 
 namespace PersonnelAccounting
 {
@@ -39,7 +39,8 @@ namespace PersonnelAccounting
                     case "4":
                         Console.Write("Фамилия: ");
                         string lastname = Console.ReadLine();
-                        OutputDossiers(fullNames, positions, lastname);
+                        Console.WriteLine(OutputDossiers(fullNames, positions, lastname));
+                        Console.ReadKey();
                         break;
                     case "5":
                         isAppWorking = false;
@@ -48,22 +49,23 @@ namespace PersonnelAccounting
             }
         }
 
-        static string[] AddDossier(string[] arrey, string value)
+        static string[] AddDossier(string[] array, string value)
         {
-            if (arrey[0] == null)
+            if (array[0] == null)
             {
-                arrey[0] = value;
-                return arrey;
+                array[0] = value;
+                return array;
             }
             else
             {
-                string[] tempArrey = new string[arrey.Length + 1];
+                string[] tempArrey = new string[array.Length + 1];
 
-                for (int i = 0; i < arrey.Length; i++)
+                for (int i = 0; i < array.Length; i++)
                 {
-                    tempArrey[i] = arrey[i];
-                    tempArrey[tempArrey.Length - 1] = value;
+                    tempArrey[i] = array[i];
                 }
+
+                tempArrey[tempArrey.Length - 1] = value;
 
                 return tempArrey;
             }
@@ -79,54 +81,48 @@ namespace PersonnelAccounting
             Console.ReadKey();
         }
 
-        static void OutputDossiers(string[] fullNames, string[] positions, string lastname)
+        static string OutputDossiers(string[] fullNames, string[] positions, string lastname)
         {
-            string fullName = "";
+            string dossier ="";
 
             for (int i = 0; i < fullNames.Length; i++)
             {
-                for (int j = 0; fullNames[i][j] != ' '; j++)
-                {       
-                        fullName += fullNames[i][j];
- 
-                    if (fullName == lastname)
-                    {
-                        Console.Write("{0}) {1} - {2} ", i + 1, fullNames[i], positions[i]);
-                        fullName = "";
-                    }
-                }               
+                if (fullNames[i].ToLower().Contains(lastname.ToLower()))
+                {
+                    dossier += (i+1) + ") " + fullNames[i] + " - " + positions[i] + " ";
+                }
             }
-            Console.ReadKey();
+            return dossier;
         }
 
-        static string[] DeleteDossier(int value, string[] arrey)
+        static string[] DeleteDossier(int dossierNumber, string[] array)
         {
-            if (arrey.Length >= value)
+            if (array.Length >= dossierNumber)
             {
-                for (int i = value - 1; i < arrey.Length; i++)
+                for (int i = dossierNumber - 1; i < array.Length; i++)
                 {
-                    if (i != arrey.Length - 1)
+                    if (i != array.Length - 1)
                     {
-                        arrey[i] = arrey[i + 1];
+                        array[i] = array[i + 1];
                     }
                 }
 
-                string[] tempArrey = new string[arrey.Length - 1];
+                string[] tempArray = new string[array.Length - 1];
 
-                for (int i = 0; i < arrey.Length; i++)
+                for (int i = 0; i < array.Length; i++)
                 {
-                    if (i < tempArrey.Length)
-                        tempArrey[i] = arrey[i];
+                    if (i < tempArray.Length)
+                        tempArray[i] = array[i];
                 }
 
-                arrey = tempArrey;
+                array = tempArray;
             }
             else
             {
                 Console.WriteLine("Нет досье по такому номеру!");
             }
 
-            return arrey;
+            return array;
         }
     }
 }
