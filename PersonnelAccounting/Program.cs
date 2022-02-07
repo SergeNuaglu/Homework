@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 
 namespace PersonnelAccounting
 {
@@ -8,8 +8,6 @@ namespace PersonnelAccounting
         {
             string[] fullNames = new string[0];
             string[] positions = new string[0];
-            string fullName;
-            string position;
             string userInput;
             bool isAppWorking = true;
 
@@ -24,7 +22,7 @@ namespace PersonnelAccounting
                 switch (userInput)
                 {
                     case "1":
-                        AddDossier(ref fullNames, ref positions, out fullName, out position);
+                        AddDossier(ref fullNames, ref positions);
                         break;
                     case "2":
                         OutputDossiers(fullNames, positions);
@@ -33,7 +31,7 @@ namespace PersonnelAccounting
                         DeleteDossier(ref fullNames, ref positions);
                         break;
                     case "4":
-                        Console.WriteLine(SearchByLastname(fullNames, positions));
+                        SearchByLastname(fullNames, positions);
                         break;
                     case "5":
                         isAppWorking = false;
@@ -44,33 +42,33 @@ namespace PersonnelAccounting
             }
         }
 
-        static void AddDossier(ref string[] fullNames, ref string[] positions, out string fullName, out string position)
-        {
+        static void AddDossier(ref string[] fullNames, ref string[] positions)
+        {           
             Console.Write("ФИО: ");
-            fullName = Console.ReadLine();
+            string fullName = Console.ReadLine();
+            AddDossier(ref fullNames, fullName);
             Console.Write("Должность: ");
-            position = Console.ReadLine();
+            string position = Console.ReadLine();
+            AddDossier(ref positions, position);
+        }
 
-            if (fullNames == null)
+        static void AddDossier(ref string []array, string value)
+        {
+            if (array == null)
             {
-                fullNames[0] = fullName;
-                positions[0] = position;
+                array[0] = value;
             }
             else
             {
-                string[] tempFullNames = new string[fullNames.Length + 1];
-                string[] tempPositions = new string[fullNames.Length + 1];
+                string[] tempFullNames = new string[array.Length + 1];
 
-                for (int i = 0; i < fullNames.Length; i++)
+                for (int i = 0; i < array.Length; i++)
                 {
-                    tempFullNames[i] = fullNames[i];
-                    tempPositions[i] = positions[i];
+                    tempFullNames[i] = array[i];
                 }
 
-                tempFullNames[tempFullNames.Length - 1] = fullName;
-                fullNames = tempFullNames;
-                tempPositions[tempPositions.Length - 1] = position;
-                positions = tempPositions;
+                tempFullNames[tempFullNames.Length - 1] = value;
+                array = tempFullNames;
             }
         }
 
@@ -86,27 +84,28 @@ namespace PersonnelAccounting
         {
             Console.Write("Номер досье: ");
             int dossierNumber = Convert.ToInt32(Console.ReadLine());
-
-            for (int i = dossierNumber - 1; i < fullNames.Length - 1; i++)
-            {
-                fullNames[i] = fullNames[i + 1];
-                positions[i] = positions[i + 1];
-            }
-
-            string[] tempFullNames = new string[fullNames.Length - 1];
-            string[] tempPositions = new string[fullNames.Length - 1];
-
-            for (int i = 0; i < tempFullNames.Length; i++)
-            {
-                tempFullNames[i] = fullNames[i];
-                tempPositions[i] = positions[i];
-            }
-
-            fullNames = tempFullNames;
-            positions = tempPositions;
+            DeleteDossier(ref fullNames, dossierNumber);
+            DeleteDossier(ref positions, dossierNumber);
         }
 
-        static string SearchByLastname(string[] fullNames, string[] positions)
+       static void DeleteDossier(ref string [] array, int number)
+        {
+            for (int i = number - 1; i < array.Length - 1; i++)
+            {
+                array[i] = array[i + 1];
+            }
+
+            string[] tempArray = new string[array.Length - 1];
+
+            for (int i = 0; i < tempArray.Length; i++)
+            {
+                tempArray[i] = array[i];
+            }
+
+            array = tempArray;
+        }
+
+        static void SearchByLastname(string[] fullNames, string[] positions)
         {
             Console.Write("Фамилия: ");
             string lastname = Console.ReadLine();
@@ -119,7 +118,7 @@ namespace PersonnelAccounting
                     dossier += (i + 1) + ") " + fullNames[i] + " - " + positions[i] + " ";
                 }
             }
-            return dossier;
+            Console.WriteLine(dossier);
         }
     }
 }
