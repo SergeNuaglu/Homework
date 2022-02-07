@@ -37,6 +37,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FindLocalHighs", "FindLocal
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SumOfNumbers", "SumOfNumbers\SumOfNumbers.csproj", "{45631A2C-A027-4665-A4B4-0921F00FE20C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PersonnelAccounting", "PersonnelAccounting\PersonnelAccounting.csproj", "{EEAD650E-C6F7-459F-A579-E17B4C847CC7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|anycpu = Debug|anycpu
@@ -111,6 +113,10 @@ Global
 		{45631A2C-A027-4665-A4B4-0921F00FE20C}.Debug|anycpu.Build.0 = Debug|anycpu
 		{45631A2C-A027-4665-A4B4-0921F00FE20C}.Release|anycpu.ActiveCfg = Release|anycpu
 		{45631A2C-A027-4665-A4B4-0921F00FE20C}.Release|anycpu.Build.0 = Release|anycpu
+		{EEAD650E-C6F7-459F-A579-E17B4C847CC7}.Debug|anycpu.ActiveCfg = Debug|anycpu
+		{EEAD650E-C6F7-459F-A579-E17B4C847CC7}.Debug|anycpu.Build.0 = Debug|anycpu
+		{EEAD650E-C6F7-459F-A579-E17B4C847CC7}.Release|anycpu.ActiveCfg = Release|anycpu
+		{EEAD650E-C6F7-459F-A579-E17B4C847CC7}.Release|anycpu.Build.0 = Release|anycpu
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
