@@ -45,6 +45,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReadInt", "ReadInt\ReadInt.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BraveNewWorld", "BraveNewWorld\BraveNewWorld.csproj", "{13540132-E8F6-42B5-B8FC-1C7D1C8737C4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KansasCityShuffle", "KansasCityShuffle\KansasCityShuffle.csproj", "{0CA48061-DF66-4F9C-B949-61A9D324DA68}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|anycpu = Debug|anycpu
@@ -135,6 +137,10 @@ Global
 		{13540132-E8F6-42B5-B8FC-1C7D1C8737C4}.Debug|anycpu.Build.0 = Debug|anycpu
 		{13540132-E8F6-42B5-B8FC-1C7D1C8737C4}.Release|anycpu.ActiveCfg = Release|anycpu
 		{13540132-E8F6-42B5-B8FC-1C7D1C8737C4}.Release|anycpu.Build.0 = Release|anycpu
+		{0CA48061-DF66-4F9C-B949-61A9D324DA68}.Debug|anycpu.ActiveCfg = Debug|anycpu
+		{0CA48061-DF66-4F9C-B949-61A9D324DA68}.Debug|anycpu.Build.0 = Debug|anycpu
+		{0CA48061-DF66-4F9C-B949-61A9D324DA68}.Release|anycpu.ActiveCfg = Release|anycpu
+		{0CA48061-DF66-4F9C-B949-61A9D324DA68}.Release|anycpu.Build.0 = Release|anycpu
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
