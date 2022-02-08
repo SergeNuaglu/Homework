@@ -8,10 +8,10 @@ namespace ReadInt
         {
             int number;
 
-            ConvertToInt(out number);
+            ReadInt(out number);
         }
 
-        static int ConvertToInt(out int number)
+        static int ReadInt(out int number)
         {
             while (Int32.TryParse(Console.ReadLine(), out number) == false)
             {
