@@ -9,8 +9,6 @@ namespace ReadInt
             int number;
 
             ConvertToInt(out number);
-            Console.WriteLine(number);
-            Console.ReadKey();
         }
 
         static int ConvertToInt(out int number)
