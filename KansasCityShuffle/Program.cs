@@ -10,9 +10,9 @@ namespace KansasCityShuffle
 
             ShuffleArray(numbers);
 
-            foreach (var item in numbers)
+            foreach (var number in numbers)
             {
-                Console.Write(item);
+                Console.Write(number);
             }
 
             Console.ReadKey();
