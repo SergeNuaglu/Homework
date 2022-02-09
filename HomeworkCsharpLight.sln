@@ -51,6 +51,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dictionary", "Dictionary\Di
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QueueToStore", "QueueToStore\QueueToStore.csproj", "{E6936D13-4CD1-446B-994E-1E21F7824155}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DynamicArray", "DynamicArray\DynamicArray.csproj", "{10887931-2653-4FC5-9EFA-063217BD3CD8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|anycpu = Debug|anycpu
@@ -153,6 +155,10 @@ Global
 		{E6936D13-4CD1-446B-994E-1E21F7824155}.Debug|anycpu.Build.0 = Debug|anycpu
 		{E6936D13-4CD1-446B-994E-1E21F7824155}.Release|anycpu.ActiveCfg = Release|anycpu
 		{E6936D13-4CD1-446B-994E-1E21F7824155}.Release|anycpu.Build.0 = Release|anycpu
+		{10887931-2653-4FC5-9EFA-063217BD3CD8}.Debug|anycpu.ActiveCfg = Debug|anycpu
+		{10887931-2653-4FC5-9EFA-063217BD3CD8}.Debug|anycpu.Build.0 = Debug|anycpu
+		{10887931-2653-4FC5-9EFA-063217BD3CD8}.Release|anycpu.ActiveCfg = Release|anycpu
+		{10887931-2653-4FC5-9EFA-063217BD3CD8}.Release|anycpu.Build.0 = Release|anycpu
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
