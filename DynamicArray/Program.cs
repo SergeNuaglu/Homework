@@ -10,7 +10,6 @@ namespace SumOfNumbers
             List<float> numbers = new List<float>();
             string sumCommand = "sum";
             string exitCommand = "exit";
-            float number;
             string userInput;
             bool isAppWork = true;
 
@@ -23,31 +22,45 @@ namespace SumOfNumbers
                 Console.WriteLine("Введите число или команду: ");
                 userInput = Console.ReadLine();
 
-                if (float.TryParse(userInput,out number))
+                if (AddNumber(userInput, numbers) == false)
                 {
-                    numbers.Add(number);
-                }
-                else if (sumCommand == userInput)
-                {
-                    if (numbers.Count >= 2)
+                    if (sumCommand == userInput)
                     {
-                        Console.WriteLine("Сумма чисел = " + AddNumbers(numbers));
-                    }
-                    else
-                    {
-                        Console.WriteLine("Для сложения нужно как минимум два числа!");
-                    }
+                        if (numbers.Count >= 2)
+                        {
+                            Console.WriteLine("Сумма чисел = " + GetSumOfNumbers(numbers));
+                        }
+                        else
+                        {
+                            Console.WriteLine("Для сложения нужно как минимум два числа!");
+                        }
 
-                    Console.ReadKey();
-                }
-                else if (exitCommand == userInput)
-                {
-                    isAppWork = false;
+                        Console.ReadKey();
+                    }
+                    else if (exitCommand == userInput)
+                    {
+                        isAppWork = false;
+                    }
                 }
             }
         }
 
-        static float AddNumbers(List<float> numbers)
+        static bool AddNumber(string userInput, List<float> numbers)
+        {
+            float number;
+
+            if (float.TryParse(userInput, out number))
+            {
+                numbers.Add(number);
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        static float GetSumOfNumbers(List<float> numbers)
         {
             float sum = 0;
 

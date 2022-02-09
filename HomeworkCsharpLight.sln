@@ -53,6 +53,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QueueToStore", "QueueToStor
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DynamicArray", "DynamicArray\DynamicArray.csproj", "{10887931-2653-4FC5-9EFA-063217BD3CD8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NewPersonnelAccounting", "NewPersonnelAccounting\NewPersonnelAccounting.csproj", "{FA549F3C-5C91-4203-A476-8C0038CB4C7F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|anycpu = Debug|anycpu
@@ -159,6 +161,10 @@ Global
 		{10887931-2653-4FC5-9EFA-063217BD3CD8}.Debug|anycpu.Build.0 = Debug|anycpu
 		{10887931-2653-4FC5-9EFA-063217BD3CD8}.Release|anycpu.ActiveCfg = Release|anycpu
 		{10887931-2653-4FC5-9EFA-063217BD3CD8}.Release|anycpu.Build.0 = Release|anycpu
+		{FA549F3C-5C91-4203-A476-8C0038CB4C7F}.Debug|anycpu.ActiveCfg = Debug|anycpu
+		{FA549F3C-5C91-4203-A476-8C0038CB4C7F}.Debug|anycpu.Build.0 = Debug|anycpu
+		{FA549F3C-5C91-4203-A476-8C0038CB4C7F}.Release|anycpu.ActiveCfg = Release|anycpu
+		{FA549F3C-5C91-4203-A476-8C0038CB4C7F}.Release|anycpu.Build.0 = Release|anycpu
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

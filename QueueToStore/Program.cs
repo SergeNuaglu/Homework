@@ -9,40 +9,31 @@ namespace QueueToStore
         {
             bool isCustomerServing = true;
             int storeAccount = 0;
-            int[] productPrices = { 230, 65, 120, 87, 56, 350, 89, 47, 20, 130, 56, 80, 45, 70, 89 };
-            Queue<string> queueToStore = new Queue<string>();
+            Queue<int> purchasAmounts = new Queue<int>();
 
-            queueToStore.Enqueue("Петрович");
-            queueToStore.Enqueue("Баб Маша");
-            queueToStore.Enqueue("Профессор");
-            queueToStore.Enqueue("Школьник");
-            queueToStore.Enqueue("Качок");
+            purchasAmounts.Enqueue(234);
+            purchasAmounts.Enqueue(36);
+            purchasAmounts.Enqueue(91);
+            purchasAmounts.Enqueue(123);
+            purchasAmounts.Enqueue(345);
 
             while (isCustomerServing)
             {
                 Console.Clear();
                 Console.WriteLine("На счету: " + storeAccount);
 
-                if (queueToStore.Count != 0)
+                if (purchasAmounts.Count != 0)
                 {
-                    Console.WriteLine("Следующий клиент: " + queueToStore.Peek());
-                    ServeClient(ref storeAccount, productPrices, queueToStore.Dequeue());    
+                    Console.WriteLine("Следующий клиент делает покупку на сумму: " + purchasAmounts.Peek());
+                    storeAccount += purchasAmounts.Dequeue();    
                 }
                 else
                 {
-                    Console.WriteLine("Никого нет, можно хлебнуть чайку");
                     isCustomerServing = false;
                 }
                 
                 Console.ReadKey();
             }    
-        }
-
-       static void ServeClient(ref int account, int [] prices, string client)
-        {
-            Random random = new Random();
-            int productPrice = prices[random.Next(0,prices.Length)];
-            account += productPrice;
         }
     }
 }
