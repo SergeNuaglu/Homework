@@ -49,6 +49,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KansasCityShuffle", "Kansas
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dictionary", "Dictionary\Dictionary.csproj", "{7620543F-131F-487D-9CCD-05D13A14D55E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QueueToStore", "QueueToStore\QueueToStore.csproj", "{E6936D13-4CD1-446B-994E-1E21F7824155}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|anycpu = Debug|anycpu
@@ -147,6 +149,10 @@ Global
 		{7620543F-131F-487D-9CCD-05D13A14D55E}.Debug|anycpu.Build.0 = Debug|anycpu
 		{7620543F-131F-487D-9CCD-05D13A14D55E}.Release|anycpu.ActiveCfg = Release|anycpu
 		{7620543F-131F-487D-9CCD-05D13A14D55E}.Release|anycpu.Build.0 = Release|anycpu
+		{E6936D13-4CD1-446B-994E-1E21F7824155}.Debug|anycpu.ActiveCfg = Debug|anycpu
+		{E6936D13-4CD1-446B-994E-1E21F7824155}.Debug|anycpu.Build.0 = Debug|anycpu
+		{E6936D13-4CD1-446B-994E-1E21F7824155}.Release|anycpu.ActiveCfg = Release|anycpu
+		{E6936D13-4CD1-446B-994E-1E21F7824155}.Release|anycpu.Build.0 = Release|anycpu
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
