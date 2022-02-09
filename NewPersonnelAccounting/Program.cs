@@ -47,7 +47,7 @@ namespace PersonnelAccounting
             string fullName = Console.ReadLine();
             Console.Write("Должность: ");
             string position = Console.ReadLine();
-            dossiers.Add((dossiers.Count+1)+ ") " + fullName, position);
+            dossiers.Add(fullName, position);
         }
 
         static void OutputDossiers(Dictionary<string, string> dossiers)
@@ -60,19 +60,12 @@ namespace PersonnelAccounting
 
         static void DeleteDossier(ref Dictionary<string,string> dossiers)
         {
-            Console.Write("Номер досье: ");
-            int dossierNumber = Convert.ToInt32(Console.ReadLine());
-            int i = 0;
+            Console.Write("ФИО: ");
+            string fullName = Console.ReadLine();
 
-            foreach (var dossier in dossiers)
+            if (dossiers.ContainsKey(fullName))
             {
-                i++;
-
-                if (i == dossierNumber)
-                {
-                    dossiers.Remove(dossier.Key);
-                    break;
-                }
+                dossiers.Remove(fullName);
             }
         }
     }

@@ -22,7 +22,7 @@ namespace SumOfNumbers
                 Console.WriteLine("Введите число или команду: ");
                 userInput = Console.ReadLine();
 
-                if (AddNumber(userInput, numbers) == false)
+                if (IsNumberBeAdded(userInput, numbers) == false)
                 {
                     if (sumCommand == userInput)
                     {
@@ -45,7 +45,7 @@ namespace SumOfNumbers
             }
         }
 
-        static bool AddNumber(string userInput, List<float> numbers)
+        static bool IsNumberBeAdded(string userInput, List<float> numbers)
         {
             float number;
 

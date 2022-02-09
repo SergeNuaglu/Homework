@@ -7,7 +7,6 @@ namespace QueueToStore
     {
         public static void Main(string[] args)
         {
-            bool isCustomerServing = true;
             int storeAccount = 0;
             Queue<int> purchasAmounts = new Queue<int>();
 
@@ -17,23 +16,23 @@ namespace QueueToStore
             purchasAmounts.Enqueue(123);
             purchasAmounts.Enqueue(345);
 
-            while (isCustomerServing)
+            while (purchasAmounts.Count != 0)
             {
                 Console.Clear();
                 Console.WriteLine("На счету: " + storeAccount);
-
-                if (purchasAmounts.Count != 0)
-                {
-                    Console.WriteLine("Следующий клиент делает покупку на сумму: " + purchasAmounts.Peek());
-                    storeAccount += purchasAmounts.Dequeue();    
-                }
-                else
-                {
-                    isCustomerServing = false;
-                }
-                
+                Console.WriteLine("Следующий клиент делает покупку на сумму: " + purchasAmounts.Peek());
+                ServeClient(ref storeAccount, ref purchasAmounts);
                 Console.ReadKey();
-            }    
+            }
+
+            Console.Clear();
+            Console.WriteLine("На счету: " + storeAccount);
+            Console.ReadKey();
+        }
+
+        static void ServeClient(ref int account, ref Queue<int> purchasAmounts)
+        {
+            account += purchasAmounts.Dequeue();
         }
     }
 }
