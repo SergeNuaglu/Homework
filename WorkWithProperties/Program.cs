@@ -8,20 +8,20 @@ namespace WorkWithProperties
         {
             Player player = new Player(10, 5, '@');
             Renderer renderer = new Renderer();
-            renderer.DrawPlayer(player.PositionX, player.PositionY, player.PlayerSymbol);
+            renderer.DrawPlayer(player.PositionX, player.PositionY, player.Symbol);
         }
 
         class Player
         {
-            public char PlayerSymbol { get; private set; }
+            public char Symbol { get; private set; }
             public int PositionX { get; private set; }
             public int PositionY { get; private set; }
 
-            public Player(int x, int y, char playerSymbol)
+            public Player(int positionX, int positionY, char playerSymbol)
             {
-                PositionX = x;
-                PositionY = y;
-                PlayerSymbol = playerSymbol;
+                PositionX = positionX;
+                PositionY = positionY;
+                Symbol = playerSymbol;
             }
         }
 
