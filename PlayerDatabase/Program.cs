@@ -15,14 +15,14 @@ namespace PlayerDatabase
     {
         Dictionary<int, Player> _players = new Dictionary<int, Player>();
 
-        public PlayerDataBase (Dictionary<int,Player> players)
+        public PlayerDataBase(Dictionary<int, Player> players)
         {
             _players = players;
         }
 
         public void AddPlayer(int playerNumber, Player player)
         {
-            _players.Add(playerNumber,player);
+            _players.Add(playerNumber, player);
         }
 
         public void DeletePlayer(int playerNumber)
@@ -30,23 +30,17 @@ namespace PlayerDatabase
             _players.Remove(playerNumber);
         }
 
-        public void BanPlayer(int playerNumber)
+        public void BanUnbanPlayer(int playerNumber)
         {
-
+            _players[playerNumber].IsBan = _players.ContainsKey(playerNumber);
         }
-        public void UnbanPlayer(int playerNumber)
-        {
-
-        }
-
     }
 
     class Player
     {
         private string _nickname;
-        private int _playerNumber;
-        private int _playerLavel;
-        private bool _isBan = false;
+        private int _level;
+        private int _number;
 
         public bool IsBan
         {
@@ -56,18 +50,25 @@ namespace PlayerDatabase
             }
             set
             {
-                if (_playerNumber==value)
+                if (value)
                 {
-
+                    if (IsBan)
+                    {
+                        IsBan = false;
+                    }
+                    else
+                    {
+                        IsBan = true;
+                    }
                 }
             }
         }
 
-        public Player(string nickname,int playerNumber, int playerLevel)
+        public Player(string nickname, int number, int level)
         {
             _nickname = nickname;
-            _playerNumber = playerNumber;
-            _playerLavel = playerLevel;
+            _number = number;
+            _level = level;
         }
     }
 }
