@@ -6,52 +6,30 @@ namespace WorkWithProperties
     {
         public static void Main(string[] args)
         {
-            Player player = new Player(10, 5);
+            Player player = new Player(10, 5, '@');
             Renderer renderer = new Renderer();
-            renderer.DrawPlayer(player, '@');
+            renderer.DrawPlayer(player.PositionX, player.PositionY, player.PlayerSymbol);
         }
 
         class Player
         {
-            private int _x;
-            private int _y;
+            public char PlayerSymbol { get; private set; }
+            public int PositionX { get; private set; }
+            public int PositionY { get; private set; }
 
-            public int X
+            public Player(int x, int y, char playerSymbol)
             {
-                get
-                {
-                    return _x;
-                }
-                private set
-                {
-                    _x = value;
-                }
-            }
-
-            public int Y
-            {
-                get
-                {
-                    return _y;
-                }
-                private set
-                {
-                    _y = value;
-                }
-            }
-
-            public Player(int x, int y)
-            {
-                _x = x;
-                _y = y;
+                PositionX = x;
+                PositionY = y;
+                PlayerSymbol = playerSymbol;
             }
         }
 
         class Renderer
         {
-            public void DrawPlayer(Player player, char symbol)
+            public void DrawPlayer(int positionX, int positionY, char symbol)
             {
-                Console.SetCursorPosition(player.X, player.Y);
+                Console.SetCursorPosition(positionX, positionY);
                 Console.Write(symbol);
             }
         }
