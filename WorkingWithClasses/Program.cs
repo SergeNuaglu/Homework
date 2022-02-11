@@ -25,7 +25,7 @@ namespace WorkingWithClasses
 
             public void ShowInfo()
             {
-                Console.WriteLine($"Жизни: {_health}\nБроня: {_armor}\nУрон:{_damage}");
+                Console.WriteLine($"Жизни: {_health}\nБроня: {_armor}\nУрон: {_damage}");
             }
         }
     }

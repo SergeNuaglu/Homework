@@ -57,6 +57,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NewPersonnelAccounting", "N
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkingWithClasses", "WorkingWithClasses\WorkingWithClasses.csproj", "{D6F13C6C-D99C-406C-9C26-EA9C75ECAEBE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkWithProperties", "WorkWithProperties\WorkWithProperties.csproj", "{E071FC32-3775-476F-A38A-34542D302724}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|anycpu = Debug|anycpu
@@ -171,6 +173,10 @@ Global
 		{D6F13C6C-D99C-406C-9C26-EA9C75ECAEBE}.Debug|anycpu.Build.0 = Debug|anycpu
 		{D6F13C6C-D99C-406C-9C26-EA9C75ECAEBE}.Release|anycpu.ActiveCfg = Release|anycpu
 		{D6F13C6C-D99C-406C-9C26-EA9C75ECAEBE}.Release|anycpu.Build.0 = Release|anycpu
+		{E071FC32-3775-476F-A38A-34542D302724}.Debug|anycpu.ActiveCfg = Debug|anycpu
+		{E071FC32-3775-476F-A38A-34542D302724}.Debug|anycpu.Build.0 = Debug|anycpu
+		{E071FC32-3775-476F-A38A-34542D302724}.Release|anycpu.ActiveCfg = Release|anycpu
+		{E071FC32-3775-476F-A38A-34542D302724}.Release|anycpu.Build.0 = Release|anycpu
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
