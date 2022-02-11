@@ -55,6 +55,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DynamicArray", "DynamicArra
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NewPersonnelAccounting", "NewPersonnelAccounting\NewPersonnelAccounting.csproj", "{FA549F3C-5C91-4203-A476-8C0038CB4C7F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkingWithClasses", "WorkingWithClasses\WorkingWithClasses.csproj", "{D6F13C6C-D99C-406C-9C26-EA9C75ECAEBE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|anycpu = Debug|anycpu
@@ -165,6 +167,10 @@ Global
 		{FA549F3C-5C91-4203-A476-8C0038CB4C7F}.Debug|anycpu.Build.0 = Debug|anycpu
 		{FA549F3C-5C91-4203-A476-8C0038CB4C7F}.Release|anycpu.ActiveCfg = Release|anycpu
 		{FA549F3C-5C91-4203-A476-8C0038CB4C7F}.Release|anycpu.Build.0 = Release|anycpu
+		{D6F13C6C-D99C-406C-9C26-EA9C75ECAEBE}.Debug|anycpu.ActiveCfg = Debug|anycpu
+		{D6F13C6C-D99C-406C-9C26-EA9C75ECAEBE}.Debug|anycpu.Build.0 = Debug|anycpu
+		{D6F13C6C-D99C-406C-9C26-EA9C75ECAEBE}.Release|anycpu.ActiveCfg = Release|anycpu
+		{D6F13C6C-D99C-406C-9C26-EA9C75ECAEBE}.Release|anycpu.Build.0 = Release|anycpu
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
