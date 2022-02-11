@@ -59,6 +59,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkingWithClasses", "Worki
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkWithProperties", "WorkWithProperties\WorkWithProperties.csproj", "{E071FC32-3775-476F-A38A-34542D302724}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlayerDatabase", "PlayerDatabase\PlayerDatabase.csproj", "{A61115B2-4148-4110-AE81-DA38C4D75F38}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|anycpu = Debug|anycpu
@@ -177,6 +179,10 @@ Global
 		{E071FC32-3775-476F-A38A-34542D302724}.Debug|anycpu.Build.0 = Debug|anycpu
 		{E071FC32-3775-476F-A38A-34542D302724}.Release|anycpu.ActiveCfg = Release|anycpu
 		{E071FC32-3775-476F-A38A-34542D302724}.Release|anycpu.Build.0 = Release|anycpu
+		{A61115B2-4148-4110-AE81-DA38C4D75F38}.Debug|anycpu.ActiveCfg = Debug|anycpu
+		{A61115B2-4148-4110-AE81-DA38C4D75F38}.Debug|anycpu.Build.0 = Debug|anycpu
+		{A61115B2-4148-4110-AE81-DA38C4D75F38}.Release|anycpu.ActiveCfg = Release|anycpu
+		{A61115B2-4148-4110-AE81-DA38C4D75F38}.Release|anycpu.Build.0 = Release|anycpu
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
