@@ -7,51 +7,13 @@ namespace PlayerDatabase
     {
         public static void Main(string[] args)
         {
-            DataBase dataBase = new DataBase();
-            dataBase.Work();
+            Database database = new Database();
+            database.Work();
         }
 
-        class DataBase
+        class Database
         {
             private Dictionary<int, Player> _players = new Dictionary<int, Player>();
-
-            public void AddPlayer()
-            {
-                string nickname;
-                int number;
-                int level;
-
-                Console.Write("Никнейм игрока - ");
-                nickname = Console.ReadLine();
-                Console.Write("Номер игрока - ");
-                number = Convert.ToInt32(Console.ReadLine());
-                Console.Write("Уровень игрока - ");
-                level = Convert.ToInt32(Console.ReadLine());
-                Player player = new Player(nickname, number, level);
-                _players.Add(number, player);
-            }
-
-            public void DeletePlayer()
-            {
-                Console.Write("Номер игрока - ");
-                _players.Remove(Convert.ToInt32(Console.ReadLine()));
-            }
-
-            public void BanPlayer()
-            {
-                int number;
-                Console.Write("Номер игрока - ");
-                number = Convert.ToInt32(Console.ReadLine());
-                _players[number].Ban();
-            }
-
-            public void UnbanPlayer()
-            {
-                int number;
-                Console.Write("Номер игрока - ");
-                number = Convert.ToInt32(Console.ReadLine());
-                _players[number].Unban();
-            }
 
             public void Work()
             {
@@ -69,7 +31,7 @@ namespace PlayerDatabase
 
                     Console.SetCursorPosition(0, 0);
                     Console.WriteLine("База данных игроков:\n");
-                    Console.WriteLine("Добавить игрока  - 1\nУдалить игрока   - 2\nЗабанить игрока  - 3\nРазбанить игрока - 4\n");
+                    Console.WriteLine("Добавить игрока  - 1\nУдалить игрока   - 2\nЗабанить игрока  - 3\nРазбанить игрока - 4\nВыход - 5\n");
                     Console.Write("Введите номер операции: ");
 
                     switch (Console.ReadLine())
@@ -92,12 +54,126 @@ namespace PlayerDatabase
                     }
                 }
             }
+
+            private void AddPlayer()
+            {
+                string nickname;
+                int number;
+                int level;
+
+                Console.Write("Никнейм игрока - ");
+                nickname = Console.ReadLine();
+                Console.Write("Номер игрока - ");
+
+                if (int.TryParse(Console.ReadLine(), out number))
+                {
+                    if (_players.ContainsKey(number))
+                    {
+                        Console.WriteLine("Игрок под таким номером уже есть в базе");
+                    }
+                    else
+                    {
+                        Console.Write("Уровень игрока - ");
+
+                        if (int.TryParse(Console.ReadLine(), out level))
+                        {
+                            Player player = new Player(nickname, number, level);
+                            _players.Add(number, player);
+                        }
+                        else
+                        {
+                            Console.WriteLine("Некоректный ввод.");
+                        }
+                    }                 
+                }
+                else
+                {
+                    Console.WriteLine("Некорректный ввод.");
+                }
+
+                Console.ReadKey();
+            }
+
+            private void DeletePlayer()
+            {
+                int number;
+
+                Console.Write("Номер игрока - ");
+
+                if (int.TryParse(Console.ReadLine(), out number))
+                {
+                    if (_players.ContainsKey(number))
+                    {
+                        _players.Remove(number);
+                        Console.WriteLine($"Игрок под эти номером {number} удален из базы");
+                    }
+                    else
+                    {
+                        Console.WriteLine($"Игрока под номером {number} нет в базе");
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Некорректный ввод.");
+                }
+
+                Console.ReadKey();
+            }
+
+            private void BanPlayer()
+            {
+                int number;
+                Console.Write("Номер игрока - ");
+
+                if (int.TryParse(Console.ReadLine(), out number))
+                {
+                    if (_players.ContainsKey(number))
+                    {
+                        _players[number].Ban();
+                    }
+                    else
+                    {
+                        Console.WriteLine($"Игрока под номером {number} нет в базе");
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Некорректный ввод.");
+                }
+
+                Console.ReadKey();
+            }
+
+            private void UnbanPlayer()
+            {
+                int number;
+                Console.Write("Номер игрока - ");
+
+                if (int.TryParse(Console.ReadLine(), out number))
+                {
+                    if (_players.ContainsKey(number))
+                    {
+                        _players[number].Unban();
+                    }
+                    else
+                    {
+                        Console.WriteLine($"Игрока под номером {number} нет в базе");
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Некорректный ввод.");
+                }
+
+                Console.ReadKey();
+            }         
         }
 
         class Player
         {
             private int _level;
             private bool _isBan = false;
+
 
             public string Nickname { get; private set; }
 
