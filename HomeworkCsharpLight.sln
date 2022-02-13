@@ -63,6 +63,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlayerDatabase", "PlayerDat
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Store", "Store\Store.csproj", "{EEE11407-8DC6-4041-B4C8-510BE90F59B5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrainСonfigurator", "TrainСonfigurator\TrainСonfigurator.csproj", "{CF255D71-CB63-47BA-ACE5-AA2FBCD33909}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|anycpu = Debug|anycpu
@@ -189,6 +191,10 @@ Global
 		{EEE11407-8DC6-4041-B4C8-510BE90F59B5}.Debug|anycpu.Build.0 = Debug|anycpu
 		{EEE11407-8DC6-4041-B4C8-510BE90F59B5}.Release|anycpu.ActiveCfg = Release|anycpu
 		{EEE11407-8DC6-4041-B4C8-510BE90F59B5}.Release|anycpu.Build.0 = Release|anycpu
+		{CF255D71-CB63-47BA-ACE5-AA2FBCD33909}.Debug|anycpu.ActiveCfg = Debug|anycpu
+		{CF255D71-CB63-47BA-ACE5-AA2FBCD33909}.Debug|anycpu.Build.0 = Debug|anycpu
+		{CF255D71-CB63-47BA-ACE5-AA2FBCD33909}.Release|anycpu.ActiveCfg = Release|anycpu
+		{CF255D71-CB63-47BA-ACE5-AA2FBCD33909}.Release|anycpu.Build.0 = Release|anycpu
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
