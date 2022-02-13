@@ -9,4 +9,24 @@ namespace TrainСonfigurator
             Console.WriteLine("Hello World!");
         }
     }
+
+    class Configurator
+    {
+
+    }
+
+    class Train
+    {
+
+    }
+
+    class Carriage
+    {
+
+    }
+
+    class Direction
+    {
+
+    }
 }

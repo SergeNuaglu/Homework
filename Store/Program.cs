@@ -7,7 +7,8 @@ namespace Store
     {
         public static void Main(string[] args)
         {
-            int money = 0;
+            int customerMoney = 0;
+            int salesmanMoney = 0;
             string userInput;
             bool hasMoney = false;
             List<Product> products = new List<Product>();
@@ -23,7 +24,7 @@ namespace Store
 
             while (hasMoney == false)
             {
-                if (int.TryParse(userInput, out money))
+                if (int.TryParse(userInput, out customerMoney))
                 {
                     hasMoney = true;
                 }
@@ -33,82 +34,20 @@ namespace Store
                 }
             }
 
-            Customer customer = new Customer(money);
-            Salesman saleman = new Salesman(products, customer);
-            saleman.Work();
+            Store store = new Store(new Customer(customerMoney, new List<Product>()), new Salesman(salesmanMoney, products));
+            store.Work();
         }
     }
 
-    class Salesman
+    class Store
     {
         private Customer _customer;
-        private List<Product> _products = new List<Product>();
-        private int _money = 0;
+        private Salesman _salesman;
 
-        public Salesman(List<Product> products, Customer customer)
+        public Store(Customer customer, Salesman salesman)
         {
-            _products = products;
             _customer = customer;
-        }
-
-        public void ShowAllProducts()
-        {
-            foreach (var product in _products)
-            {
-                Console.WriteLine($"{product.Name}. Цена за упаковку: {product.PriceForOne} рублей");
-            }
-            Console.ReadKey();
-        }
-
-        public void SellProduct()
-        {
-            Product productForSell;
-            string productName;
-            int productCount;
-            bool isFound = false; ;
-
-            Console.Write("Что хотите купить?: ");
-            productName = Console.ReadLine();
-
-            if (isFound == false)
-            {
-                for (int i = 0; i < _products.Count && isFound == false; i++)
-                {
-                    if (_products[i].Name.ToLower() == productName.ToLower())
-                    {
-                        productForSell = _products[i];
-                        Console.Write("Сколько?: ");
-
-                        if (int.TryParse(Console.ReadLine(), out productCount))
-                        {
-                            if (_customer.Money >= _products[i].PriceForOne * productCount)
-                            {
-                                _customer.BuyProduct(productForSell, _products[i].PriceForOne, productCount);
-                                _money += _products[i].PriceForOne * productCount;
-                                isFound = true;
-                                Console.WriteLine($"Вы приобрели {productName}");
-                            }
-                            else
-                            {
-                                Console.WriteLine("Вам столько не по карману");
-                                isFound = true;
-                            }
-                        }
-                        else
-                        {
-                            Console.WriteLine("Я с такими цифрами не знаком");
-                            isFound = true;
-                        }
-                    }
-                }
-            }
-
-            if (isFound == false)
-            {
-                Console.WriteLine("Такого товара нет!");
-            }
-
-            Console.ReadKey();
+            _salesman = salesman;
         }
 
         public void Work()
@@ -128,13 +67,13 @@ namespace Store
                 switch (Console.ReadLine())
                 {
                     case "1":
-                        ShowAllProducts();
+                        _salesman.ShowAllProducts();
                         break;
                     case "2":
                         SellProduct();
                         break;
                     case "3":
-                        _customer.ShowAllPurchased();
+                        _customer.ShowAllProducts();
                         break;
                     case "4":
                         isWork = false;
@@ -142,46 +81,120 @@ namespace Store
                 }
             }
         }
-    }
 
-    class Product
-    {
-
-        public string Name { get; private set; }
-        public int PriceForOne { get; private set; }
-
-        public Product(string name, int price)
+        private void SellProduct()
         {
-            Name = name;
-            PriceForOne = price;
-        }
-    }
+            Product productForSell;
+            string productName;
 
-    class Customer
-    {
-        private List<Product> _purchasedItems = new List<Product>();
-        public int Money { get; private set; }
+            Console.Write("Что хотите купить?: ");
+            productName = Console.ReadLine();
+            productForSell = _salesman.FindProduct(productName);
 
-        public Customer(int money)
-        {
-            Money = money;
-        }
-
-        public void BuyProduct(Product productForBuy, int price, int count)
-        {
-            Money -= price * count;
-            _purchasedItems.Add(productForBuy);
-        }
-
-        public void ShowAllPurchased()
-        {
-            foreach (var items in _purchasedItems)
-            {
-                Console.Write(items.Name + " ");
-            }
+                if (productForSell != null)
+                {
+                    if (_customer.Money >= productForSell.PriceForOne)
+                    {
+                        _customer.MakeDeal(productForSell, productForSell.PriceForOne);
+                        _salesman.MakeDeal(productForSell, productForSell.PriceForOne);
+                        Console.WriteLine($"Вы приобрели {productName}");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Это вам не по карману");
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Такого товара нет!");
+                }
 
             Console.ReadKey();
         }
+    }
+}
 
+class Product
+{
+
+    public string Name { get; private set; }
+    public int PriceForOne { get; private set; }
+
+    public Product(string name, int price)
+    {
+        Name = name;
+        PriceForOne = price;
+    }
+}
+
+abstract class Person
+{
+    protected List<Product> _products = new List<Product>();
+
+    public int Money { get; protected set; }
+
+    public Person(int money, List<Product> products)
+    {
+        Money = money;
+        _products = products;
+    }
+
+    public virtual void ShowAllProducts()
+    {
+        foreach (var product in _products)
+        {
+            Console.WriteLine($"{product.Name}. Цена за упаковку: {product.PriceForOne} рублей");
+        }
+        Console.ReadKey();
+    }
+
+    public abstract void MakeDeal(Product product, int transactionAmount);
+}
+
+class Salesman : Person
+{
+    public Salesman(int money, List<Product> products) : base(0, products) { }
+
+    public Product FindProduct(string productName)
+    {
+        for (int i = 0; i < _products.Count; i++)
+        {
+            if (_products[i].Name.ToLower() == productName.ToLower())
+            {
+                return _products[i];
+            }
+        }
+
+        return null;
+    }
+
+    public override void MakeDeal(Product product, int transactionAmount)
+    {
+        Money += transactionAmount;
+        _products.Add(product);
+    }
+}
+
+
+class Customer : Person
+{
+    public Customer(int money, List<Product> products) : base(money, products) { }
+
+    public override void MakeDeal(Product product, int transactionAmount)
+    {
+        Money -= transactionAmount;
+        _products.Add(product);
+    }
+
+    public override void ShowAllProducts()
+    {
+        Console.WriteLine("У вас в пакете:");
+
+        foreach (var product in _products)
+        {
+            Console.Write($"{product.Name} ");
+        }
+
+        Console.ReadKey();
     }
 }
