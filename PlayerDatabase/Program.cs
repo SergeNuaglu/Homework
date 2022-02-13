@@ -7,68 +7,132 @@ namespace PlayerDatabase
     {
         public static void Main(string[] args)
         {
-
-        }
-    }
-
-    class PlayerDataBase
-    {
-        Dictionary<int, Player> _players = new Dictionary<int, Player>();
-
-        public PlayerDataBase(Dictionary<int, Player> players)
-        {
-            _players = players;
+            DataBase dataBase = new DataBase();
+            dataBase.Work();
         }
 
-        public void AddPlayer(int playerNumber, Player player)
+        class DataBase
         {
-            _players.Add(playerNumber, player);
-        }
+            private Dictionary<int, Player> _players = new Dictionary<int, Player>();
 
-        public void DeletePlayer(int playerNumber)
-        {
-            _players.Remove(playerNumber);
-        }
-
-        public void BanUnbanPlayer(int playerNumber)
-        {
-            _players[playerNumber].IsBan = _players.ContainsKey(playerNumber);
-        }
-    }
-
-    class Player
-    {
-        private string _nickname;
-        private int _level;
-        private int _number;
-
-        public bool IsBan
-        {
-            get
+            public void AddPlayer()
             {
-                return IsBan;
+                string nickname;
+                int number;
+                int level;
+
+                Console.Write("Никнейм игрока - ");
+                nickname = Console.ReadLine();
+                Console.Write("Номер игрока - ");
+                number = Convert.ToInt32(Console.ReadLine());
+                Console.Write("Уровень игрока - ");
+                level = Convert.ToInt32(Console.ReadLine());
+                Player player = new Player(nickname, number, level);
+                _players.Add(number, player);
             }
-            set
+
+            public void DeletePlayer()
             {
-                if (value)
+                Console.Write("Номер игрока - ");
+                _players.Remove(Convert.ToInt32(Console.ReadLine()));
+            }
+
+            public void BanPlayer()
+            {
+                int number;
+                Console.Write("Номер игрока - ");
+                number = Convert.ToInt32(Console.ReadLine());
+                _players[number].Ban();
+            }
+
+            public void UnbanPlayer()
+            {
+                int number;
+                Console.Write("Номер игрока - ");
+                number = Convert.ToInt32(Console.ReadLine());
+                _players[number].Unban();
+            }
+
+            public void Work()
+            {
+                bool isWork = true;
+
+                while (isWork)
                 {
-                    if (IsBan)
+                    Console.Clear();
+                    Console.SetCursorPosition(0, 12);
+
+                    foreach (var player in _players)
                     {
-                        IsBan = false;
+                        Console.WriteLine($"{player.Key} - {player.Value.Nickname}");
                     }
-                    else
+
+                    Console.SetCursorPosition(0, 0);
+                    Console.WriteLine("База данных игроков:\n");
+                    Console.WriteLine("Добавить игрока  - 1\nУдалить игрока   - 2\nЗабанить игрока  - 3\nРазбанить игрока - 4\n");
+                    Console.Write("Введите номер операции: ");
+
+                    switch (Console.ReadLine())
                     {
-                        IsBan = true;
+                        case "1":
+                            AddPlayer();
+                            break;
+                        case "2":
+                            DeletePlayer();
+                            break;
+                        case "3":
+                            BanPlayer();
+                            break;
+                        case "4":
+                            UnbanPlayer();
+                            break;
+                        case "5":
+                            isWork = false;
+                            break;
                     }
                 }
             }
         }
 
-        public Player(string nickname, int number, int level)
+        class Player
         {
-            _nickname = nickname;
-            _number = number;
-            _level = level;
+            private int _level;
+            private bool _isBan = false;
+
+            public string Nickname { get; private set; }
+
+            public int Number { get; private set; }
+
+            public Player(string nickname, int number, int level)
+            {
+                Nickname = nickname;
+                Number = number;
+                _level = level;
+            }
+
+            public void Ban()
+            {
+                if (_isBan == false)
+                {
+                    _isBan = true;
+                }
+                else
+                {
+                    Console.WriteLine("Игрок уже забанен");
+                }
+            }
+
+            public void Unban()
+            {
+                if (_isBan == true)
+                {
+                    _isBan = false;
+                }
+                else
+                {
+                    Console.WriteLine("Игрок уже разбанен");
+                }
+            }
         }
     }
 }

@@ -61,6 +61,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkWithProperties", "WorkW
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlayerDatabase", "PlayerDatabase\PlayerDatabase.csproj", "{A61115B2-4148-4110-AE81-DA38C4D75F38}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Store", "Store\Store.csproj", "{EEE11407-8DC6-4041-B4C8-510BE90F59B5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|anycpu = Debug|anycpu
@@ -183,6 +185,10 @@ Global
 		{A61115B2-4148-4110-AE81-DA38C4D75F38}.Debug|anycpu.Build.0 = Debug|anycpu
 		{A61115B2-4148-4110-AE81-DA38C4D75F38}.Release|anycpu.ActiveCfg = Release|anycpu
 		{A61115B2-4148-4110-AE81-DA38C4D75F38}.Release|anycpu.Build.0 = Release|anycpu
+		{EEE11407-8DC6-4041-B4C8-510BE90F59B5}.Debug|anycpu.ActiveCfg = Debug|anycpu
+		{EEE11407-8DC6-4041-B4C8-510BE90F59B5}.Debug|anycpu.Build.0 = Debug|anycpu
+		{EEE11407-8DC6-4041-B4C8-510BE90F59B5}.Release|anycpu.ActiveCfg = Release|anycpu
+		{EEE11407-8DC6-4041-B4C8-510BE90F59B5}.Release|anycpu.Build.0 = Release|anycpu
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
