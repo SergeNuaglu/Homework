@@ -10,7 +10,7 @@ namespace Store
             int customerMoney = 0;
             int salesmanMoney = 0;
             string userInput;
-            bool hasMoney = false;
+            bool isMoney = false;
             List<Product> products = new List<Product>();
 
             products.Add(new Product("Молоко", 80));
@@ -19,18 +19,34 @@ namespace Store
             products.Add(new Product("Мясо", 150));
             products.Add(new Product("Помидоры", 70));
             products.Add(new Product("Апельсины", 120));
-            Console.Write("Сколько у вас денег с собой?: ");
-            userInput = Console.ReadLine();
 
-            while (hasMoney == false)
+            while (isMoney == false)
             {
+                Console.Clear();
+                Console.WriteLine("Введите enter, если денег нет, но хотите просто посмотреть.\n");
+                Console.Write("Сколько у вас денег с собой?: ");
+                userInput = Console.ReadLine();
+
                 if (int.TryParse(userInput, out customerMoney))
                 {
-                    hasMoney = true;
+                    if (customerMoney > 0)
+                    {
+                        isMoney = true;
+                    }                 
+                    else
+                    {
+                        Console.WriteLine("Вы за кого меня принимаете?");
+                        Console.ReadKey();
+                    }
+                }
+                else if (userInput == "enter")
+                {
+                    isMoney = true;
                 }
                 else
                 {
-                    Console.Write("Повторите, я не расслышал: ");
+                    Console.Write("Не могли бы повторить? Я не расслышал.");
+                    Console.ReadKey();
                 }
             }
 
@@ -91,23 +107,23 @@ namespace Store
             productName = Console.ReadLine();
             productForSell = _salesman.FindProduct(productName);
 
-                if (productForSell != null)
+            if (productForSell != null)
+            {
+                if (_customer.Money >= productForSell.PriceForOne)
                 {
-                    if (_customer.Money >= productForSell.PriceForOne)
-                    {
-                        _customer.MakeDeal(productForSell, productForSell.PriceForOne);
-                        _salesman.MakeDeal(productForSell, productForSell.PriceForOne);
-                        Console.WriteLine($"Вы приобрели {productName}");
-                    }
-                    else
-                    {
-                        Console.WriteLine("Это вам не по карману");
-                    }
+                    _customer.MakeDeal(productForSell, productForSell.PriceForOne);
+                    _salesman.MakeDeal(productForSell, productForSell.PriceForOne);
+                    Console.WriteLine($"Вы приобрели {productName}");
                 }
                 else
                 {
-                    Console.WriteLine("Такого товара нет!");
+                    Console.WriteLine("Это вам не по карману");
                 }
+            }
+            else
+            {
+                Console.WriteLine("Такого товара нет!");
+            }
 
             Console.ReadKey();
         }
