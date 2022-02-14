@@ -10,7 +10,7 @@ namespace Store
             int customerMoney = 0;
             int salesmanMoney = 0;
             string userInput;
-            bool isMoney = false;
+            bool isEnter = false;
             List<Product> products = new List<Product>();
 
             products.Add(new Product("Молоко", 80));
@@ -20,7 +20,7 @@ namespace Store
             products.Add(new Product("Помидоры", 70));
             products.Add(new Product("Апельсины", 120));
 
-            while (isMoney == false)
+            while (isEnter == false)
             {
                 Console.Clear();
                 Console.WriteLine("Введите enter, если денег нет, но хотите просто посмотреть.\n");
@@ -31,7 +31,7 @@ namespace Store
                 {
                     if (customerMoney > 0)
                     {
-                        isMoney = true;
+                        isEnter = true;
                     }                 
                     else
                     {
@@ -41,7 +41,7 @@ namespace Store
                 }
                 else if (userInput == "enter")
                 {
-                    isMoney = true;
+                    isEnter = true;
                 }
                 else
                 {
