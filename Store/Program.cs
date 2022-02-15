@@ -10,7 +10,7 @@ namespace Store
             int customerMoney = 0;
             int salesmanMoney = 0;
             string userInput;
-            bool isMoney = false;
+            bool isEnterShop = false;
             List<Product> products = new List<Product>();
 
             products.Add(new Product("Молоко", 80));
@@ -20,7 +20,7 @@ namespace Store
             products.Add(new Product("Помидоры", 70));
             products.Add(new Product("Апельсины", 120));
 
-            while (isMoney == false)
+            while (isEnterShop == false)
             {
                 Console.Clear();
                 Console.WriteLine("Введите enter, если денег нет, но хотите просто посмотреть.\n");
@@ -31,7 +31,7 @@ namespace Store
                 {
                     if (customerMoney > 0)
                     {
-                        isMoney = true;
+                        isEnterShop = true;
                     }                 
                     else
                     {
@@ -41,7 +41,7 @@ namespace Store
                 }
                 else if (userInput == "enter")
                 {
-                    isMoney = true;
+                    isEnterShop = true;
                 }
                 else
                 {
@@ -86,7 +86,7 @@ namespace Store
                         _salesman.ShowAllProducts();
                         break;
                     case "2":
-                        SellProduct();
+                        ArrangeTrade();
                         break;
                     case "3":
                         _customer.ShowAllProducts();
@@ -98,7 +98,7 @@ namespace Store
             }
         }
 
-        private void SellProduct()
+        private void ArrangeTrade()
         {
             Product productForSell;
             string productName;
@@ -109,10 +109,10 @@ namespace Store
 
             if (productForSell != null)
             {
-                if (_customer.Money >= productForSell.PriceForOne)
+                if (_customer.Money >= productForSell.Price)
                 {
-                    _customer.MakeDeal(productForSell, productForSell.PriceForOne);
-                    _salesman.MakeDeal(productForSell, productForSell.PriceForOne);
+                    _customer.BuyProduct(productForSell, productForSell.Price);
+                    _salesman.SellProduct(productForSell, productForSell.Price);
                     Console.WriteLine($"Вы приобрели {productName}");
                 }
                 else
@@ -134,37 +134,35 @@ class Product
 {
 
     public string Name { get; private set; }
-    public int PriceForOne { get; private set; }
+    public int Price { get; private set; }
 
     public Product(string name, int price)
     {
         Name = name;
-        PriceForOne = price;
+        Price = price;
     }
 }
 
-abstract class Person
+class Person
 {
-    protected List<Product> _products = new List<Product>();
+    protected List<Product> Products = new List<Product>();
 
     public int Money { get; protected set; }
 
     public Person(int money, List<Product> products)
     {
         Money = money;
-        _products = products;
+        Products = products;
     }
 
     public virtual void ShowAllProducts()
     {
-        foreach (var product in _products)
+        foreach (var product in Products)
         {
-            Console.WriteLine($"{product.Name}. Цена за упаковку: {product.PriceForOne} рублей");
+            Console.WriteLine($"{product.Name}. Цена за упаковку: {product.Price} рублей");
         }
         Console.ReadKey();
     }
-
-    public abstract void MakeDeal(Product product, int transactionAmount);
 }
 
 class Salesman : Person
@@ -173,21 +171,21 @@ class Salesman : Person
 
     public Product FindProduct(string productName)
     {
-        for (int i = 0; i < _products.Count; i++)
+        for (int i = 0; i < Products.Count; i++)
         {
-            if (_products[i].Name.ToLower() == productName.ToLower())
+            if (Products[i].Name.ToLower() == productName.ToLower())
             {
-                return _products[i];
+                return Products[i];
             }
         }
 
         return null;
     }
 
-    public override void MakeDeal(Product product, int transactionAmount)
+    public void SellProduct(Product product, int transactionAmount)
     {
         Money += transactionAmount;
-        _products.Add(product);
+        Products.Add(product);
     }
 }
 
@@ -196,17 +194,17 @@ class Customer : Person
 {
     public Customer(int money, List<Product> products) : base(money, products) { }
 
-    public override void MakeDeal(Product product, int transactionAmount)
+    public void BuyProduct(Product product, int transactionAmount)
     {
         Money -= transactionAmount;
-        _products.Add(product);
+        Products.Add(product);
     }
 
     public override void ShowAllProducts()
     {
         Console.WriteLine("У вас в пакете:");
 
-        foreach (var product in _products)
+        foreach (var product in Products)
         {
             Console.Write($"{product.Name} ");
         }
