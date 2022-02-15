@@ -65,6 +65,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Store", "Store\Store.csproj
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrainСonfigurator", "TrainСonfigurator\TrainСonfigurator.csproj", "{CF255D71-CB63-47BA-ACE5-AA2FBCD33909}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GladiatorFights", "GladiatorFights\GladiatorFights.csproj", "{002BE8A7-4E7E-45EB-840C-F8957AC9F098}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|anycpu = Debug|anycpu
@@ -195,6 +197,10 @@ Global
 		{CF255D71-CB63-47BA-ACE5-AA2FBCD33909}.Debug|anycpu.Build.0 = Debug|anycpu
 		{CF255D71-CB63-47BA-ACE5-AA2FBCD33909}.Release|anycpu.ActiveCfg = Release|anycpu
 		{CF255D71-CB63-47BA-ACE5-AA2FBCD33909}.Release|anycpu.Build.0 = Release|anycpu
+		{002BE8A7-4E7E-45EB-840C-F8957AC9F098}.Debug|anycpu.ActiveCfg = Debug|anycpu
+		{002BE8A7-4E7E-45EB-840C-F8957AC9F098}.Debug|anycpu.Build.0 = Debug|anycpu
+		{002BE8A7-4E7E-45EB-840C-F8957AC9F098}.Release|anycpu.ActiveCfg = Release|anycpu
+		{002BE8A7-4E7E-45EB-840C-F8957AC9F098}.Release|anycpu.Build.0 = Release|anycpu
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

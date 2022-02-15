@@ -27,12 +27,6 @@ namespace TrainСonfigurator
     class TrainConfigurator
     {
         private Queue<string> _directions;
-        private Train _train = new Train();
-        private string _direction;
-        private int _soldTicketCount;
-        private int _placesLeftToFind;
-        private int _stepNumber;
-        private bool _isReadySend;
 
         public TrainConfigurator(Queue<string> directions)
         {
@@ -41,12 +35,16 @@ namespace TrainСonfigurator
 
         public void Work()
         {
+            Train train = new Train();
             bool isWork = true;
-            _stepNumber = 1;
+            bool isReadySend = true;
+            string trainDirection = "";
+            int soldTicketCount = 0;
+            int stepNumber = 1;
 
             while (isWork)
             {
-                if (_stepNumber == 5)
+                if (stepNumber == 5)
                 {
                     Console.Clear();
                     Console.Write("Нажмите Enter, чтобы сконфигурировать новый поезд.\n" +
@@ -57,7 +55,9 @@ namespace TrainСonfigurator
                     }
                     else
                     {
-                        _stepNumber = 1;
+                        trainDirection = "";
+                        soldTicketCount = 0;
+                        stepNumber = 1;
                     }
                 }
                 Console.Clear();
@@ -71,47 +71,42 @@ namespace TrainСonfigurator
 
                 Console.SetCursorPosition(0, 0);
                 Console.Write("Конфигуратор поездов запущен\n\n" +
-                   $"Направление - {_direction}\n" +
-                   $"Продано билетов - {_soldTicketCount}\n" +
-                   $"Осталось разместить - {_placesLeftToFind}\n" +
+                   $"Направление - {trainDirection}\n" +
+                   $"Продано билетов - {soldTicketCount}\n" +
                    $"Состав поезда - ");
 
-                if (_train.Carriages != null)
+                if (train.GetCarriagesCount() != 0)
                 {
-                    foreach (var carriage in _train.Carriages)
-                    {
-                        Console.Write($"({carriage.Name}/Число пассажиров: {carriage.PlaceCount})-");
-                    }
+                    train.ShowAllCarriage();
                 }
 
                 Console.SetCursorPosition(0, 7);
-                Console.WriteLine($"Шаг №{_stepNumber}\n");
+                Console.WriteLine($"Шаг №{stepNumber}\n");
                 Console.SetCursorPosition(0, 8);
 
-                switch (_stepNumber)
+                switch (stepNumber)
                 {
                     case 1:
-                        CreateDirection();
+                        trainDirection = CreateDirection(ref stepNumber);
                         break;
                     case 2:
-                        SellTickets();
+                        soldTicketCount = SellTickets(ref stepNumber);
                         break;
                     case 3:
-                        CreatedTrain();
+                        AddCarruage(train, ref stepNumber, soldTicketCount);
                         break;
                     case 4:
-                        SendTrain();
+                        SendTrain(train, ref stepNumber, ref isReadySend);
                         break;
                 }
-
-                _stepNumber++;
             }
         }
 
-        private void CreateDirection()
+        private string CreateDirection(ref int stepNumber)
         {
             string startingPlace;
             string endPlace;
+            string direction = "";
 
             Console.Write("Введите пункт отправления: ");
             startingPlace = Console.ReadLine();
@@ -123,101 +118,96 @@ namespace TrainСonfigurator
 
                 if (_directions.Contains(endPlace) && endPlace != startingPlace)
                 {
-                    _direction = startingPlace + " - " + endPlace;
+                    direction = startingPlace + " - " + endPlace;
+                    stepNumber++;
                 }
                 else
                 {
                     Console.WriteLine("Некорректный ввод");
                     Console.ReadKey();
-                    _stepNumber--;
                 }
             }
             else
             {
                 Console.WriteLine("Некорректный ввод");
                 Console.ReadKey();
-                _stepNumber--;
             }
+
+            return direction;
         }
 
-        private void SellTickets()
+        private int SellTickets(ref int stepNumber)
         {
             Random random = new Random();
+            int soldTicketCount;
 
             Console.WriteLine("Нажмите Enter, чтобы продать билеты на это направление");
             Console.ReadLine();
-            _soldTicketCount = random.Next(100, 500);
-            _placesLeftToFind = _soldTicketCount;
+            soldTicketCount = random.Next(100, 500);
+            stepNumber++;
+            return soldTicketCount;
         }
 
-        private void CreatedTrain()
+        private void AddCarruage(Train train, ref int stepNumber, int soldTicketCount)
         {
-            Queue<Carriage> carriages = new Queue<Carriage>();
-            bool isAttach = true;
+            string userInput = "";
+            SeatingCar seatingCar = new SeatingCar();
+            SleeperCar sleeperCar = new SleeperCar();
+            LuxeCar luxeCar = new LuxeCar();
 
-            Console.WriteLine($"Осталось разместить пассажиров");
+            while (soldTicketCount > 0)
+            { 
+                Console.WriteLine($"Осталось разместить пассажиров: {soldTicketCount} ");
+                Console.WriteLine("Вместительность вагонов:\n" +
+                $"{seatingCar.Name}, количество мест {seatingCar.PlaceCount} - 1\n" +
+                $"{sleeperCar.Name}, количество мест {sleeperCar.PlaceCount} - 2\n" +
+                $"{luxeCar.Name},  количество мест {luxeCar.PlaceCount} - 3\n");
 
-            Console.WriteLine("Вместительность вагонов:\n" +
-                "Общий вагон, 81 место - 1\n" +
-                "Плацкарт, 54 места - 2\n" +
-                "СВ, 36 мест - 3\n");
-            Console.Write("Введите номер, чтобы выбрать нужный вагон: ");
+                Console.Write("Введите номер, чтобы выбрать нужный вагон: ");
+                userInput = Console.ReadLine();
 
-            switch (Console.ReadLine())
-            {
-                case "1":
-                    carriages.Enqueue(new SeatingCar());
-                    break;
-                case "2":
-                    carriages.Enqueue(new SleeperCar());
-                    break;
-                case "3":
-                    carriages.Enqueue(new LuxeCar());
-                    break;
-                default:
-                    isAttach = false;
-                    break;
+                if (userInput == "1")
+                {
+                    train.AttachCarriage(seatingCar);
+                    soldTicketCount -= seatingCar.PlaceCount;
+                }
+                else if (userInput == "2")
+                {
+                    train.AttachCarriage(sleeperCar);
+                    soldTicketCount -= sleeperCar.PlaceCount;
+                }
+                else if (userInput == "3")
+                {
+                    train.AttachCarriage(luxeCar);
+                    soldTicketCount -= luxeCar.PlaceCount;
+                }
+
+                Console.SetCursorPosition(0, 8);
             }
 
-            if (isAttach)
-            {
-                _placesLeftToFind -= carriages.Peek().PlaceCount;
-                _train.AttachCarriage(carriages.Peek());
-            }
-
-            if (_placesLeftToFind > 0)
-            {
-                _stepNumber--;
-            }
-            else
-            {
-                _isReadySend = true;
-            }
+                stepNumber++;
         }
 
-        private void SendTrain()
+        private void SendTrain(Train train, ref int stepNumber, ref bool isReadySend)
         {
-            if (_isReadySend)
+            if (isReadySend)
             {
                 Console.WriteLine("Нажмите Enter, чтобы отправить поезд");
                 Console.ReadLine();
-                _isReadySend = false;
+                isReadySend = false;
             }
 
             System.Threading.Thread.Sleep(400);
 
-            if (_train.Carriages.Count > 0)
+            if (train.GetCarriagesCount() > 0)
             {
-                _train.Carriages.Dequeue();
-                _stepNumber--;
+                train.DeleteFirstCarriage();
             }
             else
             {
-                _direction = null;
-                _soldTicketCount = 0;
-                _placesLeftToFind = 0;
                 Console.WriteLine("Поезд ушел.");
                 Console.ReadLine();
+                stepNumber++;
             }
         }
     }
@@ -225,13 +215,6 @@ namespace TrainСonfigurator
     class Train
     {
         private Queue<Carriage> _carriages = new Queue<Carriage>();
-        public Queue<Carriage> Carriages
-        {
-            get
-            {
-                return _carriages;
-            }
-        }
 
         public Train() { }
 
@@ -240,9 +223,27 @@ namespace TrainСonfigurator
             _carriages = carriages;
         }
 
+        public int GetCarriagesCount()
+        {
+            return _carriages.Count;
+        }
+
+        public void DeleteFirstCarriage()
+        {
+            _carriages.Dequeue();
+        }
+
         public void AttachCarriage(Carriage carriage)
         {
             _carriages.Enqueue(carriage);
+        }
+
+        public void ShowAllCarriage()
+        {
+            foreach (var carriage in _carriages)
+            {
+                Console.Write($"({carriage.Name}/Число пассажиров: {carriage.PlaceCount})-");
+            }
         }
     }
 
@@ -256,6 +257,7 @@ namespace TrainСonfigurator
             Name = name;
             PlaceCount = placeCount;
         }
+
     }
 
     class SeatingCar : Carriage
