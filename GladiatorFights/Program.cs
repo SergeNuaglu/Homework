@@ -15,7 +15,7 @@ namespace GladiatorFights
             gladiators.Add(new Flamma());
             gladiators.Add(new Spiculus());
             Arena arena = new Arena(gladiators);
-            arena.ChooseGladiator();
+            arena.ChooseGladiators();
             Console.WriteLine("Нажмите Enter чтобы начать сражение гладиаторов");
             Console.ReadKey();
             Console.Clear();
@@ -36,7 +36,7 @@ namespace GladiatorFights
             _gladiators = gladiators;
         }
 
-        public void ChooseGladiator()
+        public void ChooseGladiators()
         {
             Gladiator fightGladiator1 = null;
             Gladiator fightGladiator2 = null;

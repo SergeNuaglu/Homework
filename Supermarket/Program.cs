@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Supermarket
 {
@@ -8,6 +9,7 @@ namespace Supermarket
         public static void Main(string[] args)
         {
             int clientCount = 10;
+            Supermarket supermarket = new Supermarket();
             Dictionary<string, int> productRange = new Dictionary<string, int>();
 
             productRange.Add("Хлеб", 43);
@@ -23,7 +25,7 @@ namespace Supermarket
 
             for (int i = 0; i < clientCount; i++)
             {
-                
+                new Client(new List<Product>()).FillBasket(productRange);
             }
         }
     }
@@ -31,6 +33,11 @@ namespace Supermarket
     class Supermarket
     {
         private Queue<Client> _clients = new Queue<Client>();
+
+        public void PutInQueue(Client client)
+        {
+            _clients.Enqueue(client);
+        }
 
         public void GetTotalAmountPaid()
         {
@@ -44,12 +51,27 @@ namespace Supermarket
 
     class Client
     {
-        private List<Product> _foodBasket = new List<Product>();
+        private List<Product> _foodBasket;
         private int _money;
 
         public Client(List<Product> foodBasket)
-        {
+        {           
             _foodBasket = foodBasket;
+        }
+
+        public void FillBasket(Dictionary<string, int> productRange )
+        {
+            Random random = new Random();
+            int productCount;
+
+            productCount = random.Next(0, productRange.Count);
+
+            for (int i = 0; i < productCount; i++)
+            {
+                int productIndex = random.Next(0, productRange.Count);
+                string productName = productRange.ElementAt(productIndex).Key;
+                _foodBasket.Add(new Product(productName, productRange[productName]));
+            }
         }
 
         public int GetTotalAmountPaid()
@@ -62,6 +84,35 @@ namespace Supermarket
             }
 
             return totalAmountPaid;
+        }
+
+        public void BuyProduct(int totalAmountPaid)
+        {
+            bool isCanBuy = false;
+
+            while (isCanBuy == false)
+            {
+                if (_money >= totalAmountPaid)
+                {
+                    _money -= totalAmountPaid;
+                    isCanBuy = true;
+                }
+                else
+                {
+                    Console.WriteLine("У клиента недостаточно денег");
+                    DiscardProduct();
+                }
+            }
+        }
+
+        private void DiscardProduct()
+        {
+            Random random = new Random();
+            int productIndex;
+
+            productIndex = random.Next(random.Next(0, _foodBasket.Count));
+            Console.WriteLine($"Клиент из корзины выложил {_foodBasket[productIndex]}");
+            _foodBasket.RemoveAt(productIndex);
         }
     }
 
