@@ -7,9 +7,6 @@ namespace GladiatorFights
     {
         public static void Main(string[] args)
         {
-            Gladiator gladiator1 = null;
-            Gladiator gladiator2 = null;
-            Random random = new Random();
             List<Gladiator> gladiators = new List<Gladiator>();
 
             gladiators.Add(new Spartacus());
@@ -17,44 +14,21 @@ namespace GladiatorFights
             gladiators.Add(new Crixus());
             gladiators.Add(new Flamma());
             gladiators.Add(new Spiculus());
-
             Arena arena = new Arena(gladiators);
-
-            while (gladiator1 == null || gladiator2 == null)
-            {
-                Console.Clear();
-                Console.SetCursorPosition(0, 13);
-                arena.ShowAllGladiators();
-                Console.SetCursorPosition(0, 0);
-
-
-                Console.WriteLine("Выберите гладиатора");
-
-                if (gladiator1==null)
-                {
-                    arena.ChooseGladiator(ref gladiator1);
-                    gladiators.Remove(gladiator1);
-                }
-                else
-                {
-                    arena.ChooseGladiator(ref gladiator2);
-                }
-
-                Console.ReadKey();
-            }
-
-            Console.Clear();
-            Console.WriteLine($"{gladiator1.Name}   VS   {gladiator2.Name}");
+            arena.ChooseGladiator();
             Console.WriteLine("Нажмите Enter чтобы начать сражение гладиаторов");
             Console.ReadKey();
             Console.Clear();
-            arena.Fight(gladiator1, gladiator2);
-            Console.ReadLine();
+            arena.Fight();
+            arena.ShowWinner();
+            Console.ReadKey();
         }
     }
 
     class Arena
     {
+        private Gladiator _gladiator1;
+        private Gladiator _gladiator2;
         private List<Gladiator> _gladiators = new List<Gladiator>();
 
         public Arena(List<Gladiator> gladiators)
@@ -62,66 +36,84 @@ namespace GladiatorFights
             _gladiators = gladiators;
         }
 
+        public void ChooseGladiator()
+        {
+            Gladiator fightGladiator1 = null;
+            Gladiator fightGladiator2 = null;
+            string gladiatorName;
 
-        public void ShowAllGladiators()
+            while (fightGladiator1 == null || fightGladiator2 == null)
+            {
+                Console.Clear();
+                ShowAllGladiators();               
+                Console.WriteLine("\n\nВыберите гладиаторов");
+                Console.Write("\nВведите имя гладиатора: ");
+                gladiatorName = Console.ReadLine();
+
+                foreach (var gladiator in _gladiators)
+                {
+                    if (gladiator.Name.ToLower() == gladiatorName.ToLower())
+                    {
+                        if (fightGladiator1==null)
+                        {
+                            Console.WriteLine($"Выбран гладиатор {gladiator.Name}");
+                            fightGladiator1 = gladiator;
+                        }
+                        else
+                        {
+                            Console.WriteLine($"Выбран гладиатор {gladiator.Name}");
+                            fightGladiator2 = gladiator;
+                        }
+                    }
+                }
+              
+                Console.ReadKey();
+            }
+
+            _gladiator1 = fightGladiator1;
+            _gladiator2 = fightGladiator2;
+        }
+
+        public void Fight()
+        {
+            bool isFight = true;
+
+            Console.WriteLine($"{_gladiator1.Name} - {_gladiator1.Health} здоровья   VS   {_gladiator2.Name} - {_gladiator2.Health} здоровья\n\n");
+
+            while (isFight)
+            {
+                _gladiator1.Attack(_gladiator2);
+                _gladiator2.Attack(_gladiator1);
+                Console.WriteLine(_gladiator1.Health + " / " + _gladiator2.Health);
+
+                if (_gladiator1.Health <= 0 || _gladiator2.Health <= 0)
+                {
+                    isFight = false;
+                }
+            }
+        }
+
+        public void ShowWinner()
+        {
+            if (_gladiator1.Health <= 0 && _gladiator2.Health <= 0)
+            {
+                Console.WriteLine("\nОба гладиатора мертвы");
+            }
+            else if (_gladiator1.Health <= 0)
+            {
+                Console.WriteLine($"\nГладиатор {_gladiator1.Name} убит");
+            }
+            else if (_gladiator2.Health <= 0)
+            {
+                Console.WriteLine($"\nГладиатор {_gladiator2.Name} убит");
+            }
+        }
+
+        private void ShowAllGladiators()
         {
             foreach (var gladiator in _gladiators)
             {
                 gladiator.ShowInfo();
-            }
-        }
-
-        public void ChooseGladiator(ref Gladiator fightGladiator)
-        {
-            string gladiatorName;
-
-            Console.Write("Введите имя гладиатора: ");
-            gladiatorName = Console.ReadLine();
-
-            foreach (var gladiator in _gladiators)
-            {
-                if (gladiator.Name.ToLower() == gladiatorName.ToLower())
-                {
-                    Console.WriteLine($"Выбран гладиатор {gladiator.Name}");
-                    fightGladiator = gladiator;
-                }
-            }
-
-            if (fightGladiator == null)
-            {
-                Console.Write("Такого гладиатора нет");
-            }
-        }
-
-        public void Fight(Gladiator gladiator1, Gladiator gladiator2)
-        {
-            bool isFight = true;
-            Random random = new Random();
-
-            Console.WriteLine($"{gladiator1.Name} - {gladiator1.Health} здоровья   VS   {gladiator2.Name} - {gladiator2.Health} здоровья\n\n");
-            System.Threading.Thread.Sleep(3000);
-
-            while (isFight)
-            {
-                gladiator1.Attack(gladiator2);
-                gladiator2.Attack(gladiator1);
-                Console.WriteLine(gladiator1.Health + " / " + gladiator2.Health);
-
-                if (gladiator1.Health <= 0 && gladiator2.Health <= 0)
-                {
-                    Console.WriteLine("\nОба гладиатора мертвы");
-                    isFight = false;
-                }
-                else if (gladiator1.Health <= 0)
-                {
-                    Console.WriteLine($"\nГладиатор {gladiator1.Name} убит");
-                    isFight = false;
-                }
-                else if (gladiator2.Health <= 0)
-                {
-                    Console.WriteLine($"\nГладиатор {gladiator2.Name} убит");
-                    isFight = false;
-                }
             }
         }
     }
@@ -152,7 +144,7 @@ namespace GladiatorFights
 
             if (defensiveGladiator.IsDefend() == false)
             {
-                TakeDamage(defensiveGladiator);
+                defensiveGladiator.TakeDamage(Damage);                
                 Console.Write($"и забрал {Damage} жизней у соперника");
             }
             else
@@ -167,9 +159,9 @@ namespace GladiatorFights
             Console.WriteLine($"Гладиатор {Name}: Здоровье - {Health}, Броня - {Armor}, Урон - {Damage}, Скорость реакции - {ReactionSpeed}");
         }
 
-        protected virtual void TakeDamage(Gladiator defensiveGladiator)
+        protected virtual void TakeDamage(int damage)
         {
-            defensiveGladiator.Health -= Damage - defensiveGladiator.Armor;
+            Health -= damage + Armor;
         }
 
         private bool IsDefend()
@@ -190,7 +182,7 @@ namespace GladiatorFights
         private void SetReactionSpeed()
         {
             int minReactionSpeed = 0;
-            int maxReactionSpeed = 100;
+            int maxReactionSpeed = 60;
             Random random = new Random();
 
             ReactionSpeed = random.Next(minReactionSpeed, maxReactionSpeed);
@@ -207,11 +199,11 @@ namespace GladiatorFights
     {
         public Spartacus() : base("SPARTACUS", 140, 5, 20) { }
 
-        protected override void TakeDamage(Gladiator defensiveGladiator)
+        protected override void TakeDamage(int damage)
         {
 
             BeatWithSword();
-            base.TakeDamage(defensiveGladiator);
+            base.TakeDamage(Damage);
         }
 
         private void BeatWithSword()
@@ -228,10 +220,10 @@ namespace GladiatorFights
     {
         public Nero() : base("NERO", 110, 8, 30) { }
 
-        protected override void TakeDamage(Gladiator defensiveGladiator)
+        protected override void TakeDamage(int damage)
         {
             StabWithDagger();
-            base.TakeDamage(defensiveGladiator);
+            base.TakeDamage(Damage);
         }
 
         private void StabWithDagger()
@@ -249,10 +241,10 @@ namespace GladiatorFights
 
         public Crixus() : base("CRICUS", 100, 7, 35) { }
 
-        protected override void TakeDamage(Gladiator defensiveGladiator)
+        protected override void TakeDamage(int damage)
         {
             HitWithTrident();
-            base.TakeDamage(defensiveGladiator);
+            base.TakeDamage(Damage);
         }
 
         private void HitWithTrident()
@@ -268,10 +260,10 @@ namespace GladiatorFights
     {
         public Flamma() : base("FLAMMA", 150, 5, 15) { }
 
-        protected override void TakeDamage(Gladiator defensiveGladiator)
+        protected override void TakeDamage(int damage)
         {
             Baton();
-            base.TakeDamage(defensiveGladiator);
+            base.TakeDamage(Damage);
         }
 
         private void Baton()
@@ -288,10 +280,10 @@ namespace GladiatorFights
     {
         public Spiculus() : base("SPICULUS", 80, 10, 60) { }
 
-        protected override void TakeDamage(Gladiator defensiveGladiator)
+        protected override void TakeDamage(int damage)
         {
             ThrowSpear();
-            base.TakeDamage(defensiveGladiator);
+            base.TakeDamage(Damage);
         }
 
         private void ThrowSpear()
