@@ -25,8 +25,15 @@ namespace Supermarket
 
             for (int i = 0; i < clientCount; i++)
             {
-                new Client(new List<Product>()).FillBasket(productRange);
+                Client client = new Client(new List<Product>());
+                client.FillBasket(productRange);
+                supermarket.PutInQueue(client);
             }
+
+            Console.WriteLine($"На кассе очередь из {clientCount} клиентов");
+            Console.WriteLine("Нажмите Enter, чтобы начать обслуживание");
+            Console.ReadKey();
+            supermarket.ServeCustomers();
         }
     }
 
@@ -39,12 +46,50 @@ namespace Supermarket
             _clients.Enqueue(client);
         }
 
-        public void GetTotalAmountPaid()
+        public void ServeCustomers()
         {
-            foreach (var client in _clients)
-            {
-                List<Product> foodBasket = new List<Product>();
+            int clientNumber = 1;
+            int clientCount = _clients.Count;
+            int clientMoney = 0;
+            int totalAmountPaid;
+            int change;
+            bool isWork = true;
 
+            while (isWork)
+            {
+                Console.Clear();
+                Console.WriteLine($"{clientNumber}-й клиент\n");
+
+                if (clientMoney == 0)
+                {
+                    clientMoney = _clients.Peek().CountMoney();
+                }
+
+                Console.WriteLine($"Денег у клиента - {clientMoney}\n");
+                Console.WriteLine($"Продукты в корзине: \n");
+                _clients.Peek().ShowAllProducts();
+                totalAmountPaid = _clients.Peek().GetTotalAmountPaid();
+                Console.WriteLine($"\nКлиент должен заплатить: {totalAmountPaid}");
+
+                if (clientMoney >= totalAmountPaid)
+                {
+                    Console.WriteLine("У клиента хватает денег и он покупает продукты");
+                    change = _clients.Dequeue().BuyProduct(totalAmountPaid);
+                    Console.WriteLine($"Сдача - {change} рублей");
+                    clientMoney = 0;
+                    clientNumber++;
+                }
+                else
+                {
+                    Console.WriteLine($"У клиента не хватает денег и он выкладывает {_clients.Peek().DiscardProduct()} из корзины ");
+                }
+
+                if (clientNumber > clientCount)
+                {
+                    isWork = false;
+                }
+
+                Console.ReadKey();
             }
         }
     }
@@ -52,25 +97,45 @@ namespace Supermarket
     class Client
     {
         private List<Product> _foodBasket;
+
         private int _money;
 
         public Client(List<Product> foodBasket)
-        {           
+        {
             _foodBasket = foodBasket;
         }
 
-        public void FillBasket(Dictionary<string, int> productRange )
+        public void FillBasket(Dictionary<string, int> productRange)
         {
             Random random = new Random();
             int productCount;
+            int minProductCount = 3;
 
-            productCount = random.Next(0, productRange.Count);
+            productCount = random.Next(minProductCount, productRange.Count);
 
             for (int i = 0; i < productCount; i++)
             {
                 int productIndex = random.Next(0, productRange.Count);
                 string productName = productRange.ElementAt(productIndex).Key;
                 _foodBasket.Add(new Product(productName, productRange[productName]));
+            }
+        }
+
+        public int CountMoney()
+        {
+            int minMoneyCount = 500;
+            int maxMoneyCount = 1000;
+            Random random = new Random();
+
+            _money = random.Next(minMoneyCount, maxMoneyCount);
+            return _money;
+        }
+
+        public void ShowAllProducts()
+        {
+            foreach (var product in _foodBasket)
+            {
+                Console.WriteLine($"{product.Name} - {product.Price} рублей");
             }
         }
 
@@ -86,33 +151,22 @@ namespace Supermarket
             return totalAmountPaid;
         }
 
-        public void BuyProduct(int totalAmountPaid)
+        public int BuyProduct(int totalAmountPaid)
         {
-            bool isCanBuy = false;
-
-            while (isCanBuy == false)
-            {
-                if (_money >= totalAmountPaid)
-                {
-                    _money -= totalAmountPaid;
-                    isCanBuy = true;
-                }
-                else
-                {
-                    Console.WriteLine("У клиента недостаточно денег");
-                    DiscardProduct();
-                }
-            }
+            _money -= totalAmountPaid;
+            return _money;
         }
 
-        private void DiscardProduct()
+        public string DiscardProduct()
         {
             Random random = new Random();
             int productIndex;
+            string productName;
 
             productIndex = random.Next(random.Next(0, _foodBasket.Count));
-            Console.WriteLine($"Клиент из корзины выложил {_foodBasket[productIndex]}");
+            productName = _foodBasket[productIndex].Name;
             _foodBasket.RemoveAt(productIndex);
+            return productName;
         }
     }
 
