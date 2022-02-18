@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Aquarium
 {
@@ -6,7 +7,17 @@ namespace Aquarium
     {
         public static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            
         }
+    }
+
+    class Aquarium
+    {
+
+    }
+
+    class Fish
+    {
+
     }
 }

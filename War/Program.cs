@@ -277,7 +277,9 @@ namespace War
 
         public void IncreaseHealth()
         {
-            if (Health < 100)
+            int startingHealth = 100;
+
+            if (Health < startingHealth)
             {
                 Health += Armor;
             }
