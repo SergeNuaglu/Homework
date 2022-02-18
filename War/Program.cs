@@ -90,15 +90,15 @@ namespace War
 
             if (totalHealth1 <= 0 && totalHealth2 <= 0)
             {
-                Console.WriteLine("\nОба взвода уничтожили друг друга");
+                Console.WriteLine("\nОба взвода уничтожили друг друга...");
             }
             else if (totalHealth1 <= 0)
             {
-                Console.WriteLine($"\n{_platoon1.Number}-й взвод погиб");
+                Console.WriteLine($"\n{_platoon1.Number}-й взвод погиб...");
             }
             else if (totalHealth2 <= 0)
             {
-                Console.WriteLine($"\n{_platoon2.Number}-й взвод погиб");
+                Console.WriteLine($"\n{_platoon2.Number}-й взвод погиб...");
             }
         }
     }
@@ -286,10 +286,7 @@ namespace War
 
     class Commander : Warrior
     {
-        public Commander() : base("Командир", new Pistol(), 100, 30)
-        {
-
-        }
+        public Commander() : base("Командир", new Pistol(), 100, 30) { }
 
         public bool IsOrderAttack(int platoonHealth)
         {
@@ -313,34 +310,22 @@ namespace War
 
     class RifleShooter : Warrior
     {
-        public RifleShooter() : base("Стрелок", new Rifle(), 100, 10)
-        {
-
-        }
+        public RifleShooter() : base("Стрелок", new Rifle(), 100, 10) { }
     }
 
     class MachineGunShooter : Warrior
     {
-        public MachineGunShooter() : base("Пулеметчик", new MachineGun(), 100, 7)
-        {
-
-        }
+        public MachineGunShooter() : base("Пулеметчик", new MachineGun(), 100, 7) { }
     }
 
     class GrenadeGunShooter : Warrior
     {
-        public GrenadeGunShooter() : base("Гранатометчик", new GrenadeGun(), 100, 5)
-        {
-
-        }
+        public GrenadeGunShooter() : base("Гранатометчик", new GrenadeGun(), 100, 5) { }
     }
 
     class TankShooter : Warrior
     {
-        public TankShooter() : base("Танкист", new Tank(), 100, 25)
-        {
-
-        }
+        public TankShooter() : base("Танкист", new Tank(), 100, 25) { }
     }
 
     class Weapon
@@ -373,41 +358,26 @@ namespace War
 
     class Pistol : Weapon
     {
-        public Pistol() : base(2, 8)
-        {
-
-        }
+        public Pistol() : base(2, 8) { }
     }
 
     class Rifle : Weapon
     {
-        public Rifle() : base(4, 30)
-        {
-
-        }
+        public Rifle() : base(4, 30) { }
     }
 
     class MachineGun : Weapon
     {
-        public MachineGun() : base(5, 45)
-        {
-
-        }
+        public MachineGun() : base(5, 45) { }
     }
 
     class GrenadeGun : Weapon
     {
-        public GrenadeGun() : base(10, 2)
-        {
-
-        }
+        public GrenadeGun() : base(10, 2) { }
     }
 
     class Tank : Weapon
     {
-        public Tank() : base(20, 1)
-        {
-
-        }
+        public Tank() : base(20, 1) { }
     }
 }
