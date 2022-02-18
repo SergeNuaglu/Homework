@@ -69,6 +69,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GladiatorFights", "Gladiato
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Supermarket", "Supermarket\Supermarket.csproj", "{594CC895-610D-4CB7-844A-9F5CAB8BC818}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "War", "War\War.csproj", "{0D000365-811A-4438-9837-B8094B41F191}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|anycpu = Debug|anycpu
@@ -207,6 +209,10 @@ Global
 		{594CC895-610D-4CB7-844A-9F5CAB8BC818}.Debug|anycpu.Build.0 = Debug|anycpu
 		{594CC895-610D-4CB7-844A-9F5CAB8BC818}.Release|anycpu.ActiveCfg = Release|anycpu
 		{594CC895-610D-4CB7-844A-9F5CAB8BC818}.Release|anycpu.Build.0 = Release|anycpu
+		{0D000365-811A-4438-9837-B8094B41F191}.Debug|anycpu.ActiveCfg = Debug|anycpu
+		{0D000365-811A-4438-9837-B8094B41F191}.Debug|anycpu.Build.0 = Debug|anycpu
+		{0D000365-811A-4438-9837-B8094B41F191}.Release|anycpu.ActiveCfg = Release|anycpu
+		{0D000365-811A-4438-9837-B8094B41F191}.Release|anycpu.Build.0 = Release|anycpu
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
