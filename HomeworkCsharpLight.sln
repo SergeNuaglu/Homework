@@ -71,6 +71,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Supermarket", "Supermarket\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "War", "War\War.csproj", "{0D000365-811A-4438-9837-B8094B41F191}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aquarium", "Aquarium\Aquarium.csproj", "{035E8E4C-06A6-4A2A-97A6-C62BAD4CAECB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|anycpu = Debug|anycpu
@@ -213,6 +215,10 @@ Global
 		{0D000365-811A-4438-9837-B8094B41F191}.Debug|anycpu.Build.0 = Debug|anycpu
 		{0D000365-811A-4438-9837-B8094B41F191}.Release|anycpu.ActiveCfg = Release|anycpu
 		{0D000365-811A-4438-9837-B8094B41F191}.Release|anycpu.Build.0 = Release|anycpu
+		{035E8E4C-06A6-4A2A-97A6-C62BAD4CAECB}.Debug|anycpu.ActiveCfg = Debug|anycpu
+		{035E8E4C-06A6-4A2A-97A6-C62BAD4CAECB}.Debug|anycpu.Build.0 = Debug|anycpu
+		{035E8E4C-06A6-4A2A-97A6-C62BAD4CAECB}.Release|anycpu.ActiveCfg = Release|anycpu
+		{035E8E4C-06A6-4A2A-97A6-C62BAD4CAECB}.Release|anycpu.Build.0 = Release|anycpu
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
