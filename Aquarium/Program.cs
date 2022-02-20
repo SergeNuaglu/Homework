@@ -7,15 +7,9 @@ namespace Aquarium
     {
         public static void Main(string[] args)
         {
-            Aquarium aquarium;
-            Dictionary<string, int> fishTypes = new Dictionary<string, int>();
+            int startingTime = 0;
 
-            fishTypes.Add("Goldfish", 12);
-            fishTypes.Add("Guppy", 3);
-            fishTypes.Add("Angelfish", 10);
-            fishTypes.Add("Rainbowfish", 7);
-            fishTypes.Add("ZebraDanio", 5);
-            aquarium = new Aquarium(fishTypes);
+            Aquarium aquarium = new Aquarium(startingTime);
             aquarium.Work();
         }
     }
@@ -23,24 +17,40 @@ namespace Aquarium
     class Aquarium
     {
         private Dictionary<int, Fish> _fishes = new Dictionary<int, Fish>();
-        private Dictionary<string, int> _fishTypes = new Dictionary<string, int>();
+        private List<FishTypes> _fishTypes = new List<FishTypes>();
 
-        public Aquarium(Dictionary<string, int> fishTypes)
+        public int TimeCounter;
+
+        public Aquarium(int startingTime)
         {
-            _fishTypes = fishTypes;
+            TimeCounter = startingTime;
+        }
+
+        enum FishTypes
+        {
+            Goldfish = 1,
+            Guppy,
+            Angelfish,
+            Rainbowfish,
+            ZebraDanio
         }
 
         public void Work()
         {
             int aquariumСapacity = 10;
-            int timeCounter = 0;
             int userInput;
             bool isWork = true;
+
+            _fishTypes.Add(FishTypes.Goldfish);
+            _fishTypes.Add(FishTypes.Guppy);
+            _fishTypes.Add(FishTypes.Angelfish);
+            _fishTypes.Add(FishTypes.Rainbowfish);
+            _fishTypes.Add(FishTypes.ZebraDanio);
 
             while (isWork)
             {
                 Console.Clear();
-                Console.WriteLine($"Прошло лет с запуска аквариума: {timeCounter}\n" +
+                Console.WriteLine($"Прошло времени с запуска аквариума: {TimeCounter}\n" +
                     $"Количество рыбок - {_fishes.Count}");
                 Console.WriteLine("\nАКВАРИУМ");
                 ShowAllFishes();
@@ -55,7 +65,8 @@ namespace Aquarium
                     {
                         if (_fishes.Count < aquariumСapacity)
                         {
-                            AddFish(timeCounter, aquariumСapacity);
+                            Console.WriteLine($"\nВы можете добавить {aquariumСapacity - _fishes.Count} рыбок");
+                            ChooseTypeOfFish();
                         }
                         else
                         {
@@ -68,21 +79,41 @@ namespace Aquarium
                     }
                 }
 
-                for (int i = 1; i <= _fishes.Count; i++)
-                {
-                    if (_fishes.ContainsKey(i))
-                    {
-                        if (_fishes[i].GrowOld(timeCounter) <= 0)
-                        {
-                            Renumber(i);
-                        }
-                    }
-                }
-
+                ChangeFishAge(TimeCounter);
                 Console.WriteLine("Нажмите Enter для продолжения...");
                 Console.ReadKey();
-                timeCounter++;
+                TimeCounter++;
             }
+        }
+        private void ChangeFishAge(int time)
+        {
+            for (int i = 1; i <= _fishes.Count; i++)
+            {
+                if (_fishes.ContainsKey(i))
+                {
+                    _fishes[i].GrowOld(time);
+
+                    if (IsFishDied())
+                    {
+                        _fishes.Remove(i);
+                        Renumber(i);
+                    }
+                }
+            }
+        }
+
+        private bool IsFishDied()
+        {
+            for (int i = 1; i <= _fishes.Count; i++)
+            {
+                if (_fishes[i].Age == _fishes[i].LifeTime)
+                {
+
+                    return true;
+                }
+            }
+
+            return false;
         }
 
         private void ShowAllFishes()
@@ -101,67 +132,20 @@ namespace Aquarium
             }
         }
 
-        private void AddFish(int timeOfBirth, int aquariumСapacity)
+        private void ChooseTypeOfFish()
         {
-            int fishesCount = 0;
-            string fishType = "";
-            int lifeTime = 0;
-            int typeNumber = 0;
-
-            Console.Clear();
-            ChooseTypeOfFish(ref fishType, ref lifeTime, ref typeNumber);
-            Console.WriteLine($"\nВы можете добавить {aquariumСapacity - _fishes.Count} рыбок");
-            Console.Write("Введите количество рыбок: ");
-
-            if (int.TryParse(Console.ReadLine(), out fishesCount) && fishesCount > 0 && fishesCount <= aquariumСapacity - _fishes.Count)
-            {
-                for (int i = 1; i <= fishesCount; i++)
-                {
-                    switch (typeNumber)
-                    {
-                        case 1:
-                            _fishes.Add(_fishes.Count + 1, new Goldfish(fishType, lifeTime, timeOfBirth));
-                            break;
-                        case 2:
-                            _fishes.Add(_fishes.Count + 1, new Guppy(fishType, lifeTime, timeOfBirth));
-                            break;
-                        case 3:
-                            _fishes.Add(_fishes.Count + 1, new Angelfish(fishType, lifeTime, timeOfBirth));
-                            break;
-                        case 4:
-                            _fishes.Add(_fishes.Count + 1, new Rainbowfish(fishType, lifeTime, timeOfBirth));
-                            break;
-                        case 5:
-                            _fishes.Add(_fishes.Count + 1, new ZebraDanio(fishType, lifeTime, timeOfBirth));
-                            break;
-                    }
-                }
-            }
-            else
-            {
-                Console.WriteLine("Некорректный ввод");
-            }
-        }
-
-        private void ChooseTypeOfFish(ref string fishType, ref int lifeTime, ref int typeNumber)
-        {
-            int iterationNumber = 1;
+            int typeNumber;
 
             ShowFishTypes();
+
             Console.Write("\nВведите номер рыбки: ");
+
             if (int.TryParse(Console.ReadLine(), out typeNumber))
             {
                 if (typeNumber > 0 && typeNumber <= _fishTypes.Count)
                 {
-                    foreach (var type in _fishTypes)
-                    {
-                        if (iterationNumber++ == typeNumber)
-                        {
-                            fishType = type.Key;
-                            lifeTime = type.Value;
-                            break;
-                        }
-                    }
+                    FishTypes fishType = _fishTypes[typeNumber - 1];
+                    AddFish(fishType);
                 }
                 else
                 {
@@ -174,18 +158,36 @@ namespace Aquarium
             }
         }
 
+        private void AddFish(FishTypes fishType)
+        {
+            switch (fishType)
+            {
+                case FishTypes.Goldfish:
+                    _fishes.Add(_fishes.Count + 1, new Goldfish(fishType, TimeCounter));
+                    break;
+                case FishTypes.Guppy:
+                    _fishes.Add(_fishes.Count + 1, new Guppy(fishType, TimeCounter));
+                    break;
+                case FishTypes.Angelfish:
+                    _fishes.Add(_fishes.Count + 1, new Angelfish(fishType, TimeCounter));
+                    break;
+                case FishTypes.Rainbowfish:
+                    _fishes.Add(_fishes.Count + 1, new Rainbowfish(fishType, TimeCounter));
+                    break;
+                case FishTypes.ZebraDanio:
+                    _fishes.Add(_fishes.Count + 1, new ZebraDanio(fishType, TimeCounter));
+                    break;
+            }
+        }
+
         private void ShowFishTypes()
         {
-            int fishNumber = 1;
-
             Console.WriteLine("Рыбки, которые можно добавлять в аквариум:\n");
 
-            foreach (var fishType in _fishTypes)
+            foreach (var type in _fishTypes)
             {
-                Console.WriteLine($"{fishNumber++} - {fishType.Key}, продолжительность жизни: {fishType.Value}");
+                Console.WriteLine($"{(int)type}) {type}");
             }
-
-            Console.WriteLine();
         }
 
         private void TakeFishOut()
@@ -219,53 +221,54 @@ namespace Aquarium
 
         class Fish
         {
-            private string _type;
-            private int _age;
+            private FishTypes _type;
             private int _timeOfBirth;
+
+            public int Age { get; private set; }
 
             public int LifeTime { get; private set; }
 
-            public Fish(string fishType, int lifeTime, int timeOfBirth)
+            public Fish(FishTypes type, int timeOfBirth, int lifeTime)
             {
-                _type = fishType;
-                LifeTime = lifeTime;
+                _type = type;
                 _timeOfBirth = timeOfBirth;
+                LifeTime = lifeTime;
             }
 
-            public int GrowOld(int time)
+            public void GrowOld(int time)
             {
-                return _age = LifeTime - time + _timeOfBirth;
+                Age = time - _timeOfBirth;
             }
 
             public void ShowInfo()
             {
-                Console.WriteLine($"рыбка {_type}, возраст - {_age}");
+                Console.WriteLine($"рыбка {_type}, возраст - {Age}, живет до {LifeTime}");
             }
         }
 
         class Goldfish : Fish
         {
-            public Goldfish(string type, int lifeTime, int timeOfBirth) : base(type, lifeTime, timeOfBirth) { }
+            public Goldfish(FishTypes type, int timeOfBirth) : base(type, timeOfBirth, 12) { }
         }
 
         class Guppy : Fish
         {
-            public Guppy(string type, int lifeTime, int timeOfBirth) : base(type, lifeTime, timeOfBirth) { }
+            public Guppy(FishTypes type, int timeOfBirth) : base(type, timeOfBirth, 3) { }
         }
 
         class Angelfish : Fish
         {
-            public Angelfish(string type, int lifeTime, int timeOfBirth) : base(type, lifeTime, timeOfBirth) { }
+            public Angelfish(FishTypes type, int timeOfBirth) : base(type, timeOfBirth, 10) { }
         }
 
         class Rainbowfish : Fish
         {
-            public Rainbowfish(string type, int lifeTime, int timeOfBirth) : base(type, lifeTime, timeOfBirth) { }
+            public Rainbowfish(FishTypes type, int timeOfBirth) : base(type, timeOfBirth, 7) { }
         }
 
         class ZebraDanio : Fish
         {
-            public ZebraDanio(string type, int lifeTime, int timeOfBirth) : base(type, lifeTime, timeOfBirth) { }
+            public ZebraDanio(FishTypes type, int timeOfBirth) : base(type, timeOfBirth, 5) { }
         }
     }
 }

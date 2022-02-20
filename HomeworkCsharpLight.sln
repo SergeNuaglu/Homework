@@ -73,6 +73,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "War", "War\War.csproj", "{0
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aquarium", "Aquarium\Aquarium.csproj", "{035E8E4C-06A6-4A2A-97A6-C62BAD4CAECB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zoo", "Zoo\Zoo.csproj", "{CCF89C20-247F-4758-848B-94CC7E9A85A7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|anycpu = Debug|anycpu
@@ -219,6 +221,10 @@ Global
 		{035E8E4C-06A6-4A2A-97A6-C62BAD4CAECB}.Debug|anycpu.Build.0 = Debug|anycpu
 		{035E8E4C-06A6-4A2A-97A6-C62BAD4CAECB}.Release|anycpu.ActiveCfg = Release|anycpu
 		{035E8E4C-06A6-4A2A-97A6-C62BAD4CAECB}.Release|anycpu.Build.0 = Release|anycpu
+		{CCF89C20-247F-4758-848B-94CC7E9A85A7}.Debug|anycpu.ActiveCfg = Debug|anycpu
+		{CCF89C20-247F-4758-848B-94CC7E9A85A7}.Debug|anycpu.Build.0 = Debug|anycpu
+		{CCF89C20-247F-4758-848B-94CC7E9A85A7}.Release|anycpu.ActiveCfg = Release|anycpu
+		{CCF89C20-247F-4758-848B-94CC7E9A85A7}.Release|anycpu.Build.0 = Release|anycpu
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
