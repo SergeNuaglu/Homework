@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace СarService
 {
@@ -17,7 +18,17 @@ namespace СarService
 
     class Warehouse
     {
+        private List<SpareParts> _spareParts = new List<SpareParts>();
 
+        enum SpareParts
+        {
+            Engine,
+            Transmission,
+            FuelPump,
+            BrakeSystem,
+            Wheel,
+            Windshield
+        }
     }
 
     class SpareParts

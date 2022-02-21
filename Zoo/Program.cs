@@ -37,11 +37,7 @@ namespace Zoo
             {
                 Console.Clear();
                 Console.WriteLine("ЗООПАРК\n");
-                Console.WriteLine("Первый вольер - 1" +
-                    "\nВторой вольер - 2" +
-                    "\nТретий вольер - 3" +
-                    "\nЧетвертый вольер - 4" +
-                    "\nВыйти - exit");
+                ShowMenu(cageCount);
                 Console.Write("\nВведите номер вольера: ");
                 userInput = Console.ReadLine();
 
@@ -136,6 +132,15 @@ namespace Zoo
             {
                 return "Female";
             }
+        }
+
+        private void ShowMenu(int cageCount)
+        {
+            for (int i = 1; i <= cageCount; i++)
+            {
+                Console.WriteLine($"Вольер №{i}");
+            }
+            Console.WriteLine("Выйти - exit");
         }
 
     }
