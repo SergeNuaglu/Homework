@@ -7,13 +7,31 @@ namespace Zoo
     {
         public static void Main(string[] args)
         {
+            Zoo zoo = new Zoo();
+            zoo.Work();           
+        }
+    }
+
+    class Zoo
+    {
+        private List<Cage> _cages = new List<Cage>();
+
+        public enum AnimalTypes
+        {
+            Lion,
+            Elephant,
+            Flamingo,
+            Bear
+        }
+
+        public void Work()
+        {
             bool isWork = true;
             string userInput;
             int cageNumber;
             int cageCount = 4;
-            Zoo zoo = new Zoo();
 
-            zoo.CreateCages();
+            CreateCages();
 
             while (isWork)
             {
@@ -31,7 +49,7 @@ namespace Zoo
                 {
                     if (cageNumber > 0 && cageNumber <= cageCount)
                     {
-                        zoo.ShowCage(cageNumber);
+                        ShowCage(cageNumber);
                     }
                     else
                     {
@@ -51,21 +69,8 @@ namespace Zoo
                 Console.ReadKey();
             }
         }
-    }
 
-    class Zoo
-    {
-        private List<Cage> _cages = new List<Cage>();
-
-        public enum AnimalTypes
-        {
-            Lion,
-            Elephant,
-            Flamingo,
-            Bear
-        }
-
-        public void CreateCages()
+        private void CreateCages()
         {
             Random random = new Random();
             int cageCapacity;
@@ -85,7 +90,7 @@ namespace Zoo
             }
         }
 
-        public void ShowCage(int cageNumber)
+        private void ShowCage(int cageNumber)
         {
             Console.Clear();
             Console.WriteLine($"Вольер №{cageNumber}\n\nКоличество животных - {_cages[cageNumber - 1].CageCapacity}");
@@ -121,10 +126,9 @@ namespace Zoo
         private string GetAnimalGender()
         {
             Random random = new Random();
-            int falseNumber = 0;
-            int trueNumber = 2;
+            int maxNumber = 2;
 
-            if (Convert.ToBoolean(random.Next(falseNumber, trueNumber)))
+            if (Convert.ToBoolean(random.Next( maxNumber)))
             {
                 return "Male";
             }

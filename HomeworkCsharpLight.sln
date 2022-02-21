@@ -75,6 +75,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aquarium", "Aquarium\Aquari
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zoo", "Zoo\Zoo.csproj", "{CCF89C20-247F-4758-848B-94CC7E9A85A7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "СarService", "СarService\СarService.csproj", "{2603FC3D-582D-403D-8476-1A6AAF04018B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|anycpu = Debug|anycpu
@@ -225,6 +227,10 @@ Global
 		{CCF89C20-247F-4758-848B-94CC7E9A85A7}.Debug|anycpu.Build.0 = Debug|anycpu
 		{CCF89C20-247F-4758-848B-94CC7E9A85A7}.Release|anycpu.ActiveCfg = Release|anycpu
 		{CCF89C20-247F-4758-848B-94CC7E9A85A7}.Release|anycpu.Build.0 = Release|anycpu
+		{2603FC3D-582D-403D-8476-1A6AAF04018B}.Debug|anycpu.ActiveCfg = Debug|anycpu
+		{2603FC3D-582D-403D-8476-1A6AAF04018B}.Debug|anycpu.Build.0 = Debug|anycpu
+		{2603FC3D-582D-403D-8476-1A6AAF04018B}.Release|anycpu.ActiveCfg = Release|anycpu
+		{2603FC3D-582D-403D-8476-1A6AAF04018B}.Release|anycpu.Build.0 = Release|anycpu
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
