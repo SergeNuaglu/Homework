@@ -7,20 +7,24 @@ namespace СarService
     {
         public static void Main(string[] args)
         {
-            
+
         }
     }
 
     class CarService
     {
-
+        private int _money;
+        private int _pricePerHour;
+        private Warehouse warehouse;
+        private Dictionary<Warehouse.Details, int> _priceList;
+        
     }
 
     class Warehouse
     {
-        private List<SpareParts> _spareParts = new List<SpareParts>();
+        private List<Details> _details = new List<Details>();
 
-        enum SpareParts
+        public enum Details
         {
             Engine,
             Transmission,
@@ -29,40 +33,54 @@ namespace СarService
             Wheel,
             Windshield
         }
+
+        public void FillWithGoods()
+        {
+
+        }
     }
 
-    class SpareParts
+    class CarDetail
     {
+        public string Name { get; private set; }
 
-    }
+        public int Price { get; private set; }
 
-    class Engine : SpareParts
-    {
-
-    }
-
-    class Transmission : SpareParts
-    {
-
-    }
-
-    class FuelPump: SpareParts
-    {
-
-    }
-
-    class BrakeSystem: SpareParts
-    {
+        public CarDetail(string name, int price)
+        {
+            Name = name;
+            Price = price;
+        }
 
     }
 
-    class Wheel : SpareParts
+    class Engine : CarDetail
     {
-
+        public Engine():base("Двигатель", 300) { }
     }
 
-    class Windshield : SpareParts
+    class Transmission : CarDetail
     {
+        public Transmission() : base("Коробка передач", 50) { }
+    }
 
+    class FuelPump : CarDetail
+    {
+        public FuelPump() : base("Топливный насос", 15) { }
+    }
+
+    class BrakeSystem : CarDetail
+    {
+        public BrakeSystem() : base("Тормозная система", 5) { }
+    }
+
+    class Wheel : CarDetail
+    {
+        public Wheel() : base("Колесо", 130) { }
+    }
+        
+    class Windshield : CarDetail
+    {
+        public Windshield() : base("Лобовое стекло", 150) { }
     }
 }

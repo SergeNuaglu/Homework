@@ -8,7 +8,7 @@ namespace Zoo
         public static void Main(string[] args)
         {
             Zoo zoo = new Zoo();
-            zoo.Work();           
+            zoo.Work();
         }
     }
 
@@ -29,7 +29,6 @@ namespace Zoo
             bool isWork = true;
             string userInput;
             int cageNumber;
-            int cageCount = 4;
 
             CreateCages();
 
@@ -37,13 +36,13 @@ namespace Zoo
             {
                 Console.Clear();
                 Console.WriteLine("ЗООПАРК\n");
-                ShowMenu(cageCount);
+                ShowMenu();
                 Console.Write("\nВведите номер вольера: ");
                 userInput = Console.ReadLine();
 
                 if (int.TryParse(userInput, out cageNumber))
                 {
-                    if (cageNumber > 0 && cageNumber <= cageCount)
+                    if (cageNumber > 0 && cageNumber <= _cages.Count)
                     {
                         ShowCage(cageNumber);
                     }
@@ -124,7 +123,7 @@ namespace Zoo
             Random random = new Random();
             int maxNumber = 2;
 
-            if (Convert.ToBoolean(random.Next( maxNumber)))
+            if (Convert.ToBoolean(random.Next(maxNumber)))
             {
                 return "Male";
             }
@@ -134,9 +133,9 @@ namespace Zoo
             }
         }
 
-        private void ShowMenu(int cageCount)
+        private void ShowMenu()
         {
-            for (int i = 1; i <= cageCount; i++)
+            for (int i = 1; i <= _cages.Count; i++)
             {
                 Console.WriteLine($"Вольер №{i}");
             }
