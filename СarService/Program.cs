@@ -216,7 +216,7 @@ namespace СarService
 
                 foreach (var detail in _priceList)
                 {
-                    Console.WriteLine($"{productNumber}) {detail.Key}, цена для автосервиса: {detail.Value / 100 * 50}");
+                    Console.WriteLine($"{productNumber}) {detail.Key}, цена для автосервиса: {detail.Value / maxPricePercent * discount}");
                     productNumber++;
                 }
 
