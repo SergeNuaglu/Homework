@@ -77,6 +77,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zoo", "Zoo\Zoo.csproj", "{C
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "СarService", "СarService\СarService.csproj", "{2603FC3D-582D-403D-8476-1A6AAF04018B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SearchForCiminal", "SearchForCiminal\SearchForCiminal.csproj", "{5DF00361-33EB-4D62-85FF-B890660A458E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|anycpu = Debug|anycpu
@@ -231,6 +233,10 @@ Global
 		{2603FC3D-582D-403D-8476-1A6AAF04018B}.Debug|anycpu.Build.0 = Debug|anycpu
 		{2603FC3D-582D-403D-8476-1A6AAF04018B}.Release|anycpu.ActiveCfg = Release|anycpu
 		{2603FC3D-582D-403D-8476-1A6AAF04018B}.Release|anycpu.Build.0 = Release|anycpu
+		{5DF00361-33EB-4D62-85FF-B890660A458E}.Debug|anycpu.ActiveCfg = Debug|anycpu
+		{5DF00361-33EB-4D62-85FF-B890660A458E}.Debug|anycpu.Build.0 = Debug|anycpu
+		{5DF00361-33EB-4D62-85FF-B890660A458E}.Release|anycpu.ActiveCfg = Release|anycpu
+		{5DF00361-33EB-4D62-85FF-B890660A458E}.Release|anycpu.Build.0 = Release|anycpu
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
