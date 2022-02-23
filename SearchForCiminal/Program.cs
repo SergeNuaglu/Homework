@@ -15,26 +15,21 @@ namespace SearchForCiminal
 
     class СriminalSearch
     {
-        private bool _isSearch;
         List<Criminal> _criminals = new List<Criminal>();
 
         public void Work()
         {
-            _isSearch = true;
-            CompleteTheList();
+            bool isWork = true;
 
-            while (_isSearch)
+            while (isWork)
             {
-                if (_criminals == null)
-                {
-                    _criminals = new List<Criminal>();
-                    CompleteTheList();
-                }
-
                 Console.Clear();
+                CompleteTheList();
                 Console.WriteLine("Преступники:\n");
                 ShowAllCriminals();
                 FilterSearch();
+                ShowAllCriminals();
+                Console.ReadKey();
             }
         }
 
@@ -54,6 +49,10 @@ namespace SearchForCiminal
 
         private void ShowAllCriminals()
         {
+            if (_criminals.Count == 0)
+            {
+                Console.WriteLine("В базе данных нет преступника с указанными параметрами");
+            }
             foreach (var criminal in _criminals)
             {
                 Console.WriteLine($"{criminal.FullName}, {criminal.Nationality}, Рост: {criminal.Height}, Вес: {criminal.Weight}");
@@ -62,57 +61,80 @@ namespace SearchForCiminal
 
         private void FilterSearch()
         {
-            int operationNumber;
+            bool isFilter = true;
+            int stepNumber = 1;
             float minHeight = 0;
             float maxHeight = 0;
             float minWeight = 0;
             float maxWeight = 0;
 
-            Console.WriteLine("\nФильтр:");
-            Console.WriteLine("Рост - 1\nВес - 2\nНациональность - 3\nСбросить все настройки - 4\nВыйти - 5");
-            Console.Write("\nВведите номер операции: ");
+            Console.WriteLine("\nПоиск преступников:");
 
-            if (int.TryParse(Console.ReadLine(), out operationNumber))
+            while (isFilter)
             {
-                switch (operationNumber)
+                switch (stepNumber)
                 {
                     case 1:
-                        DefineParameters(operationNumber, minHeight, maxHeight);
+                        DefineParameters(ref stepNumber, minHeight, maxHeight);
                         break;
                     case 2:
-                        DefineParameters(operationNumber, minWeight, maxWeight);
+                        DefineParameters(ref stepNumber, minWeight, maxWeight);
                         break;
                     case 3:
                         FilterByNationality();
                         break;
                     case 4:
-                        _criminals = null;
-                        break;
-                    case 5:
-                        _isSearch = false; ;
+                        isFilter = false;
                         break;
                 }
+
+                stepNumber++;
             }
         }
 
-        private void DefineParameters(int operationNumber, float minParameter, float maxParameter)
+        private void DefineParameters(ref int stepNumber, float minParameter, float maxParameter)
         {
-            Console.Write("Минимальный параметр: ");
+            string heightParameter = "рост";
+            string weightParameter = "вес";
+            string parameter = "";
+
+            if (stepNumber == 1)
+            {
+                parameter = heightParameter;
+            }
+            else if (stepNumber == 2)
+            {
+                parameter = weightParameter;
+            }
+
+            Console.Write($"Минимальный {parameter} преступника: ");
 
             if (Single.TryParse(Console.ReadLine(), out minParameter))
             {
-                Console.Write("Максимальный параметр: ");
+                Console.Write($"Максимальный {parameter} преступника: ");
 
                 if (Single.TryParse(Console.ReadLine(), out maxParameter))
                 {
-                    FilterByParameters(operationNumber, minParameter, maxParameter);
+                    FilterByParameters(stepNumber, minParameter, maxParameter);
+                }
+                else
+                {
+                    Console.WriteLine("Некорректный ввод");
+                    stepNumber--;
                 }
             }
+            else
+            {
+                Console.WriteLine("Некорректный ввод");
+                stepNumber--;
+            }
+
+            Console.WriteLine();
         }
 
-        private void FilterByParameters(int operationNumber, float minParameter, float maxParameter)
+        private void FilterByParameters(int stepNumber, float minParameter, float maxParameter)
         {
-            switch (operationNumber)
+            switch (stepNumber)
             {
                 case 1:
                     _criminals = _criminals.Where(criminal => criminal.Height >= minParameter && criminal.Height <= maxParameter && criminal.IsPrisoner == false).ToList();
@@ -130,6 +152,7 @@ namespace SearchForCiminal
             Console.Write("Введите национальность преступника: ");
             userInput = Console.ReadLine();
             _criminals = _criminals.Where(criminal => criminal.Nationality.ToLower() == userInput.ToLower() && criminal.IsPrisoner == false).ToList();
+            Console.WriteLine();
         }
     }
 
