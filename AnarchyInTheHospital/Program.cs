@@ -22,7 +22,6 @@ namespace AnarchyInTheHospital
             bool isWork = true;
             int operationCount = 4;
             int operationNumber;
-
             CompleteTheList();
            
             while (isWork)
