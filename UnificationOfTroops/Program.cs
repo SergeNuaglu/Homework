@@ -8,25 +8,25 @@ namespace UnificationOfTroops
     {
         public static void Main(string[] args)
         {
-            List<Soldier> squadA = new List<Soldier>();
             List<Soldier> squadB = new List<Soldier>();
+            List<Soldier> squadA = new List<Soldier>();
 
-            squadA.Add(new Soldier("Сухаркин В.И"));
-            squadA.Add(new Soldier("Загидулин М.Р"));
-            squadA.Add(new Soldier("Кидалов Ю.О"));
-            squadA.Add(new Soldier("Хамюк В.А."));
-            squadA.Add(new Soldier("Стоянов Т.К."));
-            squadA.Add(new Soldier("Хвалебин Р.Д."));
-            squadA.Add(new Soldier("Угрюмов Б.К."));
-            squadB.Add(new Soldier("Басов Н.Л."));
-            squadB.Add(new Soldier("Самохвал Д.С."));
-            squadB.Add(new Soldier("Черный С.С."));
-            squadB.Add(new Soldier("Быков Б.К."));
-            squadB.Add(new Soldier("Гонда Н.Л."));
-            squadB.Add(new Soldier("Бочкин Д.С."));
-            squadB.Add(new Soldier("Черногуб С.С."));
-            squadA = squadA.Union(squadB.Where(soldier => soldier.Name.StartsWith("Б"))).ToList();
-            squadB = squadB.OrderBy(soldier => soldier.Name).SkipWhile(soldier => soldier.Name.StartsWith("Б")).ToList();
+            squadA.Add(new Soldier("Басов Н.Л."));
+            squadA.Add(new Soldier("Самохвал Д.С."));
+            squadA.Add(new Soldier("Черный С.С."));
+            squadA.Add(new Soldier("Быков Б.К."));
+            squadA.Add(new Soldier("Гонда Н.Л."));
+            squadA.Add(new Soldier("Бочкин Д.С."));
+            squadA.Add(new Soldier("Черногуб С.С."));
+            squadB.Add(new Soldier("Сухаркин В.И"));
+            squadB.Add(new Soldier("Загидулин М.Р"));
+            squadB.Add(new Soldier("Кидалов Ю.О"));
+            squadB.Add(new Soldier("Хамюк В.А."));
+            squadB.Add(new Soldier("Стоянов Т.К."));
+            squadB.Add(new Soldier("Хвалебин Р.Д."));
+            squadB.Add(new Soldier("Угрюмов Б.К."));
+            squadB = squadB.Union(squadA.Where(soldier => soldier.Name.StartsWith("Б"))).ToList();
+            squadA = squadA.OrderBy(soldier => soldier.Name).SkipWhile(soldier => soldier.Name.StartsWith("Б")).ToList();
             Console.WriteLine("Отряд А:");
             ShowAllSoldier(squadA);
             Console.WriteLine("Отряд Б:");
