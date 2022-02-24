@@ -39,6 +39,7 @@ namespace UnificationOfTroops
             {
                 Console.WriteLine(soldier.Name);
             }
+
             Console.WriteLine();
         }
     }
