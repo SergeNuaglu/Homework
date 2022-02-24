@@ -16,16 +16,16 @@ namespace Amnesty
             prisoners.Add(new Prisoner("Таблеткин Петр Сергеевич", "Антиправительственное"));
             prisoners.Add(new Prisoner("Ефимов Николай Артемьевич", "Наркоторговля"));
             prisoners.Add(new Prisoner("Саитов Илья Михаилович", "Воровство"));
-            prisoners.Add(new Prisoner("Троцкий Михаил иванович", "Антиправительственное"));
+            prisoners.Add(new Prisoner("Троцкий Михаил Иванович", "Антиправительственное"));
             prisoners.Add(new Prisoner("Колбасов Антон Тарасович", "Антиправительственное"));
             prisoners.Add(new Prisoner("Сидоров Николай Петрович", "Мошенничество"));
             prisoners.Add(new Prisoner("Тарасенко Владислав Константинович", "Антиправительственное"));
 
             Console.WriteLine("Заключенные до амнистии:\n");
             ShowAllPrisoners(prisoners);
-            var amnestyPrisoners = prisoners.Where(prisoner => prisoner.Crime != "Антиправительственное").ToList();
+            prisoners = prisoners.OrderBy(prisoner => prisoner.Crime).SkipWhile(prisoner => prisoner.Crime.StartsWith("А")).ToList();
             Console.WriteLine("\nЗаключенные после амнистии:\n");
-            ShowAllPrisoners(amnestyPrisoners);
+            ShowAllPrisoners(prisoners);
             Console.ReadKey();
             
         }

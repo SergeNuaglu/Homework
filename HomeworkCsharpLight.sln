@@ -81,6 +81,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SearchForCiminal", "SearchF
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Amnesty", "Amnesty\Amnesty.csproj", "{E4552361-FF25-4C49-8201-43793D71F8A3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AnarchyInTheHospital", "AnarchyInTheHospital\AnarchyInTheHospital.csproj", "{F3CA0611-ADB4-4FE7-9135-A8D3FB68BE5E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|anycpu = Debug|anycpu
@@ -243,6 +245,10 @@ Global
 		{E4552361-FF25-4C49-8201-43793D71F8A3}.Debug|anycpu.Build.0 = Debug|anycpu
 		{E4552361-FF25-4C49-8201-43793D71F8A3}.Release|anycpu.ActiveCfg = Release|anycpu
 		{E4552361-FF25-4C49-8201-43793D71F8A3}.Release|anycpu.Build.0 = Release|anycpu
+		{F3CA0611-ADB4-4FE7-9135-A8D3FB68BE5E}.Debug|anycpu.ActiveCfg = Debug|anycpu
+		{F3CA0611-ADB4-4FE7-9135-A8D3FB68BE5E}.Debug|anycpu.Build.0 = Debug|anycpu
+		{F3CA0611-ADB4-4FE7-9135-A8D3FB68BE5E}.Release|anycpu.ActiveCfg = Release|anycpu
+		{F3CA0611-ADB4-4FE7-9135-A8D3FB68BE5E}.Release|anycpu.Build.0 = Release|anycpu
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
