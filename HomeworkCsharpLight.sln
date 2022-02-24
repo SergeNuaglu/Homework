@@ -85,6 +85,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AnarchyInTheHospital", "Ana
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TopPlayers", "TopPlayers\TopPlayers.csproj", "{0AE347AF-29DD-4F72-9985-DD1EDD91E573}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DefinitionOfOverdue", "DefinitionOfOverdue\DefinitionOfOverdue.csproj", "{51C29D6E-FF65-47D6-A14A-B0DDF3EC3FFA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|anycpu = Debug|anycpu
@@ -255,6 +257,10 @@ Global
 		{0AE347AF-29DD-4F72-9985-DD1EDD91E573}.Debug|anycpu.Build.0 = Debug|anycpu
 		{0AE347AF-29DD-4F72-9985-DD1EDD91E573}.Release|anycpu.ActiveCfg = Release|anycpu
 		{0AE347AF-29DD-4F72-9985-DD1EDD91E573}.Release|anycpu.Build.0 = Release|anycpu
+		{51C29D6E-FF65-47D6-A14A-B0DDF3EC3FFA}.Debug|anycpu.ActiveCfg = Debug|anycpu
+		{51C29D6E-FF65-47D6-A14A-B0DDF3EC3FFA}.Debug|anycpu.Build.0 = Debug|anycpu
+		{51C29D6E-FF65-47D6-A14A-B0DDF3EC3FFA}.Release|anycpu.ActiveCfg = Release|anycpu
+		{51C29D6E-FF65-47D6-A14A-B0DDF3EC3FFA}.Release|anycpu.Build.0 = Release|anycpu
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
