@@ -79,6 +79,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "СarService", "СarService\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SearchForCiminal", "SearchForCiminal\SearchForCiminal.csproj", "{5DF00361-33EB-4D62-85FF-B890660A458E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Amnesty", "Amnesty\Amnesty.csproj", "{E4552361-FF25-4C49-8201-43793D71F8A3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|anycpu = Debug|anycpu
@@ -237,6 +239,10 @@ Global
 		{5DF00361-33EB-4D62-85FF-B890660A458E}.Debug|anycpu.Build.0 = Debug|anycpu
 		{5DF00361-33EB-4D62-85FF-B890660A458E}.Release|anycpu.ActiveCfg = Release|anycpu
 		{5DF00361-33EB-4D62-85FF-B890660A458E}.Release|anycpu.Build.0 = Release|anycpu
+		{E4552361-FF25-4C49-8201-43793D71F8A3}.Debug|anycpu.ActiveCfg = Debug|anycpu
+		{E4552361-FF25-4C49-8201-43793D71F8A3}.Debug|anycpu.Build.0 = Debug|anycpu
+		{E4552361-FF25-4C49-8201-43793D71F8A3}.Release|anycpu.ActiveCfg = Release|anycpu
+		{E4552361-FF25-4C49-8201-43793D71F8A3}.Release|anycpu.Build.0 = Release|anycpu
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
