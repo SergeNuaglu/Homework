@@ -87,6 +87,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TopPlayers", "TopPlayers\To
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DefinitionOfOverdue", "DefinitionOfOverdue\DefinitionOfOverdue.csproj", "{51C29D6E-FF65-47D6-A14A-B0DDF3EC3FFA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArmsReport", "ArmsReport\ArmsReport.csproj", "{F7575A78-F582-4587-8C4E-19AEE8021F9D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|anycpu = Debug|anycpu
@@ -261,6 +263,10 @@ Global
 		{51C29D6E-FF65-47D6-A14A-B0DDF3EC3FFA}.Debug|anycpu.Build.0 = Debug|anycpu
 		{51C29D6E-FF65-47D6-A14A-B0DDF3EC3FFA}.Release|anycpu.ActiveCfg = Release|anycpu
 		{51C29D6E-FF65-47D6-A14A-B0DDF3EC3FFA}.Release|anycpu.Build.0 = Release|anycpu
+		{F7575A78-F582-4587-8C4E-19AEE8021F9D}.Debug|anycpu.ActiveCfg = Debug|anycpu
+		{F7575A78-F582-4587-8C4E-19AEE8021F9D}.Debug|anycpu.Build.0 = Debug|anycpu
+		{F7575A78-F582-4587-8C4E-19AEE8021F9D}.Release|anycpu.ActiveCfg = Release|anycpu
+		{F7575A78-F582-4587-8C4E-19AEE8021F9D}.Release|anycpu.Build.0 = Release|anycpu
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
