@@ -91,6 +91,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArmsReport", "ArmsReport\Ar
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnificationOfTroops", "UnificationOfTroops\UnificationOfTroops.csproj", "{C64AF85F-02D4-452C-A31D-4D0FBEE7995C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Multiples", "Multiples\Multiples.csproj", "{95DCEB9A-66FA-4403-B471-FF81446826F8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|anycpu = Debug|anycpu
@@ -273,6 +275,10 @@ Global
 		{C64AF85F-02D4-452C-A31D-4D0FBEE7995C}.Debug|anycpu.Build.0 = Debug|anycpu
 		{C64AF85F-02D4-452C-A31D-4D0FBEE7995C}.Release|anycpu.ActiveCfg = Release|anycpu
 		{C64AF85F-02D4-452C-A31D-4D0FBEE7995C}.Release|anycpu.Build.0 = Release|anycpu
+		{95DCEB9A-66FA-4403-B471-FF81446826F8}.Debug|anycpu.ActiveCfg = Debug|anycpu
+		{95DCEB9A-66FA-4403-B471-FF81446826F8}.Debug|anycpu.Build.0 = Debug|anycpu
+		{95DCEB9A-66FA-4403-B471-FF81446826F8}.Release|anycpu.ActiveCfg = Release|anycpu
+		{95DCEB9A-66FA-4403-B471-FF81446826F8}.Release|anycpu.Build.0 = Release|anycpu
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
