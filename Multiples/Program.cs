@@ -17,7 +17,6 @@ namespace Multiples
             step = random.Next(minRandomValue, maxRandomValue);
             Console.Write("Количество трехзначных натуральных чисел, которые кратны " + step + ": ");
 
-
             for (int i = 0; i <= upperRange; i += step)
             {
                 if (i >= lowerRange)
