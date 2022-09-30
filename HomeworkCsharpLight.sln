@@ -93,6 +93,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnificationOfTroops", "Unif
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Multiples", "Multiples\Multiples.csproj", "{95DCEB9A-66FA-4403-B471-FF81446826F8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PowerOfTwo", "PowerOfTwo\PowerOfTwo.csproj", "{B96BC262-C3B6-4151-8F7E-47CB79C767C3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|anycpu = Debug|anycpu
@@ -279,6 +281,10 @@ Global
 		{95DCEB9A-66FA-4403-B471-FF81446826F8}.Debug|anycpu.Build.0 = Debug|anycpu
 		{95DCEB9A-66FA-4403-B471-FF81446826F8}.Release|anycpu.ActiveCfg = Release|anycpu
 		{95DCEB9A-66FA-4403-B471-FF81446826F8}.Release|anycpu.Build.0 = Release|anycpu
+		{B96BC262-C3B6-4151-8F7E-47CB79C767C3}.Debug|anycpu.ActiveCfg = Debug|anycpu
+		{B96BC262-C3B6-4151-8F7E-47CB79C767C3}.Debug|anycpu.Build.0 = Debug|anycpu
+		{B96BC262-C3B6-4151-8F7E-47CB79C767C3}.Release|anycpu.ActiveCfg = Release|anycpu
+		{B96BC262-C3B6-4151-8F7E-47CB79C767C3}.Release|anycpu.Build.0 = Release|anycpu
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
