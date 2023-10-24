@@ -1,94 +1,63 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace SingleCollection
+class Program
 {
-    internal class Program
+    static void Main()
     {
-        static void Main(string[] args)
+        const int FirstArraySize = 5;
+        const int SecondArraySize = 5;
+
+        string[] firstArray = GenerateRandomArray(FirstArraySize);
+        Console.Write("Первый массив:");
+        PrintArray(firstArray);
+
+        string[] secondArray = GenerateRandomArray(SecondArraySize);
+        Console.Write("\nВторой массив:");
+        PrintArray(secondArray);
+
+        HashSet<string> mergedCollection = new HashSet<string>();
+
+        foreach (string item in firstArray)
         {
-            var random = new Random();
-            int maximumRandomNumber = 10;
-
-            Console.Write("Первый массив: ");
-            int generatedNumbers = 5;
-            var firstArray = new string[generatedNumbers];
-            FillArray(firstArray, random, generatedNumbers, maximumRandomNumber);
-
-            Console.Write("Второй массив: ");
-            generatedNumbers = 4;
-            var secondArray = new string[generatedNumbers];
-            FillArray(secondArray, random, generatedNumbers, maximumRandomNumber);
-
-            List<string> mergeList = MergeArrays(true, firstArray, secondArray);
-
-            Console.Write("Объединённая коллекция: {");
-
-            for (var i = 0; i < mergeList.Count; i++)
-            {
-                Console.Write($"\"{mergeList[i]}\"");
-
-                if (i != mergeList.Count - 1)
-                {
-                    Console.Write(", ");
-                }
-            }
-
-            Console.WriteLine("}");
-
-            Console.ReadKey();
+            mergedCollection.Add(item);
         }
 
-        private static List<string> MergeArrays(bool removeDuplicates, params string[][] arrays)
+        foreach (string item in secondArray)
         {
-            var resultList = new List<string>();
-
-            foreach (string[] dataArray in arrays)
-            {
-                foreach (string data in dataArray)
-                {
-                    var isDataAdd = true;
-
-                    if (removeDuplicates)
-                    {
-                        for (var i = 0; i < resultList.Count; i++)
-                        {
-                            if (resultList[i] == data)
-                            {
-                                isDataAdd = false;
-                                break;
-                            }
-                        }
-                    }
-
-                    if (isDataAdd)
-                    {
-                        resultList.Add(data);
-                    }
-                }
-            }
-
-            return resultList;
+            mergedCollection.Add(item);
         }
 
-        private static void FillArray(string[] stringsArray, Random random, int generatedNumbers, int maximumRandomNumber)
+        string[] resultArray = new string[mergedCollection.Count];
+        mergedCollection.CopyTo(resultArray);
+
+        Console.Write("\nОбъединенный массив:");
+        PrintArray(resultArray);
+
+        Console.ReadLine();
+    }
+
+    static string[] GenerateRandomArray(int length)
+    {
+        const int MinValue = 1;
+        const int MaxValue = 10;
+
+        Random random = new Random(Guid.NewGuid().GetHashCode());
+        string[] resultArray = new string[length];
+
+        for (int i = 0; i < length; i++)
         {
-            Console.Write("{");
+            resultArray[i] = random.Next(MinValue, MaxValue).ToString();
+        }
 
-            for (int i = 0; i < generatedNumbers; i++)
-            {
-                int randomNumber = random.Next(maximumRandomNumber);
-                stringsArray[i] = randomNumber.ToString();
+        return resultArray;
+    }
 
-                Console.Write($"\"{randomNumber}\"");
-
-                if (i != generatedNumbers - 1)
-                {
-                    Console.Write(", ");
-                }
-            }
-
-            Console.WriteLine("}");
+    static void PrintArray(string[] array)
+    {
+        foreach (string item in array)
+        {
+            Console.Write(item + " ");
         }
     }
 }
