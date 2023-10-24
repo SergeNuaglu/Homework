@@ -12,13 +12,12 @@ namespace ArrayValueShifting
             var random = new Random();
             var numbers = new int[generatedNumbers];
 
-            Console.Write("Изначальный массив:  {");
+            Console.Write("Исходный массив:  {");
 
             for (int i = 0; i < generatedNumbers; i++)
             {
                 int randomNumber = random.Next(maximumRandomNumber);
                 numbers[i] = randomNumber;
-
                 Console.Write(randomNumber);
 
                 if (i != generatedNumbers - 1)
@@ -35,28 +34,29 @@ namespace ArrayValueShifting
             {
                 Console.Write("Количество сдвигов влево: ");
             }
-            while (int.TryParse(Console.ReadLine(), out shiftsNumber) == false);
+            while (!int.TryParse(Console.ReadLine(), out shiftsNumber));
 
-            for (int i = 0; i < shiftsNumber; i++)
+            int remainder = shiftsNumber % generatedNumbers;
+
+            if (remainder != 0)
             {
-                for (var j = 1; j < numbers.Length; j++)
-                {
-                    int currentNumber = numbers[j];
-                    int newIndex = j - 1;
-                    newIndex = newIndex < 0 ? newIndex + numbers.Length : newIndex;
+                int[] shiftedNumbers = new int[generatedNumbers];
 
-                    numbers[j] = numbers[newIndex];
-                    numbers[newIndex] = currentNumber;
+                for (int i = 0; i < generatedNumbers; i++)
+                {
+                    shiftedNumbers[i] = numbers[(i + remainder) % generatedNumbers];
                 }
+
+                numbers = shiftedNumbers;
             }
 
             Console.Write("Получившийся массив: {");
 
-            for (var i = 0; i < numbers.Length; i++)
+            for (int i = 0; i < generatedNumbers; i++)
             {
                 Console.Write(numbers[i]);
 
-                if (i != numbers.Length - 1)
+                if (i != generatedNumbers - 1)
                 {
                     Console.Write(", ");
                 }
