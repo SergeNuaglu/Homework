@@ -6,30 +6,27 @@ namespace Bracket_Expression
     {
         static void Main(string[] args)
         {
+            int depth = 0;
+            int maxDepth = 0;
+            char openingBracket = '(';
+            char closingBracket = ')';
             string text;
 
             do
             {
-                Console.Write("Введите строку из символов '(' и ')': ");
+                Console.Write($"Введите строку из символов {openingBracket} и {closingBracket}: "); ;
                 text = Console.ReadLine();
             }
-            while (string.IsNullOrEmpty(text) || (text.IndexOf('(') < 0 && text.IndexOf(')') < 0));
+            while (string.IsNullOrEmpty(text) || (text.IndexOf(openingBracket) < 0 && text.IndexOf(closingBracket) < 0));
 
-            int depth = 0;
-            int maxDepth = 0;
 
             foreach (char symbol in text)
             {
-                if (depth > maxDepth)
-                {
-                    maxDepth = depth;
-                }
-
-                if (symbol == '(')
+                if (symbol == openingBracket)
                 {
                     depth++;
                 }
-                else if (symbol == ')')
+                else if (symbol == closingBracket)
                 {
                     depth--;
                 }
@@ -37,6 +34,11 @@ namespace Bracket_Expression
                 if (depth < 0)
                 {
                     break;
+                }
+
+                if (depth > maxDepth)
+                {
+                    maxDepth = depth;
                 }
             }
 
