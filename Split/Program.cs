@@ -6,6 +6,8 @@ namespace Split
     {
         static void Main(string[] args)
         {
+            const char Separator = ' ';
+
             string text;
 
             do
@@ -15,7 +17,7 @@ namespace Split
             }
             while (string.IsNullOrWhiteSpace(text));
 
-            string[] splitText = text.Split(' ');
+            string[] splitText = text.Split(Separator);
 
             foreach (string word in splitText)
             {
