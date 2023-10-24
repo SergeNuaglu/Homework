@@ -1,176 +1,140 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace DeckOfCards
+class Program
 {
-    internal static class Program
+    const string MenuDrawCard = "1";
+    const string MenuShowCards = "2";
+    const string MenuExit = "3";
+
+    static void Main()
     {
-        private static void Main()
+        Deck deck = new Deck();
+        Player player = new Player();
+
+        while (true)
         {
             Console.WriteLine("============= МЕНЮ =============");
-            Console.WriteLine("1. Вытянуть карту");
-            Console.WriteLine("2. Информация о вытянутых картах");
-            Console.WriteLine("3. Выход");
+            Console.WriteLine($"{MenuDrawCard}. Вытянуть карту");
+            Console.WriteLine($"{MenuShowCards}. Информация о вытянутых картах");
+            Console.WriteLine($"{MenuExit}. Выход");
             Console.WriteLine("================================");
+            Console.Write("Выберите действие (1/2/3): ");
+            string choice = Console.ReadLine();
 
-            var game = new Game();
-
-            var selectedMenu = '\0';
-
-            while (selectedMenu != '3')
+            switch (choice)
             {
-                Console.Write("\nВыберите пункт меню: ");
-                selectedMenu = Console.ReadKey().KeyChar;
-                Console.WriteLine();
-
-                switch (selectedMenu)
-                {
-                    case '1':
-                        game.GivePlayerRandomCard();
-                        break;
-                    case '2':
-                        game.ShowPlayerCards();
-                        break;
-                    default:
-                        Console.WriteLine("Такого пункта меню не существует");
-                        break;
-                }
+                case MenuDrawCard:                  
+                    player.PullCard(deck.GetCard());
+                    break;
+                case MenuShowCards:
+                    player.DisplayCards();
+                    break;
+                case MenuExit:
+                    return;
+                default:
+                    Console.WriteLine("Неверный выбор. Попробуйте снова.");
+                    break;
             }
         }
     }
+}
 
-    internal sealed class Game
+class Card
+{
+    public string Suit { get; set; }
+    public string Rank { get; set; }
+
+    public Card(string suit, string rank)
     {
-        private readonly Deck _deck = new Deck();
-        private readonly Player _player = new Player();
-
-        public Game()
-        {
-            _deck.Form();
-        }
-
-        public void GivePlayerRandomCard()
-        {
-            Card card = _deck.PickUpRandomCard();
-
-            if (card == null)
-            {
-                Console.WriteLine("В колоде закончились карты");
-            }
-            else
-            {
-                _player.PullCard(card);
-            }
-        }
-
-        public void ShowPlayerCards()
-        {
-            _player.ShowPullCardsInformation();
-        }
+        Suit = suit;
+        Rank = rank;
     }
 
-    internal sealed class Player
+    public override string ToString()
     {
-        private readonly Deck _deck = new Deck();
+        return $"{Suit}  {Rank}";
+    }
+}
 
-        public void PullCard(Card card)
-        {
-            _deck.AddCard(card);
-            Console.WriteLine($"Вытянута {card}");
-        }
+class Deck
+{
+    private List<Card> _cards;
 
-        public void ShowPullCardsInformation()
-        {
-            _deck.ShowCardsInformation();
-        }
+    public Deck()
+    {
+        Initialize();
     }
 
-    internal sealed class Card
+    public Card GetCard()
     {
-        private readonly Rank _rank;
-        private readonly Suit _suit;
+        const int MinCardsCount = 1;
+        const int TopCardIndex = 0;
 
-        public Card(Rank rank, Suit suit)
+        Shuffle();
+
+        if (_cards.Count < MinCardsCount)
         {
-            _rank = rank;
-            _suit = suit;
+            Console.WriteLine("Колода пуста.");
+            return null;
         }
 
-        public enum Suit
-        {
-            Буби,
-            Крести,
-            Черви,
-            Вини
-        }
-
-        public enum Rank
-        {
-            Шесть,
-            Семь,
-            Восемь,
-            Девять,
-            Десять,
-            Валет,
-            Дама,
-            Король,
-            Туз
-        }
-
-        public override string ToString()
-        {
-            return $"{_rank} {_suit}";
-        }
+        Card card = _cards[TopCardIndex];
+        _cards.Remove(card);
+        return card;
     }
 
-    internal sealed class Deck
+    private void Initialize()
     {
-        private readonly List<Card> _cards = new List<Card>();
+        _cards = new List<Card>();
+        string[] suits = { "Черви", "Бубны", "Крести", "Пики" };
+        string[] ranks = { "2", "3", "4", "5", "6", "7", "8", "9", "10", "Валет", "Дама", "Король", "Туз" };
 
-        public void Form()
+        foreach (string suit in suits)
         {
-            foreach (Card.Rank cardRank in Enum.GetValues(typeof(Card.Rank)))
+            foreach (string rank in ranks)
             {
-                foreach (Card.Suit cardSuit in Enum.GetValues(typeof(Card.Suit)))
-                {
-                    var card = new Card(cardRank, cardSuit);
-                    _cards.Add(card);
-                }
+                _cards.Add(new Card(suit, rank));
             }
         }
 
-        public void AddCard(Card card)
+        Shuffle();
+    }
+
+    private void Shuffle()
+    {
+        var random = new Random();
+        int cardsCount = _cards.Count;
+
+        while (cardsCount > 1)
         {
-            _cards.Add(card);
+            cardsCount--;
+
+            int randomCardIndex = random.Next(cardsCount + 1);
+            Card card = _cards[randomCardIndex];
+            _cards[randomCardIndex] = _cards[cardsCount];
+            _cards[cardsCount] = card;
         }
+    }
+}
 
-        public Card PickUpRandomCard()
+class Player
+{
+    private List<Card> _cards = new List<Card>();
+
+    public void PullCard(Card card)
+    {
+        _cards.Add(card);
+        Console.WriteLine($"Вытянута карта: {card}");
+    }
+
+    public void DisplayCards()
+    {
+        Console.WriteLine("Вытянутые карты: ");
+
+        foreach (Card card in _cards)
         {
-            if (_cards.Count == 0)
-            {
-                return null;
-            }
-
-            var random = new Random();
-            int randomIndex = random.Next(_cards.Count);
-
-            Card randomCard = _cards[randomIndex];
-            _cards.RemoveAt(randomIndex);
-
-            return randomCard;
-        }
-
-        public void ShowCardsInformation()
-        {
-            if (_cards.Count == 0)
-            {
-                Console.WriteLine("В колоде отсутствуют карты");
-            }
-
-            for (var i = 0; i < _cards.Count; i++)
-            {
-                Console.WriteLine($"{i + 1}) {_cards[i]}");
-            }
+            Console.WriteLine(card.ToString());
         }
     }
 }
