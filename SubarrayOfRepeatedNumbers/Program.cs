@@ -19,12 +19,22 @@ namespace SubarrayOfRepeatedNumbers
 
             Console.Write("{");
 
-            for (int i = 0; i < generatedNumbers; i++)
+            for (int i = 0; i < numbers.Length; i++)
             {
-                int randomNumber = random.Next(maximumRandomNumber);
-                numbers[i] = randomNumber;
+                numbers[i] = random.Next(maximumRandomNumber);
+                Console.Write(numbers[i]);
 
-                if (lastNumber == randomNumber)
+                if (i != numbers.Length - 1)
+                {
+                    Console.Write(", ");
+                }
+            }
+
+            Console.Write("}");
+
+            foreach (int number in numbers)
+            {
+                if (lastNumber == number)
                 {
                     repetitions++;
 
@@ -37,22 +47,14 @@ namespace SubarrayOfRepeatedNumbers
                 else
                 {
                     repetitions = 1;
-                    lastNumber = randomNumber;
-                }
-
-                Console.Write(randomNumber);
-
-                if (i != generatedNumbers - 1)
-                {
-                    Console.Write(", ");
+                    lastNumber = number;
                 }
             }
 
-            Console.Write("}");
             Console.WriteLine(
                 repeatNumber == -1
                     ? " - никакие из чисел подряд не повторяются"
-                    : $" - число {repeatNumber} повторяется большее количество раз подряд - {maxRepetitions}");
+                    : $" - число {repeatNumber} повторяется большее количество раз подряд. Количество повторений - {maxRepetitions}");
 
             Console.ReadKey();
         }
