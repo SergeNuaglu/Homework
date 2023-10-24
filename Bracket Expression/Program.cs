@@ -19,7 +19,6 @@ namespace Bracket_Expression
             }
             while (string.IsNullOrEmpty(text) || (text.IndexOf(openingBracket) < 0 && text.IndexOf(closingBracket) < 0));
 
-
             foreach (char symbol in text)
             {
                 if (symbol == openingBracket)
