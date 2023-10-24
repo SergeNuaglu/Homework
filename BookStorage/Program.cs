@@ -1,28 +1,35 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace BookStorage
 {
-    using System.Linq;
-
     internal static class Program
     {
+        private const char MenuAddBook = '1';
+        private const char MenuRemoveBook = '2';
+        private const char MenuShowAllBooks = '3';
+        private const char MenuShowBooksByTitle = '4';
+        private const char MenuShowBooksByAuthor = '5';
+        private const char MenuShowBooksByYear = '6';
+        private const char MenuExit = '7';
+
         private static void Main()
         {
-            Console.WriteLine("============== МЕНЮ ==============");
-            Console.WriteLine("1. Добавить книгу");
-            Console.WriteLine("2. Убрать книгу");
-            Console.WriteLine("3. Показать все книги");
-            Console.WriteLine("4. Показать книги по названию");
-            Console.WriteLine("5. Показать книги по автору");
-            Console.WriteLine("6. Показать книги по году выпуска");
-            Console.WriteLine("7. Выход");
-            Console.WriteLine("==================================");
+            Console.WriteLine("============== МЕНЮ =============");
+            Console.WriteLine($"{MenuAddBook}. Добавить книгу");
+            Console.WriteLine($"{MenuRemoveBook}. Удалить книгу");
+            Console.WriteLine($"{MenuShowAllBooks}. Показать все книги");
+            Console.WriteLine($"{MenuShowBooksByTitle}. Показать книги по названию");
+            Console.WriteLine($"{MenuShowBooksByAuthor}. Показать книги по автору");
+            Console.WriteLine($"{MenuShowBooksByYear}. Показать книги по году");
+            Console.WriteLine($"{MenuExit}. Выход");
+            Console.WriteLine("================================");
 
             var storage = new Storage();
             var selectedMenu = '\0';
 
-            while (selectedMenu != '7')
+            while (selectedMenu != MenuExit)
             {
                 Console.Write("\nВыберите пункт меню: ");
                 selectedMenu = Console.ReadKey().KeyChar;
@@ -30,23 +37,23 @@ namespace BookStorage
 
                 switch (selectedMenu)
                 {
-                    case '1':
-                        AddBook(storage);
+                    case MenuAddBook:
+                        storage.AddBook();
                         break;
-                    case '2':
-                        RemoveBook(storage);
+                    case MenuRemoveBook:
+                        storage.RemoveBook();
                         break;
-                    case '3':
-                        storage.ShowBooks(Storage.SortingType.All);
+                    case MenuShowAllBooks:
+                        storage.ShowAllBooks();
                         break;
-                    case '4':
-                        storage.ShowBooks(Storage.SortingType.Title);
+                    case MenuShowBooksByTitle:
+                        storage.ShowBookByTitle();
                         break;
-                    case '5':
-                        storage.ShowBooks(Storage.SortingType.Author);
+                    case MenuShowBooksByAuthor:
+                        storage.ShowBooksByAuthor();
                         break;
-                    case '6':
-                        storage.ShowBooks(Storage.SortingType.Year);
+                    case MenuShowBooksByYear:
+                        storage.ShowBooksByYear();
                         break;
                     default:
                         Console.WriteLine("Такого пункта меню не существует");
@@ -54,8 +61,24 @@ namespace BookStorage
                 }
             }
         }
-        private static void AddBook(Storage storage)
+    }
+
+    internal sealed class Storage
+    {
+        private const int MinBookCount = 1;
+        private readonly List<Book> _books = new List<Book>();
+
+        public int GetNewInventoryNumber()
         {
+            Book selectedBook = _books.OrderBy(book => book.InventoryNumber).FirstOrDefault();
+            return selectedBook == null ? MinBookCount : selectedBook.InventoryNumber + MinBookCount;
+        }
+
+        public void AddBook()
+        {
+            const int yearRangeFrom = 1700;
+            const int yearRangeTo = 2022;
+
             string bookTitle;
 
             do
@@ -75,8 +98,6 @@ namespace BookStorage
             while (string.IsNullOrEmpty(bookAuthor));
 
             int bookYear;
-            int yearRangeFrom = 1700;
-            int yearRangeTo = 2022;
 
             do
             {
@@ -85,58 +106,28 @@ namespace BookStorage
             }
             while (bookYear < yearRangeFrom || bookYear > yearRangeTo);
 
-            int newInventoryNumber = storage.GetNewInventoryNumber();
+            int newInventoryNumber = GetNewInventoryNumber();
             var book = new Book(newInventoryNumber, bookTitle, bookAuthor, bookYear);
-            storage.AddBook(book);
-        }
-
-        private static void RemoveBook(Storage storage)
-        {
-            int bookInventoryNumber;
-            int inventoryNumberRangeFrom = 1;
-
-            do
-            {
-                Console.Write("Введите инвентаризационный номер: ");
-                int.TryParse(Console.ReadLine(), out bookInventoryNumber);
-            }
-            while (bookInventoryNumber < inventoryNumberRangeFrom);
-
-            storage.RemoveBookAt(bookInventoryNumber);
-        }
-    }
-
-    internal sealed class Storage
-    {
-        private readonly List<Book> _books = new List<Book>();
-
-        public enum SortingType
-        {
-            All,
-            Title,
-            Author,
-            Year
-        }
-
-        public int GetNewInventoryNumber()
-        {
-            Book selectedBook = _books.OrderBy(book => book.InventoryNumber).FirstOrDefault();
-            return selectedBook == null ? 1 : selectedBook.InventoryNumber + 1;
-        }
-
-        public void AddBook(Book book)
-        {
             _books.Add(book);
             Console.WriteLine("Книга успешно добавлена");
         }
 
-        public void RemoveBookAt(int inventoryNumber)
+        public void RemoveBook()
         {
-            Book selectedBook = _books.FirstOrDefault(book => book.InventoryNumber == inventoryNumber);
+            int bookInventoryNumber;
+
+            do
+            {
+                Console.Write("Введите инвентарный номер книги: ");
+                int.TryParse(Console.ReadLine(), out bookInventoryNumber);
+            }
+            while (bookInventoryNumber < MinBookCount);
+
+            Book selectedBook = _books.FirstOrDefault(book => book.InventoryNumber == bookInventoryNumber);
 
             if (selectedBook == null)
             {
-                Console.WriteLine("Книга с указанным инвентаризационным номером - отсутствует");
+                Console.WriteLine("Книга с указанным инвентарным номером не найдена");
             }
             else
             {
@@ -145,36 +136,79 @@ namespace BookStorage
             }
         }
 
-        public void ShowBooks(SortingType sortingType)
+        public void ShowAllBooks()
         {
-            List<Book> books;
-
-            switch (sortingType)
+            if (_books.Count < MinBookCount)
             {
-                case SortingType.All:
-                    books = _books;
-                    break;
-                case SortingType.Title:
-                    books = _books.OrderBy(book => book.Title).ToList();
-                    break;
-                case SortingType.Author:
-                    books = _books.OrderBy(book => book.Author).ToList();
-                    break;
-                case SortingType.Year:
-                    books = _books.OrderBy(book => book.Year).ToList();
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException(nameof(sortingType), sortingType, null);
+                Console.WriteLine("В хранилище нет необходимых книг");
             }
 
-            if (books.Count < 1)
-            {
-                Console.WriteLine("В хранилище отсутствуют необходимые книги");
-            }
-
-            foreach (Book book in books)
+            foreach (Book book in _books)
             {
                 Console.WriteLine(book.ToString());
+            }
+        }
+
+        public void ShowBookByTitle()
+        {
+            Console.Write("Введите название книги для поиска: ");
+            string searchTitle = Console.ReadLine();
+            var searchResult = _books.FindAll(book => book.Title == searchTitle);
+
+            if (searchResult.Count >= MinBookCount)
+            {
+                Console.WriteLine($"Книги с названием '{searchTitle}':");
+
+                foreach (var book in searchResult)
+                {
+                    Console.WriteLine($"Автор: {book.Author}, Год: {book.Year}");
+                }
+            }
+            else
+            {
+                Console.WriteLine($"Книги с названием '{searchTitle}' не найдены.");
+            }
+        }
+
+        public void ShowBooksByAuthor()
+        {
+            Console.Write("Введите имя автора: ");
+            string authorName = Console.ReadLine();
+            var authorBooks = _books.FindAll(book => book.Author == authorName);
+
+            if (authorBooks.Count >= MinBookCount)
+            {
+                Console.WriteLine($"Книги автора {authorName}:");
+
+                foreach (var book in authorBooks)
+                {
+                    Console.WriteLine($"Название: {book.Title}, Год: {book.Year}");
+                }
+            }
+            else
+            {
+                Console.WriteLine($"Книги автора {authorName} не найдены.");
+            }
+        }
+
+        public void ShowBooksByYear()
+        {
+            Console.Write("Введите год: ");
+            int searchYear = int.Parse(Console.ReadLine());
+            var yearBooks = _books.FindAll(book => book.Year == searchYear);
+
+            if (yearBooks.Count >= MinBookCount)
+            {
+                Console.WriteLine($"Книги, опубликованные в {searchYear} году:");
+
+                foreach (var book in yearBooks)
+                {
+                    Console.WriteLine($"Название: {book.Title}, Автор: {book.Author}");
+                }
+            }
+            else
+            {
+                Console.WriteLine($"Книг, опубликованных в {searchYear} году не найдено.");
             }
         }
     }
