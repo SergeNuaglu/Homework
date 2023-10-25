@@ -28,12 +28,15 @@ class Program
                 case MenuDrawCard:
                     player.AddCard(deck.GetCard());
                     break;
+
                 case MenuShowCards:
                     player.DisplayCards();
                     break;
+
                 case MenuExit:
                     isGame = false;
                     break;
+
                 default:
                     Console.WriteLine("Неверный выбор. Попробуйте снова.");
                     break;
@@ -55,8 +58,8 @@ class Card
         Rank = rank;
     }
 
-    public string Suit { get; set; }
-    public string Rank { get; set; }
+    public string Suit { get; private set; }
+    public string Rank { get; private set; }
 
     public override string ToString()
     {
@@ -91,15 +94,13 @@ class Deck
 
     public Card GetCard()
     {
-        const int TopCardIndex = 0;
-
         if (_cards.Count == 0)
         {
             Console.WriteLine("Колода пуста.");
             return null;
         }
 
-        Card card = _cards[TopCardIndex];
+        Card card = _cards[0];
         _cards.Remove(card);
         return card;
     }
@@ -126,8 +127,11 @@ class Player
 
     public void AddCard(Card card)
     {
-        _cards.Add(card);
-        Console.WriteLine($"Вытянута карта: {card}");
+        if (card != null)
+        {
+            _cards.Add(card);
+            Console.WriteLine($"Вытянута карта: {card}");
+        }
     }
 
     public void DisplayCards()
