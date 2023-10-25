@@ -8,33 +8,30 @@ class Program
         const int FirstArraySize = 5;
         const int SecondArraySize = 5;
 
+        HashSet<string> mergedCollection = new HashSet<string>();
+
         string[] firstArray = GenerateRandomArray(FirstArraySize);
         Console.Write("Первый массив:");
-        PrintArray(firstArray);
+        PrintCollection(firstArray);
+        MergeArrayToSingleCollection(firstArray, mergedCollection);
 
         string[] secondArray = GenerateRandomArray(SecondArraySize);
         Console.Write("\nВторой массив:");
-        PrintArray(secondArray);
-
-        HashSet<string> mergedCollection = new HashSet<string>();
-
-        foreach (string item in firstArray)
-        {
-            mergedCollection.Add(item);
-        }
-
-        foreach (string item in secondArray)
-        {
-            mergedCollection.Add(item);
-        }
-
-        string[] resultArray = new string[mergedCollection.Count];
-        mergedCollection.CopyTo(resultArray);
+        PrintCollection(secondArray);
+        MergeArrayToSingleCollection(secondArray, mergedCollection);
 
         Console.Write("\nОбъединенный массив:");
-        PrintArray(resultArray);
+        PrintCollection(mergedCollection);
 
         Console.ReadLine();
+    }
+
+    static void MergeArrayToSingleCollection(string[] array, HashSet<string> singleCollection)
+    {
+        foreach (string item in array)
+        {
+            singleCollection.Add(item);
+        }
     }
 
     static string[] GenerateRandomArray(int length)
@@ -53,9 +50,9 @@ class Program
         return resultArray;
     }
 
-    static void PrintArray(string[] array)
+    static void PrintCollection(IEnumerable<string> collection)
     {
-        foreach (string item in array)
+        foreach (string item in collection)
         {
             Console.Write(item + " ");
         }
