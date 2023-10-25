@@ -1,21 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace BookStorage
 {
     internal static class Program
     {
-        private const char MenuAddBook = '1';
-        private const char MenuRemoveBook = '2';
-        private const char MenuShowAllBooks = '3';
-        private const char MenuShowBooksByTitle = '4';
-        private const char MenuShowBooksByAuthor = '5';
-        private const char MenuShowBooksByYear = '6';
-        private const char MenuExit = '7';
-
         private static void Main()
         {
+            const char MenuAddBook = '1';
+            const char MenuRemoveBook = '2';
+            const char MenuShowAllBooks = '3';
+            const char MenuShowBooksByTitle = '4';
+            const char MenuShowBooksByAuthor = '5';
+            const char MenuShowBooksByYear = '6';
+            const char MenuExit = '7';
+
             Console.WriteLine("============== МЕНЮ =============");
             Console.WriteLine($"{MenuAddBook}. Добавить книгу");
             Console.WriteLine($"{MenuRemoveBook}. Удалить книгу");
@@ -40,21 +39,27 @@ namespace BookStorage
                     case MenuAddBook:
                         storage.AddBook();
                         break;
+
                     case MenuRemoveBook:
                         storage.RemoveBook();
                         break;
+
                     case MenuShowAllBooks:
                         storage.ShowAllBooks();
                         break;
+
                     case MenuShowBooksByTitle:
-                        storage.ShowBookByTitle();
+                        storage.ShowBooksByTitle();
                         break;
+
                     case MenuShowBooksByAuthor:
                         storage.ShowBooksByAuthor();
                         break;
+
                     case MenuShowBooksByYear:
                         storage.ShowBooksByYear();
                         break;
+
                     default:
                         Console.WriteLine("Такого пункта меню не существует");
                         break;
@@ -68,72 +73,34 @@ namespace BookStorage
         private const int MinBookCount = 1;
         private readonly List<Book> _books = new List<Book>();
 
-        public int GetNewInventoryNumber()
-        {
-            Book selectedBook = _books.OrderBy(book => book.InventoryNumber).FirstOrDefault();
-            return selectedBook == null ? MinBookCount : selectedBook.InventoryNumber + MinBookCount;
-        }
-
         public void AddBook()
         {
             const int yearRangeFrom = 1700;
-            const int yearRangeTo = 2022;
+            const int yearRangeTo = 2023;
 
-            string bookTitle;
-
-            do
-            {
-                Console.Write("Введите название книги: ");
-                bookTitle = Console.ReadLine();
-            }
-            while (string.IsNullOrEmpty(bookTitle));
-
-            string bookAuthor;
-
-            do
-            {
-                Console.Write("Введите автора: ");
-                bookAuthor = Console.ReadLine();
-            }
-            while (string.IsNullOrEmpty(bookAuthor));
-
-            int bookYear;
-
-            do
-            {
-                Console.Write("Введите год: ");
-                int.TryParse(Console.ReadLine(), out bookYear);
-            }
-            while (bookYear < yearRangeFrom || bookYear > yearRangeTo);
-
-            int newInventoryNumber = GetNewInventoryNumber();
-            var book = new Book(newInventoryNumber, bookTitle, bookAuthor, bookYear);
+            string bookTitle = ReadNonEmptyString("Введите название книги: ");
+            string bookAuthor = ReadNonEmptyString("Введите автора: ");
+            int bookYear = GetValidIntegerInput("Введите год: ", yearRangeFrom, yearRangeTo);
+            var book = new Book(bookTitle, bookAuthor, bookYear);
             _books.Add(book);
             Console.WriteLine("Книга успешно добавлена");
         }
 
         public void RemoveBook()
         {
-            int bookInventoryNumber;
+            int bookInventoryNumber = GetValidIntegerInput("Введите инвентарный номер книги: ", MinBookCount, int.MaxValue);
 
-            do
+            foreach (Book book in _books)
             {
-                Console.Write("Введите инвентарный номер книги: ");
-                int.TryParse(Console.ReadLine(), out bookInventoryNumber);
+                if (book.InventoryNumber == bookInventoryNumber)
+                {
+                    _books.Remove(book);
+                    Console.WriteLine("Книга успешно удалена");
+                    return;
+                }
             }
-            while (bookInventoryNumber < MinBookCount);
 
-            Book selectedBook = _books.FirstOrDefault(book => book.InventoryNumber == bookInventoryNumber);
-
-            if (selectedBook == null)
-            {
-                Console.WriteLine("Книга с указанным инвентарным номером не найдена");
-            }
-            else
-            {
-                _books.Remove(selectedBook);
-                Console.WriteLine("Книга успешно удалена");
-            }
+            Console.WriteLine("Книга с указанным инвентарным номером не найдена");
         }
 
         public void ShowAllBooks()
@@ -141,6 +108,7 @@ namespace BookStorage
             if (_books.Count < MinBookCount)
             {
                 Console.WriteLine("В хранилище нет необходимых книг");
+                return;
             }
 
             foreach (Book book in _books)
@@ -149,75 +117,100 @@ namespace BookStorage
             }
         }
 
-        public void ShowBookByTitle()
+        public void ShowBooksByTitle()
         {
             Console.Write("Введите название книги для поиска: ");
             string searchTitle = Console.ReadLine();
-            var searchResult = _books.FindAll(book => book.Title == searchTitle);
-
-            if (searchResult.Count >= MinBookCount)
-            {
-                Console.WriteLine($"Книги с названием '{searchTitle}':");
-
-                foreach (var book in searchResult)
-                {
-                    Console.WriteLine($"Автор: {book.Author}, Год: {book.Year}");
-                }
-            }
-            else
-            {
-                Console.WriteLine($"Книги с названием '{searchTitle}' не найдены.");
-            }
+            ShowBooks(
+                book => book.Title == searchTitle,
+                $"Книги с названием '{searchTitle}' не найдены.",
+                book => $"Автор: {book.Author}, Год: {book.Year}");
         }
 
         public void ShowBooksByAuthor()
         {
             Console.Write("Введите имя автора: ");
             string authorName = Console.ReadLine();
-            var authorBooks = _books.FindAll(book => book.Author == authorName);
-
-            if (authorBooks.Count >= MinBookCount)
-            {
-                Console.WriteLine($"Книги автора {authorName}:");
-
-                foreach (var book in authorBooks)
-                {
-                    Console.WriteLine($"Название: {book.Title}, Год: {book.Year}");
-                }
-            }
-            else
-            {
-                Console.WriteLine($"Книги автора {authorName} не найдены.");
-            }
+            ShowBooks(
+                book => book.Author == authorName,
+                $"Книги автора {authorName} не найдены.",
+                book => $"Название: {book.Title}, Год: {book.Year}");
         }
 
         public void ShowBooksByYear()
         {
             Console.Write("Введите год: ");
             int searchYear = int.Parse(Console.ReadLine());
-            var yearBooks = _books.FindAll(book => book.Year == searchYear);
+            ShowBooks(
+                book => book.Year == searchYear,
+                $"Книг, опубликованных в {searchYear} году не найдено.",
+                book => $"Название: {book.Title}, Автор: {book.Author}");
+        }
 
-            if (yearBooks.Count >= MinBookCount)
+        private void ShowBooks(Func<Book, bool> filter, string notFoundMessage, Func<Book, string> format)
+        {
+            var searchResult = new List<Book>();
+
+            foreach (var book in _books)
             {
-                Console.WriteLine($"Книги, опубликованные в {searchYear} году:");
-
-                foreach (var book in yearBooks)
+                if (filter(book))
                 {
-                    Console.WriteLine($"Название: {book.Title}, Автор: {book.Author}");
+                    searchResult.Add(book);
+                }
+            }
+
+            if (searchResult.Count >= MinBookCount)
+            {
+                Console.WriteLine("Результаты поиска:");
+
+                foreach (var book in searchResult)
+                {
+                    Console.WriteLine(format(book));
                 }
             }
             else
             {
-                Console.WriteLine($"Книг, опубликованных в {searchYear} году не найдено.");
+                Console.WriteLine(notFoundMessage);
             }
+        }
+
+        private string ReadNonEmptyString(string prompt)
+        {
+            string input;
+
+            do
+            {
+                Console.Write(prompt);
+                input = Console.ReadLine();
+            }
+            while (string.IsNullOrEmpty(input));
+
+            return input;
+        }
+
+        public int GetValidIntegerInput(string prompt, int minValue, int maxValue)
+        {
+            int userInput;
+            bool isValidInput;
+
+            do
+            {
+                Console.Write(prompt);
+                isValidInput = int.TryParse(Console.ReadLine(), out userInput);
+            }
+            while (isValidInput == false || userInput < minValue || userInput > maxValue);
+
+            return userInput;
         }
     }
 
     internal sealed class Book
     {
-        public Book(int inventoryNumber, string title, string author, int year)
+        public static int Counter;
+
+        public Book(string title, string author, int year)
         {
-            InventoryNumber = inventoryNumber;
+            InventoryNumber = ++Counter;
             Title = title;
             Author = author;
             Year = year;
