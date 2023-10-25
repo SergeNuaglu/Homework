@@ -33,7 +33,7 @@ class Program
                     break;
                 case MenuExit:
                     isGame = false;
-                    return;
+                    break;
                 default:
                     Console.WriteLine("Неверный выбор. Попробуйте снова.");
                     break;
@@ -77,18 +77,17 @@ class Deck
     public void Shuffle()
     {
         var random = new Random();
-        int cardsCount = _cards.Count;
         Card card;
 
-        while (cardsCount > 1)
+        for (int i = _cards.Count - 1; i > 0; i--)
         {
-            cardsCount--;
-            int randomCardIndex = random.Next(cardsCount + 1);
-            card = _cards[randomCardIndex];
-            _cards[randomCardIndex] = _cards[cardsCount];
-            _cards[cardsCount] = card;
+            int randomCardIndex = random.Next(0, _cards.Count);
+            card = _cards[i];
+            _cards[i] = _cards[randomCardIndex];
+            _cards[randomCardIndex] = card;
         }
     }
+
 
     public Card GetCard()
     {
@@ -137,7 +136,10 @@ class Player
 
         foreach (Card card in _cards)
         {
-            Console.WriteLine(card.ToString());
+            if (card != null)
+            {
+                Console.WriteLine(card.ToString());
+            }
         }
     }
 }
