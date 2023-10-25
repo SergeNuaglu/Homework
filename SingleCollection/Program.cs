@@ -5,17 +5,17 @@ class Program
 {
     static void Main()
     {
-        const int FirstArraySize = 5;
-        const int SecondArraySize = 5;
+        int firstArraySize = 5;
+        int secondArraySize = 5;
 
         HashSet<string> mergedCollection = new HashSet<string>();
 
-        string[] firstArray = GenerateRandomArray(FirstArraySize);
+        string[] firstArray = GenerateRandomArray(firstArraySize);
         Console.Write("Первый массив:");
         PrintCollection(firstArray);
         MergeArrayToSingleCollection(firstArray, mergedCollection);
 
-        string[] secondArray = GenerateRandomArray(SecondArraySize);
+        string[] secondArray = GenerateRandomArray(secondArraySize);
         Console.Write("\nВторой массив:");
         PrintCollection(secondArray);
         MergeArrayToSingleCollection(secondArray, mergedCollection);
@@ -28,23 +28,23 @@ class Program
 
     static void MergeArrayToSingleCollection(string[] array, HashSet<string> singleCollection)
     {
-        foreach (string item in array)
+        foreach (string value in array)
         {
-            singleCollection.Add(item);
+            singleCollection.Add(value);
         }
     }
 
     static string[] GenerateRandomArray(int length)
     {
-        const int MinValue = 1;
-        const int MaxValue = 10;
+        int minValue = 1;
+        int maxValue = 10;
 
         Random random = new Random(Guid.NewGuid().GetHashCode());
         string[] resultArray = new string[length];
 
         for (int i = 0; i < length; i++)
         {
-            resultArray[i] = random.Next(MinValue, MaxValue).ToString();
+            resultArray[i] = random.Next(minValue, maxValue).ToString();
         }
 
         return resultArray;
@@ -52,9 +52,9 @@ class Program
 
     static void PrintCollection(IEnumerable<string> collection)
     {
-        foreach (string item in collection)
+        foreach (string value in collection)
         {
-            Console.Write(item + " ");
+            Console.Write(value + " ");
         }
     }
 }
