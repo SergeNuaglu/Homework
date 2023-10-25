@@ -3,38 +3,45 @@ using System.Collections.Generic;
 
 class Program
 {
-    const string MenuDrawCard = "1";
-    const string MenuShowCards = "2";
-    const string MenuExit = "3";
-
-    static void Main()
+    private static void Main()
     {
+        const string MenuDrawCard = "1";
+        const string MenuShowCards = "2";
+        const string MenuExit = "3";
+
         Deck deck = new Deck();
         Player player = new Player();
+        bool isGame = true;
 
-        while (true)
+        while (isGame)
         {
             Console.WriteLine("============= МЕНЮ =============");
             Console.WriteLine($"{MenuDrawCard}. Вытянуть карту");
             Console.WriteLine($"{MenuShowCards}. Информация о вытянутых картах");
             Console.WriteLine($"{MenuExit}. Выход");
             Console.WriteLine("================================");
-            Console.Write("Выберите действие (1/2/3): ");
+            Console.Write("Выберите номер действия: ");
             string choice = Console.ReadLine();
 
             switch (choice)
             {
-                case MenuDrawCard:                  
-                    player.PullCard(deck.GetCard());
+                case MenuDrawCard:
+                    player.AddCard(deck.GetCard());
                     break;
                 case MenuShowCards:
                     player.DisplayCards();
                     break;
                 case MenuExit:
+                    isGame = false;
                     return;
                 default:
                     Console.WriteLine("Неверный выбор. Попробуйте снова.");
                     break;
+            }
+
+            if (isGame)
+            {
+                deck.Shuffle();
             }
         }
     }
@@ -42,14 +49,14 @@ class Program
 
 class Card
 {
-    public string Suit { get; set; }
-    public string Rank { get; set; }
-
     public Card(string suit, string rank)
     {
         Suit = suit;
         Rank = rank;
     }
+
+    public string Suit { get; set; }
+    public string Rank { get; set; }
 
     public override string ToString()
     {
@@ -64,16 +71,30 @@ class Deck
     public Deck()
     {
         Initialize();
+        Shuffle();
+    }
+
+    public void Shuffle()
+    {
+        var random = new Random();
+        int cardsCount = _cards.Count;
+        Card card;
+
+        while (cardsCount > 1)
+        {
+            cardsCount--;
+            int randomCardIndex = random.Next(cardsCount + 1);
+            card = _cards[randomCardIndex];
+            _cards[randomCardIndex] = _cards[cardsCount];
+            _cards[cardsCount] = card;
+        }
     }
 
     public Card GetCard()
     {
-        const int MinCardsCount = 1;
         const int TopCardIndex = 0;
 
-        Shuffle();
-
-        if (_cards.Count < MinCardsCount)
+        if (_cards.Count == 0)
         {
             Console.WriteLine("Колода пуста.");
             return null;
@@ -97,24 +118,6 @@ class Deck
                 _cards.Add(new Card(suit, rank));
             }
         }
-
-        Shuffle();
-    }
-
-    private void Shuffle()
-    {
-        var random = new Random();
-        int cardsCount = _cards.Count;
-
-        while (cardsCount > 1)
-        {
-            cardsCount--;
-
-            int randomCardIndex = random.Next(cardsCount + 1);
-            Card card = _cards[randomCardIndex];
-            _cards[randomCardIndex] = _cards[cardsCount];
-            _cards[cardsCount] = card;
-        }
     }
 }
 
@@ -122,7 +125,7 @@ class Player
 {
     private List<Card> _cards = new List<Card>();
 
-    public void PullCard(Card card)
+    public void AddCard(Card card)
     {
         _cards.Add(card);
         Console.WriteLine($"Вытянута карта: {card}");
