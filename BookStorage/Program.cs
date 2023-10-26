@@ -26,7 +26,7 @@ namespace BookStorage
             Console.WriteLine("================================");
 
             var storage = new Storage();
-            var selectedMenu = '\0';
+            char selectedMenu = '\0';
 
             while (selectedMenu != MenuExit)
             {
@@ -68,19 +68,21 @@ namespace BookStorage
         }
     }
 
-    internal sealed class Storage
+    class Storage
     {
         private const int MinBookCount = 1;
+
         private readonly List<Book> _books = new List<Book>();
 
         public void AddBook()
         {
-            const int yearRangeFrom = 1700;
-            const int yearRangeTo = 2023;
+            int yearRangeFrom = 1700;
+            int yearRangeTo = 2023;
 
             string bookTitle = ReadNonEmptyString("Введите название книги: ");
             string bookAuthor = ReadNonEmptyString("Введите автора: ");
             int bookYear = GetValidIntegerInput("Введите год: ", yearRangeFrom, yearRangeTo);
+
             var book = new Book(bookTitle, bookAuthor, bookYear);
             _books.Add(book);
             Console.WriteLine("Книга успешно добавлена");
@@ -204,13 +206,13 @@ namespace BookStorage
         }
     }
 
-    internal sealed class Book
+    class Book
     {
-        public static int Counter;
+        private static int _counter;
 
         public Book(string title, string author, int year)
-        {
-            InventoryNumber = ++Counter;
+        { 
+            InventoryNumber = ++_counter;
             Title = title;
             Author = author;
             Year = year;
